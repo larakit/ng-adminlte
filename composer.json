@@ -1,6 +1,6 @@
 {
-    "name": "larakit/lk-angular",
-    "description": "[Larakit] angular based",
+    "name": "larakit/ng-adminlte",
+    "description": "[Larakit] AdminLTE, Angular based",
     "keywords": [
         "laravel 5",
         "laravel",
