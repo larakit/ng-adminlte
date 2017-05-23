@@ -13,10 +13,17 @@
             "email": "aberdnikov@gmail.com"
         }
     ],
+    "require": {
+        "larakit/sf-adminlte": "*",
+        "larakit/sf-angular-larakit": "*"
+    },
     "autoload": {
         "psr-4": {
             "Larakit\\": "src"
-        }
+        },
+        "files": [
+            "init.php"
+        ]
     },
     "minimum-stability": "dev"
 }
