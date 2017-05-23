@@ -1,0 +1,22 @@
+{
+    "name": "larakit/lk-angular",
+    "description": "[Larakit] angular based",
+    "keywords": [
+        "laravel 5",
+        "laravel",
+        "larakit"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Berdnikov",
+            "email": "aberdnikov@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Larakit\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
