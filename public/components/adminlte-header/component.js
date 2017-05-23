@@ -13,7 +13,11 @@
         var $ctrl = this;
         $ctrl.me = {};
         $ctrl.menu_items = [];
-        $ctrl.menu_items_opened = {};
+        $ctrl.menu_items_opened = null;
+        $ctrl.toggleOpened = function(k){
+            $ctrl.menu_items_opened = (k==$ctrl.menu_items_opened)?null:k;
+        };
+
         $ctrl.leftToggle = function () {
             LkSidebars.leftToggle();
         };
