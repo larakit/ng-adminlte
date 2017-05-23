@@ -5,7 +5,7 @@ angular
         function config($locationProvider, $routeProvider) {
             $locationProvider.html5Mode(true);
             $routeProvider
-                .otherwise('/');
+                .otherwise('/?');
 
 /* ################################################## */
 /*                      ROUTES START                  */
