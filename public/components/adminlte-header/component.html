@@ -22,12 +22,27 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <!-- Notifications: style can be found in dropdown.less -->
                 <!-- Tasks: style can be found in dropdown.less -->
-                <li ng-repeat="(k,menu_item) in $ctrl.menu_items"  class="dropdown tasks-menu" ng-class="{'open':($ctrl.menu_items_opened == k)}">
-                    <a href="#" class="dropdown-toggle" ng-click="$ctrl.toggleOpened(k)">
+                <li ng-repeat="(k,menu_item) in $ctrl.menu_items" class="dropdown tasks-menu" ng-class="{'open':($ctrl.menu_items_opened == k)}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <i class="{{menu_item.icon}}"></i>
                         <span ng-if="menu_item.label_cnt" class="label label-{{menu_item.label_class}}">{{menu_item.label_cnt}}</span>
                     </a>
-                    <div class="dropdown-menu" ng-bind-html="menu_item.content"></div>
+                    <ul class="dropdown-menu">
+                        <li class="header" ng-if="menu_item.header" ng-bind="menu_item.header"></li>
+                        <li ng-if="menu_item.items.length==0" ng-bind-html="menu_item.content"></li>
+                        <li ng-if="menu_item.items.length>0">
+                            <ul class="menu">
+                                <li ng-repeat="subitem in menu_item.items">
+                                    <a href="{{subitem.url}}">
+                                        <i ng-if="subitem.icon" class="{{subitem.icon}}"></i>
+                                        {{subitem.text}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer" ng-if="menu_item.footer_url"><a href="{{menu_item.footer_url}}">{{menu_item.footer_text?menu_item.footer_text:menu_item.footer_url}}</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- User Account: style can be found in dropdown.less -->

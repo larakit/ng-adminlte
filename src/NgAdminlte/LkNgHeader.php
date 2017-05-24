@@ -14,7 +14,9 @@ use Illuminate\Support\Str;
 class LkNgHeader {
     
     protected $name;
-    protected $data;
+    protected $data=[
+        'items'=>[]
+    ];
     
     /**
      * @param mixed $content
@@ -32,6 +34,10 @@ class LkNgHeader {
     public function setContent($v) {
         return $this->set(__FUNCTION__, $v);
     }
+    public function addItem($text, $url, $icon=null) {
+        $this->data['items'][] = compact('url', 'text', 'icon');
+        return $this;
+    }
     
     public function setLabelClass($v) {
         return $this->set(__FUNCTION__, $v);
@@ -45,6 +51,16 @@ class LkNgHeader {
         return $this->set(__FUNCTION__, $v);
     }
     
+    public function setFooterUrl($v) {
+        return $this->set(__FUNCTION__, $v);
+    }
+    public function setFooterText($v) {
+        return $this->set(__FUNCTION__, $v);
+    }
+    public function setHeader($v) {
+        return $this->set(__FUNCTION__, $v);
+    }
+    
     protected static $items = [];
     
     function get() {
@@ -53,7 +69,7 @@ class LkNgHeader {
     
     static function items() {
         $ret = [];
-        foreach(self::$items as $k=>$item) {
+        foreach(self::$items as $k => $item) {
             $ret[$k] = $item->get();
         }
         
@@ -69,6 +85,7 @@ class LkNgHeader {
         if(!isset(self::$items[$name])) {
             self::$items[$name] = new LkNgHeader($name);
         }
+        
         return self::$items[$name];
     }
     
