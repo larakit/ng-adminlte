@@ -7,18 +7,18 @@
  * Time: 12:45
  */
 Route::get('admin{path?}', function () {
-    $page = new \Larakit\Page\LkPage();
-    $page->setBodyContent('<div class="wrapper" style="height: auto;">
+    $page = \Larakit\Page\LkPage::instance()
+        ->setBodyContent('<div class="wrapper" style="height: auto;">
     <ng-view></ng-view>
 </div>');
-    $page->body()->addClass('skin-black')->setAttribute('ng-class', '{
+    $page->html()->ngApp();
+    $page->body()
+        ->addClass('skin-black')->setAttribute('ng-class', '{
         \'sidebar-collapse\':leftValue(),
         \'control-sidebar-open\':rightValue(),
 }');
-    echo $page;
-    exit;
     
-    return view('ng-adminlte::layout');
+    return $page;
 })
     ->name('admin')
     ->where('path', '.*')
