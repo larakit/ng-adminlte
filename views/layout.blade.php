@@ -13,9 +13,7 @@
         'sidebar-collapse':leftValue(),
         'control-sidebar-open':rightValue(),
 }">
-<div class="wrapper" style="height: auto;">
-    <ng-view></ng-view>
-</div>
+<div class="wrapper" style="height: auto;"><ng-view></ng-view></div>
 {!! larajs() !!}
 </body>
 </html>

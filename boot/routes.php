@@ -7,6 +7,17 @@
  * Time: 12:45
  */
 Route::get('admin{path?}', function () {
+    $page = new \Larakit\Page\LkPage();
+    $page->setBodyContent('<div class="wrapper" style="height: auto;">
+    <ng-view></ng-view>
+</div>');
+    $page->body()->addClass('skin-black')->setAttribute('ng-class', '{
+        \'sidebar-collapse\':leftValue(),
+        \'control-sidebar-open\':rightValue(),
+}');
+    echo $page;
+    exit;
+    
     return view('ng-adminlte::layout');
 })
     ->name('admin')
@@ -17,7 +28,8 @@ Route::get('admin{path?}', function () {
 
 Route::get('!/adminlte/header', function () {
     $ret = \Larakit\NgAdminlte\LkNgHeader::items();
-//    dd($ret );
+    
+    //    dd($ret );
     return $ret;
 });
 Route::get('!/adminlte/routes', function () {
