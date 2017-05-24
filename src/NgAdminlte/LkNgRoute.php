@@ -28,7 +28,7 @@ class LkNgRoute {
      *
      * @return LkNgRoute
      */
-    static function factory($url, $name) {
+    static function factory($url, $name = null) {
         if(!isset(self::$routes[$url])) {
             self::$routes[$url] = new LkNgRoute($url, $name);
         }
@@ -42,20 +42,19 @@ class LkNgRoute {
     
     static function sidebars() {
         $ret = [];
-        foreach(self::$sidebars as $section => $data) {
-            foreach($data as $k => $v) {
-                $ret[$section][$v][$k] = [
-                    'title' => self::factory($k)->get('title'),
-                    'icon'  => self::factory($k)->get('icon'),
-                ];
-            }
-            if(isset($ret[$section][null])) {
-                $tmp = $ret[$section][null];
-                unset($ret[$section][null]);
-            }
-            ksort($ret[$section]);
-            $ret[$section] = [null => $tmp] + $ret[$section];
+        foreach(self::$sidebars as $url => $group) {
+            $ret[$group][] = [
+                'url'   => $url,
+                'name'  => self::factory($url)->get('name'),
+                'title' => self::factory($url)->get('title'),
+                'icon'  => self::factory($url)->get('icon'),
+            ];
         }
+        if(isset($ret[null])) {
+            $tmp = $ret[null];
+            unset($ret[null]);
+        }
+        $ret = [null => $tmp] + $ret;
         
         return $ret;
     }
@@ -96,8 +95,8 @@ class LkNgRoute {
         return $this->set(__FUNCTION__, $v);
     }
     
-    function sidebar($section, $group = null) {
-        self::$sidebars[$section][$this->url] = $group;
+    function sidebar($group = null) {
+        self::$sidebars[$this->url] = $group;
         
         return $this;
     }

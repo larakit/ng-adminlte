@@ -8,7 +8,7 @@
  */
 Route::get('admin{path?}', function () {
     $page = \Larakit\Page\LkPage::instance()
-        ->setBodyContent('<div class="wrapper" style="height: auto;">
+        ->setBodyContent('<div class="wrapper" style="height: auto;min-height: 100%;">
     <ng-view></ng-view>
 </div>');
     $page->html()->ngApp();
@@ -30,6 +30,12 @@ Route::get('!/adminlte/header', function () {
     $ret = \Larakit\NgAdminlte\LkNgHeader::items();
     
     //    dd($ret );
+    return $ret;
+});
+Route::get('!/adminlte/sidebar', function () {
+    $ret = \Larakit\NgAdminlte\LkNgRoute::sidebars();
+    
+//        dd($ret);
     return $ret;
 });
 Route::get('!/adminlte/routes', function () {

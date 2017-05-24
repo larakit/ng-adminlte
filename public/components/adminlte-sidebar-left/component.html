@@ -1,0 +1,15 @@
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar" style="height: auto;">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" ng-repeat="(group, items) in $ctrl.menu_items">
+            <li class="header" ng-if="group">{{group}}</li>
+            <li ng-class="{'active':$ctrl.current==item.name}" ng-repeat="item in items">
+                <a href="{{item.url}}">
+                    <i ng-if="item.icon" class="{{item.icon}}"></i> <span ng-bind="item.title"></span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
