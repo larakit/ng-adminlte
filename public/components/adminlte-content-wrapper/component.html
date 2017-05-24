@@ -1,0 +1,21 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {{$ctrl.current_page.title}}
+            <small ng-if="$ctrl.current_page.subtitle" ng-bind="$ctrl.current_page.subtitle"></small>
+        </h1>
+        <ol class="breadcrumb" ng-if="$ctrl.breadcrumbs.length>0">
+            <li ng-repeat="(i,breadcrumb) in $ctrl.breadcrumbs">
+                <a href="{{breadcrumb.url}}" ng-class="{'active':i==$ctrl.breadcrumbs.length}"><i ng-if="breadcrumb.icon" class="{{breadcrumb.icon}}"></i>
+                    {{breadcrumb.title}}</a>
+            </li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <ng-transclude></ng-transclude>
+    </section>
+    <!-- /.content -->
+</div>

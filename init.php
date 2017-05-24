@@ -23,6 +23,7 @@
 \Larakit\NgAdminlte\LkNgComponent::register('page-admin', '/packages/larakit/ng-adminlte/components/page-admin/');
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-header', '/packages/larakit/ng-adminlte/components/adminlte-header/');
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left', '/packages/larakit/ng-adminlte/components/adminlte-sidebar-left/');
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper', '/packages/larakit/ng-adminlte/components/adminlte-content-wrapper/');
 
 \Larakit\NgAdminlte\LkNgHeader::register('letter1')
     ->addItem('5 закрытых сделок', '#', 'fa fa-lock text-aqua')
