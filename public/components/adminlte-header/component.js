@@ -36,6 +36,17 @@
                 });
         };
         $ctrl.load();
+        $ctrl.logout = function () {
+            $http.post('/logout').then(function (response) {
+                if('success'==response.data.result){
+                    larakit_toastr(response.data);
+                    setTimeout(function(){
+                        window.location.href = '/';
+                    }, 1000);
+                }
+
+            })
+        }
     }
 
 })();
