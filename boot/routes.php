@@ -8,7 +8,7 @@
  */
 Route::get('admin{path?}', function () {
     $page = \Larakit\Page\LkPage::instance()
-        ->setBodyContent('<div class="wrapper" style="height: auto;min-height: 100%;">
+        ->setBodyContent('<div class="wrapper">
     <ng-view></ng-view>
 </div>');
     $page->html()->ngApp();
