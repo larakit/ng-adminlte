@@ -13,6 +13,7 @@ Route::get('admin{path?}', function () {
 </div>');
     $page->html()->ngApp();
     $page->body()
+        ->setAttribute('style', 'height: auto; min-height: 100%;')
         ->addClass('skin-black')->setAttribute('ng-class', '{
         \'sidebar-collapse\':leftValue(),
         \'control-sidebar-open\':rightValue(),
@@ -27,15 +28,34 @@ Route::get('admin{path?}', function () {
     ->middleware('admin');
 
 Route::get('!/adminlte/header', function () {
-    $ret = \Larakit\NgAdminlte\LkNgHeader::items();
+    $ret = [
+        'items'     => \Larakit\NgAdminlte\LkNgHeader::items(),
+        'logo_mini' => env('ADMINLTE_HEADER_LOGO_MINI', '<b>L</b>K'),
+        'logo_lg'   => env('ADMINLTE_HEADER_LOGO_LG', '<b>Lara</b>kit'),
+    ];
     
-    //    dd($ret );
+    return $ret;
+});
+Route::get('!/adminlte/footer', function () {
+    $year = env('ADMINLTE_FOOTER_FROM', '2014');
+    if($year == date('Y')) {
+        $years = $year;
+    } else {
+        $years = $year . ' - ' . date('Y');
+    }
+    $ret = [
+        'years'     => $years,
+        'copyright' => env('ADMINLTE_FOOTER_COPYRIGHT', 'Все права защищены'),
+        'name'      => env('ADMINLTE_FOOTER_NAME', 'Almsaeed Studio'),
+        'url'       => env('ADMINLTE_FOOTER_URL', 'https://adminlte.io/'),
+    ];
+    
     return $ret;
 });
 Route::get('!/adminlte/sidebar', function () {
-    $ret = \Larakit\NgAdminlte\LkNgRoute::sidebars();
+    $ret = \Larakit\NgAdminlte\LkNgSidebar::sidebars();
     
-//        dd($ret);
+    //        dd($ret);
     return $ret;
 });
 Route::get('!/adminlte/routes', function () {

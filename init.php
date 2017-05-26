@@ -20,10 +20,17 @@
     ->jsPackage('services/lk-user.js');
 
 \Larakit\Boot::register_middleware(\Larakit\NgAdminlte\NgComponentsMiddleware::class);
-\Larakit\NgAdminlte\LkNgComponent::register('page-admin', '/packages/larakit/ng-adminlte/components/page-admin/');
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-header', '/packages/larakit/ng-adminlte/components/adminlte-header/');
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left', '/packages/larakit/ng-adminlte/components/adminlte-sidebar-left/');
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper', '/packages/larakit/ng-adminlte/components/adminlte-content-wrapper/');
+
+//##################################################
+//components
+//##################################################
+$components_directory = '/packages/larakit/ng-adminlte/components/';
+\Larakit\NgAdminlte\LkNgComponent::register('page-admin',$components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-header',$components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left',$components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-right',$components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper',$components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer',$components_directory);
 
 \Larakit\NgAdminlte\LkNgHeader::register('letter1')
     ->addItem('5 закрытых сделок', '#', 'fa fa-lock text-aqua')

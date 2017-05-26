@@ -4,6 +4,9 @@
         .module('larakit')
         .component('adminlteHeader', {
             templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-header/component.html',
+            bindings: {
+                home: '=?'
+            },
             controller: Controller
         });
 
@@ -31,16 +34,17 @@
             $http
                 .get('/!/adminlte/header')
                 .then(function (response) {
-                    $ctrl.menu_items = response.data;
-                    console.log(response.data);
+                    $ctrl.menu_items = response.data.items;
+                    $ctrl.logo_mini = response.data.logo_mini;
+                    $ctrl.logo_lg = response.data.logo_lg;
                 });
         };
         $ctrl.load();
         $ctrl.logout = function () {
             $http.post('/logout').then(function (response) {
-                if('success'==response.data.result){
+                if ('success' == response.data.result) {
                     larakit_toastr(response.data);
-                    setTimeout(function(){
+                    setTimeout(function () {
                         window.location.href = '/';
                     }, 1000);
                 }

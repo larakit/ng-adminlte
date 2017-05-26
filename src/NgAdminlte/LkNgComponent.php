@@ -23,9 +23,9 @@ class LkNgComponent {
      * @param      $name
      * @param null $path
      */
-    static function register($name, $path = null) {
+    static function register($name, $components_directory = null) {
         if(!isset(self::$components[$name])) {
-            self::$components[$name] = $path ? : self::path($name);
+            self::$components[$name] = trim($components_directory, '/') . '/' . $name ? : self::path($name);
         }
     }
     
