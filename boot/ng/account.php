@@ -1,4 +1,5 @@
 <?php
+return;
 /**
  * Created by Larakit.
  * Link: http://github.com/larakit

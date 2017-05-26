@@ -20,17 +20,15 @@ $url = \Larakit\NgAdminlte\LkNgRoute::adminUrl();
 //##################################################
 //      Добавление в sidebar администратора
 //##################################################
-$sidebar_admin = \Larakit\NgAdminlte\LkNgSidebar::section('admin');
-$sidebar_admin
-    ->item($url)
-    ->setIcon('fa fa-dashboard')
-    ->setText('Dashboard');
-
+\Larakit\NgAdminlte\LkNgSidebar::section('admin')
+    ->item('admin', 'Dashboard', 'fa fa-dashboard')
+    ->item('admin.1', 'Dashboard 1', 'fa fa-dashboard')
+    ->item('admin.2', 'Dashboard 2', 'fa fa-dashboard')
+;
 
 //##################################################
 //      Добавление в Angular - routing
 //##################################################
-
 
 \Larakit\NgAdminlte\LkNgRoute::factory($url, 'admin')
     ->title('Система администрирования')

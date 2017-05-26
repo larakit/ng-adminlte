@@ -4,7 +4,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" ng-repeat="(group, items) in $ctrl.menu_items">
             <li class="header" ng-if="group">{{group}}</li>
-            <li ng-class="{'active':$ctrl.current==url}" ng-repeat="(url, item) in items">
+            <li ng-class="{'active':$ctrl.current==url}" ng-repeat="item in items">
                 <a href="{{url}}">
                     <i ng-if="item.icon" class="{{item.icon}}"></i> <span ng-bind="item.text"></span>
                     <span class="pull-right-container" ng-if="item.labels.length>0">
@@ -16,3 +16,16 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+<script type="text/ng-template" id="sidebar-branch.html">
+    <li class="treeview">
+        <a href="#"><i class="fa fa-circle-o"></i> Level Two
+            <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+        </a>
+        <ul class="treeview-menu" style="display: block;">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+        </ul>
+    </li>
+</script>
