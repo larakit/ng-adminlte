@@ -52,14 +52,27 @@ class LkNgSidebar {
     function toArray() {
         $items = [];
         foreach($this->items as $url => $item) {
-            $items[$item->getGroup()][$url] = $item->toArray();
+            $items[$item->getGroup()][$item->getPriority()][$url] = $item->toArray();
         }
         if(isset($items[null])) {
             $tmp = $items[null];
             unset($items[null]);
             $items = [null => $tmp] + $items;
         }
-        return $items;
+        $ret = [];
+        foreach($items as $group => $_items) {
+            krsort($_items);
+            foreach($_items as $priority => $__items) {
+                foreach($__items as $url => $_item) {
+                    $ret[$group][$url] = $_item;
+                }
+                
+            }
+            
+        }
+//        dd($ret);
+        
+        return $ret;
     }
     
 }

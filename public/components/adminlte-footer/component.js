@@ -13,7 +13,9 @@
         var $ctrl = this;
         $ctrl.load = function () {
             $http
-                .get('/!/adminlte/footer')
+                .get('/!/adminlte/footer', {
+                    cache:true
+                })
                 .then(function (response) {
                     $ctrl.data = response.data;
                 });

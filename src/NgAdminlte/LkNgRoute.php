@@ -13,14 +13,17 @@ use Illuminate\Support\Arr;
 
 class LkNgRoute {
     
-    protected static $routes   = [];
-    protected static $sidebars = [];
+    protected static $routes = [];
     
     protected $url;
     protected $data;
     
     static function adminUrl($suffix = null) {
-        return env('ADMIN_URL', '/admin') . ($suffix ? '/' . ltrim($suffix, '/') : '');
+        return env('ADMINLTE_ADMIN_URL', '/admin') . ($suffix ? '/' . ltrim($suffix, '/') : '');
+    }
+    
+    static function accountUrl($suffix = null) {
+        return env('ADMINLTE_ACCOUNT_URL', '/account') . ($suffix ? '/' . ltrim($suffix, '/') : '');
     }
     
     /**
@@ -38,25 +41,6 @@ class LkNgRoute {
     
     static function routes() {
         return self::$routes;
-    }
-    
-    static function sidebars() {
-        $ret = [];
-        foreach(self::$sidebars as $url => $group) {
-            $ret[$group][] = [
-                'url'   => $url,
-                'name'  => self::factory($url)->get('name'),
-                'title' => self::factory($url)->get('title'),
-                'icon'  => self::factory($url)->get('icon'),
-            ];
-        }
-        if(isset($ret[null])) {
-            $tmp = $ret[null];
-            unset($ret[null]);
-        }
-        $ret = [null => $tmp] + $ret;
-        
-        return $ret;
     }
     
     function __construct($url, $name) {
@@ -93,12 +77,6 @@ class LkNgRoute {
     
     function icon($v) {
         return $this->set(__FUNCTION__, $v);
-    }
-    
-    function sidebar($group = null) {
-        self::$sidebars[$this->url] = $group;
-        
-        return $this;
     }
     
     function getJson() {

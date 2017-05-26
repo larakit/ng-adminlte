@@ -14,7 +14,8 @@ class LkNgSidebarItem {
     protected $text;
     protected $group;
     protected $icon;
-    protected $labels = [];
+    protected $priority = 0;
+    protected $labels   = [];
     
     function __construct($text) {
         $this->text = $text;
@@ -27,8 +28,26 @@ class LkNgSidebarItem {
      * @return $this
      */
     function addLabel($text, $class = 'success') {
-        $class = trim($class);
+        $class          = trim($class);
         $this->labels[] = compact('text', 'class');
+        
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    function getPriority() {
+        return $this->priority;
+    }
+    
+    /**
+     * @param $priority
+     *
+     * @return $this
+     */
+    function setPriority($priority) {
+        $this->priority = (int) $priority;
         
         return $this;
     }

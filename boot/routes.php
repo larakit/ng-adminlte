@@ -6,7 +6,7 @@
  * Date: 23.05.17
  * Time: 12:45
  */
-Route::get('admin{path?}', function () {
+$callback = function () {
     $page = \Larakit\Page\LkPage::instance()
         ->setBodyContent('<div class="wrapper">
     <ng-view></ng-view>
@@ -20,12 +20,19 @@ Route::get('admin{path?}', function () {
 }');
     
     return $page;
-})
+};
+Route::get(\Larakit\NgAdminlte\LkNgRoute::adminUrl().'{path?}', $callback)
     ->name('admin')
     ->where('path', '.*')
     ->middleware('web')
     ->middleware('auth')
     ->middleware('admin');
+
+Route::get(\Larakit\NgAdminlte\LkNgRoute::accountUrl().'{path?}', $callback)
+    ->name('account')
+    ->where('path', '.*')
+    ->middleware('web')
+    ->middleware('auth');
 
 Route::get('!/adminlte/header', function () {
     $ret = [

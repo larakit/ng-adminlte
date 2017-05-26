@@ -17,7 +17,9 @@
 
         $ctrl.load = function () {
             $http
-                .get('/!/adminlte/sidebar')
+                .get('/!/adminlte/sidebar', {
+                    cache:true
+                })
                 .then(function (response) {
                     $ctrl.menu_items = response.data[$ctrl.section];
                     console.log(response.data);
