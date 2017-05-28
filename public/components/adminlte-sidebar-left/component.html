@@ -1,31 +1,38 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar" style="height: auto;">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" ng-repeat="(group, items) in $ctrl.menu_items">
             <li class="header" ng-if="group">{{group}}</li>
-            <li ng-class="{'active':$ctrl.current==url}" ng-repeat="item in items">
-                <a href="{{url}}">
-                    <i ng-if="item.icon" class="{{item.icon}}"></i> <span ng-bind="item.text"></span>
-                    <span class="pull-right-container" ng-if="item.labels.length>0">
-                        <small ng-repeat="label in item.labels" class="label pull-right label-{{label.class}}">{{label.text}}</small>
-                    </span>
-                </a>
+            <li ng-class="{
+                    'treeview':item._items_.length>0,
+                    'active':$ctrl.isActive(item),
+                    'menu-open':$ctrl.isOpened(item) || $ctrl.opened[item.url]
+                }"
+                ng-repeat="item in items"
+                ng-include="'sidebar-branch'">
             </li>
         </ul>
     </section>
-    <!-- /.sidebar -->
 </aside>
-<script type="text/ng-template" id="sidebar-branch.html">
-    <li class="treeview">
-        <a href="#"><i class="fa fa-circle-o"></i> Level Two
-            <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-        </a>
-        <ul class="treeview-menu" style="display: block;">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-        </ul>
-    </li>
+<script type="text/ng-template" id="sidebar-branch">
+    <a href="{{item.url}}" ng-click="$ctrl.toggle(item, $event);">
+        <i ng-if="item.icon" class="{{item.icon}}"></i> <span ng-bind="item.text"></span>
+        <span class="pull-right-container" ng-if="item.labels.length>0">
+            <small ng-repeat="label in item.labels" class="label pull-right label-{{label.class}}">{{label.text}}</small>
+        </span>
+        <span class="pull-right-container" ng-if="item._items_.length>0">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu" ng-if="item._items_.length>0" ng-style="$ctrl.treeViewMenuStyle(item)">
+        <li ng-if="item._items_.length>0" class="treeview"
+            ng-class="{
+                'menu-open':$ctrl.isOpened(item),
+                'active':$ctrl.isActive(item)
+            }"
+            ng-repeat="subitem in item._items_"
+            ng-init="item=subitem"
+            ng-include="'sidebar-branch'">
+        </li>
+    </ul>
 </script>

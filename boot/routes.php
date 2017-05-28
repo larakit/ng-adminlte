@@ -7,18 +7,6 @@
  * Time: 12:45
  */
 
-//\Larakit\NgAdminlte\LkNgSidebar::section('admin', 'Фраера')
-//    ->item('admin.user.favorites', 'Пользователи', 'fa fa-users', '/admin/user')
-//    ->addLabel('admin.user.favorites', 1, 'danger')
-//    ->addLabel('admin.user.favorites', 2);
-//\Larakit\NgAdminlte\LkNgSidebar::section('admin', 'Мусора')
-//    ->item('admin.user', 'Новости', 'fa fa-users', '/admin/user/news')
-//    ->item('admin', 'Пользователи', 'fa fa-dashboard');
-if(0) {
-    print '<pre>';
-    print_r(\Larakit\NgAdminlte\LkNgSidebar::sidebars());
-    exit;
-}
 $callback = function () {
     $page = \Larakit\Page\LkPage::instance()
         ->setBodyContent('<div class="wrapper">
@@ -74,7 +62,7 @@ Route::get('!/adminlte/footer', function () {
 });
 Route::get('!/adminlte/sidebar', function () {
     $ret = \Larakit\NgAdminlte\LkNgSidebar::sidebars();
-    dd($ret);
+//    dd($ret);
     
     return $ret;
 });
