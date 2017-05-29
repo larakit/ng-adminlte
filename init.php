@@ -25,7 +25,6 @@
 //components
 //##################################################
 $components_directory = '/packages/larakit/ng-adminlte/components/';
-
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-header',$components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left',$components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-right',$components_directory);

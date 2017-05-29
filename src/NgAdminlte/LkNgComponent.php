@@ -25,21 +25,11 @@ class LkNgComponent {
      */
     static function register($name, $components_directory = null) {
         if(!isset(self::$components[$name])) {
-            self::$components[$name] = trim($components_directory, '/') . '/' . $name ? : self::path($name);
+            if(!$components_directory) {
+                $components_directory = '/!/ng/components/';
+            }
+            self::$components[$name] = trim($components_directory, '/') . '/' . $name . '/';
         }
-    }
-    
-    /**
-     * @param $name
-     *
-     * @return string
-     */
-    static function path($name) {
-        if('page-' == mb_substr($name, 0, 5)) {
-            return '/!/ng/pages/' . mb_substr($name, 5) . '/';
-        }
-        
-        return '/!/ng/components/' . $name . '/';
     }
     
 }
