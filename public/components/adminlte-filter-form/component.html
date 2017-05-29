@@ -1,0 +1,66 @@
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Фильтр списка</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div ng-repeat="filter in $ctrl.config">
+            <!-- BOOLEAN start -->
+            <div class="form-group" ng-if="$ctrl.isShowBoolean(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="input-group">
+                    <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
+                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="undefined">{{filter.all}}</label>
+                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'">{{filter.on}}</label>
+                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'">{{filter.off}}</label>
+                    </div>
+                </div>
+            </div>
+            <!-- BOOLEAN end -->
+
+            <!-- CHECKBOX start -->
+            <div class="form-group" ng-if="$ctrl.isShowCheckbox(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="input-group">
+                    <div class="checkbox" ng-repeat="(id,group) in filter.options" >
+                        <label ng-click="$ctrl.load()(false, 1)">
+                            <input type="checkbox" ng-model="$ctrl.params[filter.name][group.id]">
+                            {{group.filter_label}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- CHECKBOX end -->
+
+            <!-- LIKE start -->
+            <div class="form-group" ng-if="$ctrl.isShowLike(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="$ctrl.params[filter.name]" ng-change="$ctrl.load()(false, 1)">
+                    <span ng-if="undefined!=$ctrl.params[filter.name]" class="input-group-addon pointer" title="Очистить поле"
+                          ng-click="$ctrl.params[filter.name] = undefined;$ctrl.load()(false, true)">&times;</span>
+                </div>
+
+            </div>
+            <!-- LIKE end -->
+
+            <!-- SELECT2 start -->
+            <div class="form-group" ng-if="$ctrl.isShowSelect2(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                    <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params[filter.name]" close-on-select="false">
+                        <ui-select-match>{{$item.filter_label}}</ui-select-match>
+                        <ui-select-choices repeat="option in filter.options| filter:$select.search">
+                            {{option.filter_label}}
+                        </ui-select-choices>
+                    </ui-select>
+
+            </div>
+            <!-- SELECT2 end -->
+
+        </div>
+    </div>
+    <div class="box-footer">
+        <button type="button" ng-click="$ctrl.load()(true, true)" class="btn btn-info btn-block">Очистить фильтр</button>
+    </div>
+    <!-- /.box-body -->
+</div>

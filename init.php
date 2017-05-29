@@ -25,8 +25,10 @@
 //components
 //##################################################
 $components_directory = '/packages/larakit/ng-adminlte/components/';
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-header',$components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left',$components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-right',$components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper',$components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer',$components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-header', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-right', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-pagination', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-form', $components_directory);
