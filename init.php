@@ -6,6 +6,7 @@
  * Date: 23.05.17
  * Time: 11:56
  */
+//$ng_boot_dir =
 \Larakit\Boot::register_boot(__DIR__ . '/boot');
 \Larakit\Boot::register_view_path(__DIR__ . '/views', 'ng-adminlte');
 
@@ -32,3 +33,5 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-pagination', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-form', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-item', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-list', $components_directory);

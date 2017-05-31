@@ -48,9 +48,9 @@
             <div class="form-group" ng-if="$ctrl.isShowSelect2(filter)">
                 <label class="control-label">{{filter.label}}</label>
                     <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params[filter.name]" close-on-select="false">
-                        <ui-select-match>{{$item.filter_label}}</ui-select-match>
+                        <ui-select-match>{{$item.toString}}</ui-select-match>
                         <ui-select-choices repeat="option in filter.options| filter:$select.search">
-                            {{option.filter_label}}
+                            {{option.toString}}
                         </ui-select-choices>
                     </ui-select>
 

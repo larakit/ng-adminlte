@@ -17,7 +17,7 @@
             var deferred = $q.defer();
             if ('undefined' === typeof (self.user.id)) {
                 $http
-                    .get('/!/ajax/me')
+                    .get('/!/adminlte/me')
                     .then(function (response) {
                         self.user = response.data;
                         deferred.resolve(self.user);

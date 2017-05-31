@@ -1,0 +1,41 @@
+<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':!$ctrl.is_opened}">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-1">
+                <h3 class="box-title">
+                    <label>
+                        <input type="checkbox" ng-model="$ctrl.model.is_checkbox_bulk" ng-if="$ctrl.isBulk">
+                        #{{$ctrl.model.id}}
+                    </label>
+                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.is_opened=!$ctrl.is_opened" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
+                                                                                                                                              ng-class="{
+            'fa-plus':!$ctrl.is_opened,
+            'fa-minus':$ctrl.is_opened
+            }"></i></button>
+                </h3>
+            </div>
+            <div class="col-lg-9" ng-transclude="header">
+            </div>
+            <div class="col-lg-2">
+                <div class="btn-group pull-right" ng-transclude="buttons">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-body" ng-transclude="body"></div>
+    <div class="box-footer">
+        <div class="row text-sm">
+            <div class="col-lg-4" ng-if="$ctrl.model.created_at">
+                <strong>Создано:</strong> {{$ctrl.model.created_at}}
+            </div>
+            <div class="col-lg-4" ng-if="$ctrl.model.updated_at">
+                <strong>Обновлено:</strong> {{$ctrl.model.updated_at}}
+            </div>
+            <div class="col-lg-4" ng-if="$ctrl.model.deleted_at">
+                <strong>Удалено:</strong> {{$ctrl.model.deleted_at}}
+            </div>
+        </div>
+    </div>
+</div>
+{{$ctrl.body}}
+{{$ctrl.itemBody}}

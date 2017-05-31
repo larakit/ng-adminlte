@@ -44,6 +44,17 @@ Route::get('!/adminlte/header', function () {
     
     return $ret;
 });
+Route::get('!/adminlte/me', function () {
+    $me = Auth::getUser();
+    if($me) {
+        return $me->toArray();
+    }
+    return null;
+})
+    ->middleware('web')
+    ->middleware('auth')
+    ->name('ajax.me');
+
 Route::get('!/adminlte/footer', function () {
     $year = env('ADMINLTE_FOOTER_FROM', '2014');
     if($year == date('Y')) {

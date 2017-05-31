@@ -1,0 +1,28 @@
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-2">
+                <a class="btn btn-1block btn-social btn-facebook" ng-click="$ctrl.toggle()">
+                    <i class="fa" ng-class="{
+                'fa-check-circle-o':$ctrl.is,
+                'fa-check-circle':!$ctrl.is,
+            }"></i>
+                    <span ng-show="$ctrl.countSelected()">Выделено: {{$ctrl.countSelected()}}</span>
+                    <span ng-show="!$ctrl.countSelected()">Массовые действия</span>
+                </a>
+            </div>
+            <div class="col-lg-8">
+                &nbsp;
+                <span ng-transclude="buttons" ng-show="$ctrl.countSelected()"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<adminlte-filter-pagination data="$ctrl.data" page="$ctrl.page" load="$ctrl.load"></adminlte-filter-pagination>
+
+<div class="row">
+    <div class="col-lg-12" ng-transclude="body"></div>
+</div>
+
+<adminlte-filter-pagination data="$ctrl.data" page="$ctrl.page" load="$ctrl.load"></adminlte-filter-pagination>

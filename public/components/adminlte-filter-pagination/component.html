@@ -1,15 +1,24 @@
-<div class="text-center">
-    <ul
-            previous-text="&lsaquo;"
-            next-text="&rsaquo;"
-            first-text="&laquo;"
-            last-text="&raquo;"
-            uib-pagination
-            total-items="$ctrl.data.total"
-            boundary-link-numbers="true"
-            boundary-links="true"
-            ng-model="$ctrl.page"
-            max-size="10"
-            items-per-page="$ctrl.data.per_page"
-            ng-change="$ctrl.load()(false,$ctrl.page)"></ul>
+<div class="row" ng-if="$ctrl.data.last_page>1">
+    <div class="col-lg-2">
+        <div class="larakit-pagination">
+            Показано с {{($ctrl.data.per_page*($ctrl.data.current_page-1)+1)}}
+            по {{$ctrl.data.per_page*$ctrl.data.current_page}}
+            из {{$ctrl.data.total}}
+        </div>
+    </div>
+    <div class="col-lg-10 text-center">
+        <ul
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                uib-pagination
+                total-items="$ctrl.data.total"
+                boundary-link-numbers="true"
+                boundary-links="true"
+                ng-model="$ctrl.page"
+                max-size="10"
+                items-per-page="$ctrl.data.per_page"
+                ng-change="$ctrl.load()(false,$ctrl.page)"></ul>
+    </div>
 </div>
