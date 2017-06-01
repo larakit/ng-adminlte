@@ -1,12 +1,12 @@
-@verbatim
 angular
     .module('larakit')
     .config(['$locationProvider', '$routeProvider',
         function config($locationProvider, $routeProvider) {
             $locationProvider.html5Mode(true);
             $routeProvider
-                .otherwise('/?');
+                .otherwise('{{$otherwise}}');
 
+@verbatim
 /* ################################################## */
 /*                      ROUTES START                  */
 /* ################################################## */

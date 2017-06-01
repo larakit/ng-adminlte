@@ -80,7 +80,8 @@ Route::get('!/adminlte/sidebar', function () {
 Route::get('!/adminlte/routes', function () {
     \Larakit\Event\Event::notify('ng_routes');
     $routes   = \Larakit\NgAdminlte\LkNgRoute::routes();
-    $response = Response::make(view('ng-adminlte::ng-routes', compact('routes')));
+    $otherwise = \Larakit\NgAdminlte\LkNgRoute::adminUrl();
+    $response = Response::make(view('ng-adminlte::ng-routes', compact('routes', 'otherwise')));
     $response->header('Content-Type', 'application/javascript; charset=UTF-8');
     
     return $response;
