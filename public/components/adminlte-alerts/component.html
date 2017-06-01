@@ -1,0 +1,5 @@
+<div ng-repeat="alert in $ctrl.alerts" class="alert alert-{{alert.result}}">
+    <button type="button" class="close"  ng-click="$ctrl.close($index)">&times;</button>
+    <h4 ng-if="alert.title" ng-bind-html="alert.title"></h4>
+    <p ng-bind-html="alert.message"></p>
+</div>

@@ -2,8 +2,8 @@
 
     angular
         .module('larakit')
-        .component('adminlteFilterItem', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-filter-item/component.html',
+        .component('adminlteListItem', {
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-item/component.html',
             transclude: {
                 'body': '?itemBody',
                 'header': '?itemHeader',
@@ -12,16 +12,16 @@
             bindings: {
                 model: '=',
                 color: '=',
-                isBulk: '=',
-                isHideToggle: '='
+                isBulk: '='
             },
             controller: Controller
         });
 
-    Controller.$inject = [];
+    Controller.$inject = ['$transclude'];
 
-    function Controller() {
+    function Controller($transclude) {
         var $ctrl = this;
+        $ctrl.isHideToggle = !$transclude.isSlotFilled('body');
     }
 
 })();
