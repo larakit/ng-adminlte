@@ -1,0 +1,9 @@
+.control-sidebar-bg, .control-sidebar{
+    right: -350px;
+    width: 350px;
+}
+@media (min-width : 768px) {
+    .control-sidebar-open .content-wrapper, .control-sidebar-open .right-side, .control-sidebar-open .main-footer {
+        margin-right : 350px
+    }
+}

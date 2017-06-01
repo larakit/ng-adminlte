@@ -37,7 +37,7 @@
                 <label class="control-label">{{filter.label}}</label>
                 <div class="input-group">
                     <input type="text" class="form-control" ng-model="$ctrl.params[filter.name]" ng-change="$ctrl.load()(false, 1)">
-                    <span ng-if="undefined!=$ctrl.params[filter.name]" class="input-group-addon pointer" title="Очистить поле"
+                    <span class="input-group-addon pointer" title="Очистить поле"
                           ng-click="$ctrl.params[filter.name] = undefined;$ctrl.load()(false, true)">&times;</span>
                 </div>
 
