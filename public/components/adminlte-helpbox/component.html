@@ -1,0 +1,16 @@
+<div class="box box-info box-solid" ng-class="{'collapsed-box':!is_show_help}">
+    <div class="box-header with-border pointer" ng-click="is_show_help=!is_show_help" title="Показать подсказки">
+        <h3 class="box-title" ng-if="!$ctrl.header">
+            <i class="fa fa-question-circle"></i> Подсказки</h3>
+        <h3 class="box-title" ng-if="$ctrl.header" ng-bind-html="$ctrl.header"></h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool">
+                <i class="fa fa-plus" ng-class="{
+                    'fa-plus':!is_show_help,
+                    'fa-minus':is_show_help,
+                    }"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body" ng-transclude></div>
+</div>

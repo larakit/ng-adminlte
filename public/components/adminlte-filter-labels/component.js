@@ -46,6 +46,7 @@
                         }
                         break;
                     case 'checkbox':
+                    case 'button':
                         if ($ctrl.isShowCheckbox(filter)) {
                             cnt++;
                         }
@@ -95,7 +96,7 @@
             return true == _.get($ctrl.params, name + '.' + id);
         };
         $ctrl.isShowCheckbox = function (filter) {
-            if ('checkbox' != filter.type) {
+            if ('checkbox' != filter.type && 'button' != filter.type) {
                 return false;
             }
             if ($ctrl.params[filter.name] == undefined) {

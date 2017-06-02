@@ -29,14 +29,12 @@
         hotkeys.add({
             combo: 'shift+right',
             callback: function (event, hotkey) {
-                console.log($ctrl.page, $ctrl.data.total);
                 if ($ctrl.page < $ctrl.data.last_page) {
                     $ctrl.page++;
                     $ctrl.load()();
                 }
             }
         });
-
     }
 
 })();

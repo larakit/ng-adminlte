@@ -12,39 +12,67 @@ namespace Larakit\FormFilter;
 use Illuminate\Support\Arr;
 
 class FilterRangeNumeric extends Filter {
-
-    function element(\HTML_QuickForm2_Container $form) {
-        $gr = $form->putGroupTwbs($this->form_field)
-            ->setLabel($this->label . ($this->units ? ', ' . $this->units : ''));
-        $gr->putNumberTwbs('from')
-            ->setPrepend('от')
-            ->setAppendClear()
-            ->setWrapClass('col-lg-6');
-        $gr->putNumberTwbs('to')
-            ->setPrepend('до')
-            ->setAppendClear()
-            ->setWrapClass('col-lg-6');
+    
+    protected $from = 0;
+    protected $to   = 100;
+    protected $step = 1;
+    
+    function element() {
+        $ret = [
+            'label'   => $this->label,
+            'name'    => $this->form_field,
+            'type'    => 'slider',
+            'options' => [
+                'floor'     => $this->from,
+                'ceil'      => $this->to,
+                'step'      => $this->step,
+                'showTicks' => true,
+            ],
+        ];
+        
+        return $ret;
     }
-
+    
+    function setFrom($from) {
+        $this->from = $from;
+        
+        return $this;
+    }
+    
+    function setStep($step) {
+        $this->step = $step;
+        
+        return $this;
+    }
+    
+    function setTo($to) {
+        $this->to = $to;
+        
+        return $this;
+    }
+    
     function query($model) {
-        $min = Arr::get($this->value, 'from');
-        $max = Arr::get($this->value, 'to');
-        if('' != $min || '' != $max) {
-            if($this->relation) {
-                $model->whereHas($this->relation, function ($query) use ($min, $max) {
+        if(\Request::has($this->form_field)){
+            $value = \Request::input($this->form_field);
+            $min = Arr::get($value, 'from');
+            $max = Arr::get($value, 'to');
+            if('' != $min || '' != $max) {
+                if($this->relation) {
+                    $model->whereHas($this->relation, function ($query) use ($min, $max) {
+                        if('' != $min) {
+                            $query->where($this->db_field, '>=', $min);
+                        }
+                        if('' != $max) {
+                            $query->where($this->db_field, '<=', $max);
+                        }
+                    });
+                } else {
                     if('' != $min) {
-                        $query->where($this->db_field, '>=', $min);
+                        $model->where($this->db_field, '>=', $min);
                     }
                     if('' != $max) {
-                        $query->where($this->db_field, '<=', $max);
+                        $model->where($this->db_field, '<=', $max);
                     }
-                });
-            } else {
-                if('' != $min) {
-                    $model->where($this->db_field, '>=', $min);
-                }
-                if('' != $max) {
-                    $model->where($this->db_field, '<=', $max);
                 }
             }
         }

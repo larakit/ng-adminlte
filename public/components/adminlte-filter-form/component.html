@@ -5,6 +5,17 @@
     <!-- /.box-header -->
     <div class="box-body">
         <div ng-repeat="filter in $ctrl.config">
+            <!-- SLIDER start -->
+            <div class="form-group" ng-if="$ctrl.isShowSlider(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="input-group" ng-init="$ctrl.params[filter.name].from=filter.options.floor;$ctrl.params[filter.name].to=filter.options.ceil">
+                    <rzslider rz-slider-model="$ctrl.params[filter.name].from"
+                              rz-slider-options="filter.options"
+                              rz-slider-high="$ctrl.params[filter.name].to"></rzslider>
+                </div>
+            </div>
+            <!-- BOOLEAN end -->
+
             <!-- BOOLEAN start -->
             <div class="form-group" ng-if="$ctrl.isShowBoolean(filter)">
                 <label class="control-label">{{filter.label}}</label>
@@ -18,6 +29,22 @@
                 </div>
             </div>
             <!-- BOOLEAN end -->
+
+            <!-- BUTTONS start -->
+            <div class="form-group" ng-if="$ctrl.isShowButton(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="input-group">
+                    <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
+                        <label class="btn btn-default"
+                               ng-model="$ctrl.params[filter.name][group.id]"
+                               ng-click="$ctrl.load()(false, 1)"
+                               uib-btn-checkbox
+                               ng-repeat="group in filter.options"
+                        >{{group.toString}}</label>
+                    </div>
+                </div>
+            </div>
+            <!-- BUTTONS end -->
 
             <!-- CHECKBOX start -->
             <div class="form-group" ng-if="$ctrl.isShowCheckbox(filter)">

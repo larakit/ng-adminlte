@@ -23,6 +23,19 @@
         $ctrl.isShowBoolean = function (filter) {
             return 'boolean' == filter.type;
         };
+        //##################################################
+        // SLIDER
+        //##################################################
+        $ctrl.isShowSlider = function (filter) {
+            return 'slider' == filter.type;
+        };
+
+        //##################################################
+        // BUTTON
+        //##################################################
+        $ctrl.isShowButton = function (filter) {
+            return 'button' == filter.type;
+        };
 
         //##################################################
         // CHECKBOX

@@ -52,6 +52,7 @@
                 icon: route.icon
             };
             page_routes.push(item);
+            $('title').html(title);
             return item;
         }
     }

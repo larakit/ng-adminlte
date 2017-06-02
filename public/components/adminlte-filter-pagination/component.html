@@ -1,8 +1,8 @@
-<div class="row" ng-if="$ctrl.data.last_page>1">
+<div class="row">
     <div class="col-lg-2">
         <div class="larakit-pagination">
-            Показано с {{($ctrl.data.per_page*($ctrl.data.current_page-1)+1)}}
-            по {{$ctrl.data.per_page*$ctrl.data.current_page}}
+            Показано с {{$ctrl.data.from}}
+            по {{$ctrl.data.to}}
             из {{$ctrl.data.total}}
         </div>
     </div>

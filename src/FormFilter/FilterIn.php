@@ -40,6 +40,12 @@ class FilterIn extends Filter {
         return $this;
     }
     
+    function setTypeButton() {
+        $this->type = 'button';
+        
+        return $this;
+    }
+    
     function getType() {
         if(!$this->type) {
             return count($this->options) > 5 ? 'select2' : 'checkbox';

@@ -11,6 +11,8 @@
             bindings: {
                 data: '=',
                 load: '=',
+                params: '=',
+                config: '=',
                 isBulk: '=',
                 page: '&'
             },
