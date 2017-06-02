@@ -14,6 +14,7 @@ use Illuminate\Support\Arr;
 class FilterIn extends Filter {
     
     protected $is_vertical = false;
+    protected $type        = null;
     
     function element() {
         $ret = [
@@ -27,12 +28,40 @@ class FilterIn extends Filter {
         return $ret;
     }
     
+    function setTypeSelect2() {
+        $this->type = 'select2';
+        
+        return $this;
+    }
+    
+    function setTypeCheckbox() {
+        $this->type = 'checkbox';
+        
+        return $this;
+    }
+    
     function getType() {
-        return count($this->options) > 5 ? 'select2' : 'checkbox';
+        if(!$this->type) {
+            return count($this->options) > 5 ? 'select2' : 'checkbox';
+        }
+        
+        return $this->type;
     }
     
     function isVertical($v = true) {
         $this->is_vertical = (bool) $v;
+        
+        return $this;
+    }
+    
+    function optionsNumeric($range, $suffix = null) {
+        $this->options = [];
+        foreach($range as $i) {
+            $this->options[] = [
+                'id'       => $i,
+                'toString' => $i . ($suffix ? ' ' . $suffix : ''),
+            ];
+        }
         
         return $this;
     }

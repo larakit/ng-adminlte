@@ -4,13 +4,15 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
+        {{$ctrl.params}}
         <div ng-repeat="filter in $ctrl.config">
             <!-- BOOLEAN start -->
             <div class="form-group" ng-if="$ctrl.isShowBoolean(filter)">
                 <label class="control-label">{{filter.label}}</label>
                 <div class="input-group">
                     <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
-                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="undefined">{{filter.all}}</label>
+                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)"
+                               uib-btn-radio="undefined">{{filter.all}}</label>
                         <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'">{{filter.on}}</label>
                         <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'">{{filter.off}}</label>
                     </div>
@@ -22,12 +24,19 @@
             <div class="form-group" ng-if="$ctrl.isShowCheckbox(filter)">
                 <label class="control-label">{{filter.label}}</label>
                 <div class="input-group">
-                    <div class="checkbox" ng-repeat="(id,group) in filter.options" >
+                    <div ng-if="true==filter.is_vertical" class="checkbox" ng-repeat="group in filter.options">
                         <label ng-click="$ctrl.load()(false, 1)">
                             <input type="checkbox" ng-model="$ctrl.params[filter.name][group.id]">
-                            {{group.filter_label}}
+                            {{group.toString}}
                         </label>
                     </div>
+                    <label ng-if="true!=filter.is_vertical"
+                           ng-click="$ctrl.load()(false, 1)"
+                           class="checkbox-inline"
+                           ng-repeat="group in filter.options">
+                        <input type="checkbox" ng-model="$ctrl.params[filter.name][group.id]">
+                        {{group.toString}}
+                    </label>
                 </div>
             </div>
             <!-- CHECKBOX end -->
@@ -47,12 +56,12 @@
             <!-- SELECT2 start -->
             <div class="form-group" ng-if="$ctrl.isShowSelect2(filter)">
                 <label class="control-label">{{filter.label}}</label>
-                    <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params[filter.name]" close-on-select="false">
-                        <ui-select-match>{{$item.toString}}</ui-select-match>
-                        <ui-select-choices repeat="option in filter.options| filter:$select.search">
-                            {{option.toString}}
-                        </ui-select-choices>
-                    </ui-select>
+                <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params[filter.name]" close-on-select="false">
+                    <ui-select-match>{{$item.toString}}</ui-select-match>
+                    <ui-select-choices repeat="option in filter.options| filter:$select.search">
+                        {{option.toString}}
+                    </ui-select-choices>
+                </ui-select>
 
             </div>
             <!-- SELECT2 end -->
