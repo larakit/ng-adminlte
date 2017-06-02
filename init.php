@@ -34,6 +34,7 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-pagination', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-form', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-labels', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-item', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-list', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-alerts', $components_directory);

@@ -1,0 +1,38 @@
+.filter-tags {
+    width       : 100%;
+    display     : flex;
+    align-items : baseline;
+    margin      : 0;
+}
+
+.filter-tags__label {
+    min-width   : 20%;
+    text-align  : right;
+    float       : left;
+    font-size   : 13px;
+    line-height : 13px;
+    font-weight : 600;
+    margin      : 0 10px 10px 0;
+}
+
+.filter-tags__item {
+    min-width             : 50px;
+    display               : inline-block;
+    border                : 1px solid #3c8dbc;
+    color                 : #3c8dbc;
+    font-size             : 12px;
+    line-height           : 12px;
+    font-weight           : bold;
+    padding               : 5px 10px;
+    margin                : 0 10px 10px 0;
+    -webkit-border-radius : 2px;
+    -moz-border-radius    : 2px;
+    border-radius         : 3px;
+    cursor                : pointer;
+}
+
+.filter-tags__item:after {
+    content : '\00D7';
+    margin  : 0 0 0 5px;
+    float   : right;
+}

@@ -1,0 +1,67 @@
+<!--<code>{{$ctrl.config}}</code>-->
+<!--<hr>-->
+<!--<code>{{$ctrl.params}}</code>-->
+
+<div class="box box-primary ng-scope" ng-if="$ctrl.isShow()">
+    <div class="box-header with-border">
+        <h3 class="box-title">Примененные фильтры</h3>
+        <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div ng-repeat="filter in $ctrl.config">
+            <!-- BOOLEAN start -->
+            <div class="filter-tags" ng-if="$ctrl.isShowBoolean(filter)">
+                <div class="filter-tags__label">{{filter.label}}</div>
+                <div class="filter-tags__label__group">
+                    <div class="filter-tags__item" ng-if="$ctrl.isCurrentValueBoolean(filter.name, 1)" ng-click="$ctrl.clear(filter.name);">{{filter.on}}</div>
+                    <div class="filter-tags__item" ng-if="$ctrl.isCurrentValueBoolean(filter.name, -1)" ng-click="$ctrl.clear(filter.name);">{{filter.off}}</div>
+                </div>
+            </div>
+            <!-- BOOLEAN end -->
+
+            <!-- CHECKBOX start -->
+            <div class="filter-tags" ng-if="$ctrl.isShowCheckbox(filter)">
+                <div class="filter-tags__label">{{filter.label}}</div>
+                <div class="filter-tags__label__group">
+                    <div class="filter-tags__item"
+                         ng-repeat="option in filter.options"
+                         ng-if="$ctrl.isCurrentValueCheckbox(filter.name, option.id)"
+                         ng-click="$ctrl.clear(filter.name, option.id);">{{option.toString}}
+                    </div>
+                </div>
+            </div>
+            <!-- CHECKBOX end -->
+
+            <!-- LIKE start -->
+            <div class="filter-tags" ng-if="$ctrl.isShowLike(filter)">
+                <!--<div ng-repeat="filter in $ctrl.config" class="filter-tags">-->
+                <div class="filter-tags__label">{{filter.label}}</div>
+                <div class="filter-tags__label__group">
+                    <div class="filter-tags__item"
+                         ng-click="$ctrl.clear(filter.name);">{{$ctrl.params[filter.name]}}
+                    </div>
+                </div>
+            </div>
+            <!-- LIKE end -->
+
+            <!-- SELECT2 start -->
+            <div class="filter-tags" ng-if="$ctrl.isShowSelect2(filter)">
+                <!--<div ng-repeat="filter in $ctrl.config" class="filter-tags">-->
+                <div class="filter-tags__label">{{filter.label}}</div>
+                <div class="filter-tags__label__group">
+                    <div class="filter-tags__item"
+                         ng-repeat="option in filter.options"
+                         ng-if="$ctrl.isCurrentValueSelect2(filter.name, option.id)"
+                         ng-click="$ctrl.clearCollection(filter.name, option.id);">{{option.toString}}
+                    </div>
+                </div>
+            </div>
+            <!-- SELECT2 end -->
+
+
+        </div>
+    </div>
+    <!-- /.mail-box-messages -->
+</div>
+<!-- /.box-body -->
