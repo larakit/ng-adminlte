@@ -13,24 +13,21 @@ use Illuminate\Support\Arr;
 
 class FilterRangeNumeric extends Filter {
     
+    protected $type = 'slider';
     protected $from = 0;
     protected $to   = 100;
     protected $step = 1;
     
     function element() {
-        $ret = [
-            'label'   => $this->label,
-            'name'    => $this->form_field,
-            'type'    => 'slider',
-            'options' => [
-                'floor'     => $this->from,
-                'ceil'      => $this->to,
-                'step'      => $this->step,
-                'showTicks' => true,
-            ],
+        $element            = parent::element();
+        $element['options'] = [
+            'floor'     => $this->from,
+            'ceil'      => $this->to,
+            'step'      => $this->step,
+            'showTicks' => true,
         ];
         
-        return $ret;
+        return $element;
     }
     
     function setFrom($from) {
@@ -52,10 +49,10 @@ class FilterRangeNumeric extends Filter {
     }
     
     function query($model) {
-        if(\Request::has($this->form_field)){
+        if(\Request::has($this->form_field)) {
             $value = \Request::input($this->form_field);
-            $min = Arr::get($value, 'from');
-            $max = Arr::get($value, 'to');
+            $min   = Arr::get($value, 'from');
+            $max   = Arr::get($value, 'to');
             if('' != $min || '' != $max) {
                 if($this->relation) {
                     $model->whereHas($this->relation, function ($query) use ($min, $max) {

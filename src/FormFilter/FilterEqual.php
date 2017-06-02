@@ -11,13 +11,7 @@ namespace Larakit\FormFilter;
 
 class FilterEqual extends Filter {
     
-    function element() {
-        return [
-            'label' => $this->label,
-            'type'  => 'like',
-            'name'  => $this->form_field,
-        ];
-    }
+    protected $type = 'equal';
     
     function query($model) {
         $value = \Request::input($this->form_field);
@@ -36,7 +30,7 @@ class FilterEqual extends Filter {
                     $db_field = (array) $this->db_field;
                     $query->where(function ($query) use ($value, $db_field) {
                         foreach($db_field as $_db_field) {
-                            $query->orWhere($_db_field, 'like', $value);
+                            $query->orWhere($_db_field, '=', $value);
                         }
                     });
                 });

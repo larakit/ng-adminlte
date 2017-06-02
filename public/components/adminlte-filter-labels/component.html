@@ -10,6 +10,20 @@
     <!-- /.box-header -->
     <div class="box-body">
         <div ng-repeat="filter in $ctrl.config">
+            <!-- SLIDER start -->
+            <div class="filter-tags" ng-if="$ctrl.isShowSlider(filter)">
+                <div class="filter-tags__label">{{filter.label}}</div>
+                <div class="filter-tags__label__group">
+                    <div class="filter-tags__item" ng-if="filter.options.floor != $ctrl.params[filter.name].from"
+                         ng-click="$ctrl.params[filter.name].from=filter.options.floor">с {{$ctrl.params[filter.name].from}}
+                    </div>
+                    <div class="filter-tags__item" ng-if="filter.options.ceil != $ctrl.params[filter.name].to"
+                         ng-click="$ctrl.params[filter.name].to=filter.options.ceil">по {{$ctrl.params[filter.name].to}}
+                    </div>
+                </div>
+            </div>
+            <!-- SLIDER end -->
+
             <!-- BOOLEAN start -->
             <div class="filter-tags" ng-if="$ctrl.isShowBoolean(filter)">
                 <div class="filter-tags__label">{{filter.label}}</div>
@@ -20,7 +34,7 @@
             </div>
             <!-- BOOLEAN end -->
 
-            <!-- CHECKBOX/BUTTON start -->
+            <!-- CHECKBOX start -->
             <div class="filter-tags" ng-if="$ctrl.isShowCheckbox(filter)">
                 <div class="filter-tags__label">{{filter.label}}</div>
                 <div class="filter-tags__label__group">
@@ -31,7 +45,20 @@
                     </div>
                 </div>
             </div>
-            <!-- CHECKBOX/BUTTON end -->
+            <!-- CHECKBOX end -->
+
+            <!-- BUTTON start -->
+            <div class="filter-tags" ng-if="$ctrl.isShowButton(filter)">
+                <div class="filter-tags__label">{{filter.label}}</div>
+                <div class="filter-tags__label__group">
+                    <div class="filter-tags__item"
+                         ng-repeat="option in filter.options"
+                         ng-if="$ctrl.isCurrentValueCheckbox(filter.name, option.id)"
+                         ng-click="$ctrl.clear(filter.name, option.id);">{{option.toString}}
+                    </div>
+                </div>
+            </div>
+            <!-- BUTTON end -->
 
             <!-- LIKE start -->
             <div class="filter-tags" ng-if="$ctrl.isShowLike(filter)">

@@ -6,13 +6,13 @@
     <div class="box-body">
         <div ng-repeat="filter in $ctrl.config">
             <!-- SLIDER start -->
-            <div class="form-group" ng-if="$ctrl.isShowSlider(filter)">
+            <div class="form-group" ng-if="$ctrl.isShowSlider(filter)"
+                 ng-init="$ctrl.params[filter.name].from=filter.options.floor;$ctrl.params[filter.name].to=filter.options.ceil;"
+            >
                 <label class="control-label">{{filter.label}}</label>
-                <div class="input-group" ng-init="$ctrl.params[filter.name].from=filter.options.floor;$ctrl.params[filter.name].to=filter.options.ceil">
                     <rzslider rz-slider-model="$ctrl.params[filter.name].from"
-                              rz-slider-options="filter.options"
+                              rz-slider-options="$ctrl.sliderOptions(filter.options)"
                               rz-slider-high="$ctrl.params[filter.name].to"></rzslider>
-                </div>
             </div>
             <!-- BOOLEAN end -->
 

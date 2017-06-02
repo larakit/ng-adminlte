@@ -22,7 +22,7 @@
          * @param id
          */
         $ctrl.clearCollection = function (name, id) {
-            $ctrl.params[name] = _.filter($ctrl.params[name], function(o){
+            $ctrl.params[name] = _.filter($ctrl.params[name], function (o) {
                 return o.id != id;
             });
             $ctrl.load()();
@@ -46,13 +46,22 @@
                         }
                         break;
                     case 'checkbox':
-                    case 'button':
                         if ($ctrl.isShowCheckbox(filter)) {
+                            cnt++;
+                        }
+                        break;
+                    case 'button':
+                        if ($ctrl.isShowButton(filter)) {
                             cnt++;
                         }
                         break;
                     case 'like':
                         if ($ctrl.isShowLike(filter)) {
+                            cnt++;
+                        }
+                        break;
+                    case 'slider':
+                        if ($ctrl.isShowSlider(filter)) {
                             cnt++;
                         }
                         break;
@@ -64,6 +73,19 @@
                 }
             });
             return cnt > 0;
+        };
+        $ctrl.isShowBaseChecker = function (filter, type) {
+            if (type != filter.type) {
+                return false;
+            }
+            if (null != filter.condition) {
+                console.log(filter.condition, eval(filter.condition), $ctrl.params.is_planned);
+                console.log((undefined != $ctrl.params.is_planned) && ($ctrl.params.is_planned==-1));
+                if (!eval(filter.condition)) {
+                    return false;
+                }
+            }
+            return true;
         };
 
         //##################################################
@@ -79,7 +101,16 @@
             return _.get($ctrl.params, name) == value;
         };
         $ctrl.isShowBoolean = function (filter) {
-            return 'boolean' == filter.type && ($ctrl.params[filter.name] != undefined);
+            if (!$ctrl.isShowBaseChecker(filter, 'boolean')) {
+                return false;
+            }
+            return ($ctrl.params[filter.name] != undefined);
+        };
+        $ctrl.isShowSlider = function (filter) {
+            if (!$ctrl.isShowBaseChecker(filter, 'slider')) {
+                return false;
+            }
+            return ($ctrl.params[filter.name].from != filter.options.floor || $ctrl.params[filter.name].to != filter.options.ceil);
         };
 
         //##################################################
@@ -96,7 +127,18 @@
             return true == _.get($ctrl.params, name + '.' + id);
         };
         $ctrl.isShowCheckbox = function (filter) {
-            if ('checkbox' != filter.type && 'button' != filter.type) {
+            if (!$ctrl.isShowBaseChecker(filter, 'checkbox')) {
+                return false;
+            }
+            if ($ctrl.params[filter.name] == undefined) {
+                return false;
+            }
+            return _.filter($ctrl.params[filter.name], function (v) {
+                    return v;
+                }).length > 0;
+        };
+        $ctrl.isShowButton = function (filter) {
+            if (!$ctrl.isShowBaseChecker(filter, 'button')) {
                 return false;
             }
             if ($ctrl.params[filter.name] == undefined) {
@@ -116,14 +158,17 @@
          * @returns {boolean}
          */
         $ctrl.isShowLike = function (filter) {
-            return ('like' == filter.type ) && ($ctrl.params[filter.name] != undefined) && $ctrl.params[filter.name].length > 0;
+            if (!$ctrl.isShowBaseChecker(filter, 'like')) {
+                return false;
+            }
+            return ($ctrl.params[filter.name] != undefined) && $ctrl.params[filter.name].length > 0;
         };
 
         //##################################################
         // SELECT2
         //##################################################
         $ctrl.isShowSelect2 = function (filter) {
-            if ('select2' != filter.type) {
+            if (!$ctrl.isShowBaseChecker(filter, 'select2')) {
                 return false;
             }
             return (undefined != $ctrl.params[filter.name]) && $ctrl.params[filter.name].length;

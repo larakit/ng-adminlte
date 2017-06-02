@@ -11,9 +11,10 @@ namespace Larakit\FormFilter;
 
 class FilterBoolean extends Filter {
     
-    protected $no  = 'Нет';
-    protected $yes = 'Да';
-    protected $all = 'Все';
+    protected $no   = 'Нет';
+    protected $yes  = 'Да';
+    protected $all  = 'Все';
+    protected $type = 'boolean';
     
     /**
      * @param string $no
@@ -49,14 +50,11 @@ class FilterBoolean extends Filter {
     }
     
     function element() {
-        return [
-            'label' => $this->label,
-            'type'  => 'boolean',
-            'name'  => $this->form_field,
-            'all'   => $this->all,
-            'off'   => $this->no,
-            'on'     => $this->yes,
-        ];
+        $element        = parent::element();
+        $element['all'] = $this->all;
+        $element['off'] = $this->no;
+        $element['on']  = $this->yes;
+        return $element;
     }
     
     function query($model) {

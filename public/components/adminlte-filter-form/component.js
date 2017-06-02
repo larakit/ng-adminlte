@@ -29,6 +29,12 @@
         $ctrl.isShowSlider = function (filter) {
             return 'slider' == filter.type;
         };
+        $ctrl.sliderOptions = function (options) {
+            options.onChange = function () {
+                $ctrl.load()(false, 1)
+            };
+            return options;
+        };
 
         //##################################################
         // BUTTON
@@ -41,7 +47,14 @@
         // CHECKBOX
         //##################################################
         $ctrl.isShowCheckbox = function (filter) {
-            return 'checkbox' == filter.type;
+            if ('checkbox' != filter.type) {
+                return false;
+            }
+            if (filter.condition) {
+                return eval(filter.condition);
+            }
+            return true;
+
         };
 
         //##################################################

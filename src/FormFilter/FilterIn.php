@@ -13,21 +13,6 @@ use Illuminate\Support\Arr;
 
 class FilterIn extends Filter {
     
-    protected $is_vertical = false;
-    protected $type        = null;
-    
-    function element() {
-        $ret = [
-            'label'       => $this->label,
-            'name'        => $this->form_field,
-            'options'     => $this->options,
-            'type'        => $this->getType(),
-            'is_vertical' => $this->is_vertical,
-        ];
-        
-        return $ret;
-    }
-    
     function setTypeSelect2() {
         $this->type = 'select2';
         
@@ -52,24 +37,6 @@ class FilterIn extends Filter {
         }
         
         return $this->type;
-    }
-    
-    function isVertical($v = true) {
-        $this->is_vertical = (bool) $v;
-        
-        return $this;
-    }
-    
-    function optionsNumeric($range, $suffix = null) {
-        $this->options = [];
-        foreach($range as $i) {
-            $this->options[] = [
-                'id'       => $i,
-                'toString' => $i . ($suffix ? ' ' . $suffix : ''),
-            ];
-        }
-        
-        return $this;
     }
     
     function getValues() {

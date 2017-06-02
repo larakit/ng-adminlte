@@ -1,4 +1,4 @@
-<html style="height: auto;" ng-app="larakit" ng-cloak>
+<html style="height: auto;" ng-app="{{ env('LARAKIT_NG_APP', 'larakit') }}" ng-cloak>
 <head>
     <meta charset="utf-8">
     <base href="/"/>

@@ -26,9 +26,10 @@ abstract class FormFilter {
         foreach($models as $model) {
             $ret[] = [
                 'id'           => $model->id,
-                'filter_label' => (string)$model,
+                'filter_label' => (string) $model,
             ];
         }
+        
         return $ret;
     }
     
@@ -63,7 +64,10 @@ abstract class FormFilter {
         $formfilter->init();
         foreach($formfilter->filters as $filter) {
             /* @var $filter Filter */
-            $filter->query($formfilter->model);
+            $condition = $filter->conditionPhp();
+            if(!$condition || ($condition && call_user_func($condition))) {
+                $filter->query($formfilter->model);
+            }
         }
         \DB::enableQueryLog();
         $ret['models'] = $formfilter->model->paginate($formfilter->per_page)->appends($_GET);
