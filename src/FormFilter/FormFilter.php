@@ -35,6 +35,7 @@ abstract class FormFilter {
     
     static function classModel() {
         $class     = static::class;
+        
         $r         = new \ReflectionClass($class);
         $namespace = $r->getNamespaceName();
         $class     = str_replace($namespace . '\\', '', $class);

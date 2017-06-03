@@ -6,6 +6,7 @@
             templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list/component.html',
             transclude: {
                 'body': 'listBody',
+                'add': '?listAdd',
                 'buttons': '?listButtons'
             },
             bindings: {
@@ -25,6 +26,7 @@
         var $ctrl = this;
         $ctrl.is = false;
         $ctrl.isBulk = $transclude.isSlotFilled('buttons');
+        $ctrl.isAdd = $transclude.isSlotFilled('add');
         $ctrl.toggle = function () {
             $ctrl.is = !$ctrl.is;
             _.each($ctrl.data.data, function (model) {

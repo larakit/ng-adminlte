@@ -1,19 +1,26 @@
-<div class="box box-primary" ng-if="$ctrl.isBulk">
+<div class="box box-primary" ng-if="$ctrl.isBulk || $ctrl.isAdd">
     <div class="box-body">
         <div class="row">
-            <div class="col-lg-2">
-                <a class="btn btn-1block btn-social btn-facebook" ng-click="$ctrl.toggle()">
-                    <i class="fa" ng-class="{
+            <div class="col-lg-10">
+                <div class="row" ng-if="$ctrl.isBulk">
+                    <div class="col-lg-2">
+                        <a class="btn btn-1block btn-social btn-facebook" ng-click="$ctrl.toggle()">
+                            <i class="fa" ng-class="{
                 'fa-check-circle-o':$ctrl.is,
                 'fa-check-circle':!$ctrl.is,
             }"></i>
-                    <span ng-show="$ctrl.countSelected()">Выделено: {{$ctrl.countSelected()}}</span>
-                    <span ng-show="!$ctrl.countSelected()">Выделить все</span>
-                </a>
+                            <span ng-show="$ctrl.countSelected()">Выделено: {{$ctrl.countSelected()}}</span>
+                            <span ng-show="!$ctrl.countSelected()">Выделить все</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-8">
+                        &nbsp;
+                        <span ng-transclude="buttons" ng-show="$ctrl.countSelected()"></span>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-8">
-                &nbsp;
-                <span ng-transclude="buttons" ng-show="$ctrl.countSelected()"></span>
+            <div class="col-lg-2 text-right" ng-transclude="add">
+
             </div>
         </div>
     </div>
