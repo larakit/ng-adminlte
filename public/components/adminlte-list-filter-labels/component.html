@@ -1,6 +1,8 @@
 <!--<code>{{$ctrl.config}}</code>-->
 <!--<hr>-->
-<!--<code>{{$ctrl.params}}</code>-->
+<!--<code>{{ $ctrl.filters}}</code>-->
+<!--<hr>-->
+<!--<code>{{$ctrl.params.filters}}</code>-->
 
 <div class="box box-primary ng-scope" ng-if="$ctrl.isShow()">
     <div class="box-header with-border">
@@ -9,16 +11,16 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <div ng-repeat="filter in $ctrl.config">
+        <div ng-repeat="filter in $ctrl.filters">
             <!-- SLIDER start -->
             <div class="filter-tags" ng-if="$ctrl.isShowSlider(filter)">
                 <div class="filter-tags__label">{{filter.label}}</div>
                 <div class="filter-tags__label__group">
-                    <div class="filter-tags__item" ng-if="filter.options.floor != $ctrl.params[filter.name].from"
-                         ng-click="$ctrl.params[filter.name].from=filter.options.floor">с {{$ctrl.params[filter.name].from}}
+                    <div class="filter-tags__item" ng-if="filter.options.floor != $ctrl.params.filters[filter.name].from"
+                         ng-click="$ctrl.params.filters[filter.name].from=filter.options.floor">с {{$ctrl.params.filters[filter.name].from}}
                     </div>
-                    <div class="filter-tags__item" ng-if="filter.options.ceil != $ctrl.params[filter.name].to"
-                         ng-click="$ctrl.params[filter.name].to=filter.options.ceil">по {{$ctrl.params[filter.name].to}}
+                    <div class="filter-tags__item" ng-if="filter.options.ceil != $ctrl.params.filters[filter.name].to"
+                         ng-click="$ctrl.params.filters[filter.name].to=filter.options.ceil">по {{$ctrl.params.filters[filter.name].to}}
                     </div>
                 </div>
             </div>
@@ -66,7 +68,7 @@
                 <div class="filter-tags__label">{{filter.label}}</div>
                 <div class="filter-tags__label__group">
                     <div class="filter-tags__item"
-                         ng-click="$ctrl.clear(filter.name);">{{$ctrl.params[filter.name]}}
+                         ng-click="$ctrl.clear(filter.name);">{{$ctrl.params.filters[filter.name]}}
                     </div>
                 </div>
             </div>

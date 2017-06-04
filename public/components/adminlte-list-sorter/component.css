@@ -1,0 +1,16 @@
+.list-sorter {
+    padding : 10px 0;
+}
+
+.list-sorter span {
+    margin-right : 20px;
+}
+
+.list-sorter__item {
+    color : #0d6aad;
+    cursor : pointer;
+}
+
+.list-sorter__item--active {
+    font-weight : bold;
+}

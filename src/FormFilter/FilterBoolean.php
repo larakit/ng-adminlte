@@ -58,8 +58,8 @@ class FilterBoolean extends Filter {
     }
     
     function query($model) {
-        if(\Request::has($this->form_field)) {
-            $value = (int) \Request::input($this->form_field);
+        if(\Request::has('filters.'.$this->form_field)) {
+            $value = (int) \Request::input('filters.'.$this->form_field);
             if($this->relation) {
                 $model->whereHas($this->relation, function ($query) use ($value) {
                     $query->where($this->db_field, '=', (1 == $value));

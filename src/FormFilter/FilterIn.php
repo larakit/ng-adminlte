@@ -40,7 +40,7 @@ class FilterIn extends Filter {
     }
     
     function getValues() {
-        $value = (array) \Request::input($this->form_field);
+        $value = (array) \Request::input('filters.'.$this->form_field);
         $ret   = [];
         if('select2' == $this->getType()) {
             foreach($value as $v) {

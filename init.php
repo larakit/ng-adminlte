@@ -16,6 +16,7 @@
     ->setSourceDir('public')
     ->jsPackage('services/breadcrumbs-builder.js')
     ->jsPackage('services/lk-hasher.js')
+    ->jsPackage('services/lk-list.js')
     ->jsPackage('services/lk-alerts.js')
     ->jsPackage('services/lk-page.js')
     ->jsPackage('services/lk-sidebars.js')
@@ -32,9 +33,10 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-right', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-pagination', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-form', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-filter-labels', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-pagination', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-filter', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-sorter', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-filter-labels', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-item', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-list', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-alerts', $components_directory);

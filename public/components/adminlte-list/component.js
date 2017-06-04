@@ -14,8 +14,7 @@
                 load: '=',
                 params: '=',
                 config: '=',
-                isBulk: '=',
-                page: '&'
+                isBulk: '='
             },
             controller: Controller
         });

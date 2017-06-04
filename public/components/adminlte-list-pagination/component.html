@@ -16,7 +16,7 @@
                 total-items="$ctrl.data.total"
                 boundary-link-numbers="true"
                 boundary-links="true"
-                ng-model="$ctrl.page"
+                ng-model="$ctrl.params.page"
                 max-size="10"
                 items-per-page="$ctrl.data.per_page"
                 ng-change="$ctrl.load()(false,$ctrl.page)"></ul>

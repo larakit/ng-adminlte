@@ -1,0 +1,14 @@
+<div class="list-sorter" ng-if="$ctrl.sorters.length>0">
+    <span>Сортировка: </span>
+    <span ng-repeat="sorter in $ctrl.sorters" class="list-sorter__item"
+          ng-click="$ctrl.orderBy(sorter)"
+          ng-class="{
+            'list-sorter__item--active':$ctrl.params.order_field==sorter.name
+        }">
+                {{sorter.label}}
+            <i class="fa" ng-if="$ctrl.params.order_field==sorter.name" ng-class="{
+                'fa-chevron-down':$ctrl.params.order_desc,
+                'fa-chevron-up':!$ctrl.params.order_desc,
+            }"></i>
+        </span>
+</div>

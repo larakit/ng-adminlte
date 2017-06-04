@@ -14,7 +14,7 @@ class FilterLike extends Filter {
     protected $type = 'like';
     
     function query($model) {
-        $value = \Request::input($this->form_field);
+        $value = \Request::input('filters.'.$this->form_field);
         if($value) {
             if($this->relation) {
                 $model->whereHas($this->relation, function ($query) use ($value) {

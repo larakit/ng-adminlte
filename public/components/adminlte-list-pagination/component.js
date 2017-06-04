@@ -2,12 +2,12 @@
 
     angular
         .module('larakit')
-        .component('adminlteFilterPagination', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-filter-pagination/component.html',
+        .component('adminlteListPagination', {
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-pagination/component.html',
             transclude: true,
             bindings: {
                 data: '=',
-                page: '=',
+                params: '=',
                 load: '&'
             },
             controller: Controller
@@ -20,8 +20,8 @@
         hotkeys.add({
             combo: 'shift+left',
             callback: function (event, hotkey) {
-                if ($ctrl.page > 1) {
-                    $ctrl.page--;
+                if ($ctrl.params.page > 1) {
+                    $ctrl.params.page--;
                     $ctrl.load()();
                 }
             }
@@ -29,8 +29,8 @@
         hotkeys.add({
             combo: 'shift+right',
             callback: function (event, hotkey) {
-                if ($ctrl.page < $ctrl.data.last_page) {
-                    $ctrl.page++;
+                if ($ctrl.params.page < $ctrl.data.last_page) {
+                    $ctrl.params.page++;
                     $ctrl.load()();
                 }
             }

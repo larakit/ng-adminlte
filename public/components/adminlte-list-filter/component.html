@@ -4,15 +4,15 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <div ng-repeat="filter in $ctrl.config">
+        <div ng-repeat="filter in $ctrl.filters">
             <!-- SLIDER start -->
             <div class="form-group" ng-if="$ctrl.isShowSlider(filter)"
-                 ng-init="$ctrl.params[filter.name].from=filter.options.floor;$ctrl.params[filter.name].to=filter.options.ceil;"
+                 ng-init="$ctrl.params.filters[filter.name].from=filter.options.floor;$ctrl.params.filters[filter.name].to=filter.options.ceil;"
             >
                 <label class="control-label">{{filter.label}}</label>
-                    <rzslider rz-slider-model="$ctrl.params[filter.name].from"
+                    <rzslider rz-slider-model="$ctrl.params.filters[filter.name].from"
                               rz-slider-options="$ctrl.sliderOptions(filter.options)"
-                              rz-slider-high="$ctrl.params[filter.name].to"></rzslider>
+                              rz-slider-high="$ctrl.params.filters[filter.name].to"></rzslider>
             </div>
             <!-- BOOLEAN end -->
 
@@ -21,10 +21,10 @@
                 <label class="control-label">{{filter.label}}</label>
                 <div class="input-group">
                     <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
-                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)"
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)"
                                uib-btn-radio="undefined">{{filter.all}}</label>
-                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'">{{filter.on}}</label>
-                        <label class="btn btn-default" ng-model="$ctrl.params[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'">{{filter.off}}</label>
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'">{{filter.on}}</label>
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'">{{filter.off}}</label>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="input-group">
                     <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
                         <label class="btn btn-default"
-                               ng-model="$ctrl.params[filter.name][group.id]"
+                               ng-model="$ctrl.params.filters[filter.name][group.id]"
                                ng-click="$ctrl.load()(false, 1)"
                                uib-btn-checkbox
                                ng-repeat="group in filter.options"
@@ -52,7 +52,7 @@
                 <div class="input-group">
                     <div ng-if="true==filter.is_vertical" class="checkbox" ng-repeat="group in filter.options">
                         <label ng-click="$ctrl.load()(false, 1)">
-                            <input type="checkbox" ng-model="$ctrl.params[filter.name][group.id]">
+                            <input type="checkbox" ng-model="$ctrl.params.filters[filter.name][group.id]">
                             {{group.toString}}
                         </label>
                     </div>
@@ -60,7 +60,7 @@
                            ng-click="$ctrl.load()(false, 1)"
                            class="checkbox-inline"
                            ng-repeat="group in filter.options">
-                        <input type="checkbox" ng-model="$ctrl.params[filter.name][group.id]">
+                        <input type="checkbox" ng-model="$ctrl.params.filters[filter.name][group.id]">
                         {{group.toString}}
                     </label>
                 </div>
@@ -71,9 +71,9 @@
             <div class="form-group" ng-if="$ctrl.isShowLike(filter)">
                 <label class="control-label">{{filter.label}}</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" ng-model="$ctrl.params[filter.name]" ng-change="$ctrl.load()(false, 1)">
+                    <input type="text" class="form-control" ng-model="$ctrl.params.filters[filter.name]" ng-change="$ctrl.load()(false, 1)">
                     <span class="input-group-addon pointer" title="Очистить поле"
-                          ng-click="$ctrl.params[filter.name] = undefined;$ctrl.load()(false, true)">&times;</span>
+                          ng-click="$ctrl.params.filters[filter.name] = undefined;$ctrl.load()(false, 1)">&times;</span>
                 </div>
 
             </div>
@@ -82,7 +82,7 @@
             <!-- SELECT2 start -->
             <div class="form-group" ng-if="$ctrl.isShowSelect2(filter)">
                 <label class="control-label">{{filter.label}}</label>
-                <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params[filter.name]" close-on-select="false">
+                <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params.filters[filter.name]" close-on-select="false">
                     <ui-select-match>{{$item.toString}}</ui-select-match>
                     <ui-select-choices repeat="option in filter.options| filter:$select.search">
                         {{option.toString}}

@@ -2,12 +2,12 @@
 
     angular
         .module('larakit')
-        .component('adminlteFilterForm', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-filter-form/component.html',
+        .component('adminlteListFilter', {
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-filter/component.html',
             transclude: true,
             bindings: {
                 params: '=',
-                config: '=',
+                filters: '=',
                 load: '&'
             },
             controller: Controller
@@ -17,17 +17,29 @@
 
     function Controller() {
         var $ctrl = this;
+        $ctrl.isShowCondition = function (filter, type) {
+            if (type != filter.type) {
+                return false;
+            }
+            if (null != filter.condition) {
+                if (!eval(filter.condition)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
         //##################################################
         // BOOLEAN
         //##################################################
         $ctrl.isShowBoolean = function (filter) {
-            return 'boolean' == filter.type;
+            return $ctrl.isShowCondition(filter, 'boolean');
         };
         //##################################################
         // SLIDER
         //##################################################
         $ctrl.isShowSlider = function (filter) {
-            return 'slider' == filter.type;
+            return $ctrl.isShowCondition(filter, 'slider');
         };
         $ctrl.sliderOptions = function (options) {
             options.onChange = function () {
@@ -40,35 +52,28 @@
         // BUTTON
         //##################################################
         $ctrl.isShowButton = function (filter) {
-            return 'button' == filter.type;
+            return $ctrl.isShowCondition(filter, 'button');
         };
 
         //##################################################
         // CHECKBOX
         //##################################################
         $ctrl.isShowCheckbox = function (filter) {
-            if ('checkbox' != filter.type) {
-                return false;
-            }
-            if (filter.condition) {
-                return eval(filter.condition);
-            }
-            return true;
-
+            return $ctrl.isShowCondition(filter, 'checkbox');
         };
 
         //##################################################
         // LIKE
         //##################################################
         $ctrl.isShowLike = function (filter) {
-            return 'like' == filter.type;
+            return $ctrl.isShowCondition(filter, 'like');
         };
 
         //##################################################
         // SELECT2
         //##################################################
         $ctrl.isShowSelect2 = function (filter) {
-            return 'select2' == filter.type;
+            return $ctrl.isShowCondition(filter, 'select2');
         };
     }
 

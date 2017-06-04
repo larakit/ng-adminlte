@@ -2,10 +2,10 @@
 
     angular
         .module('larakit')
-        .component('adminlteFilterLabels', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-filter-labels/component.html',
+        .component('adminlteListFilterLabels', {
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-filter-labels/component.html',
             bindings: {
-                config: '=',
+                filters: '=',
                 load: '&',
                 params: '='
             },
@@ -22,7 +22,7 @@
          * @param id
          */
         $ctrl.clearCollection = function (name, id) {
-            $ctrl.params[name] = _.filter($ctrl.params[name], function (o) {
+            $ctrl.params.filters[name] = _.filter($ctrl.params.filters[name], function (o) {
                 return o.id != id;
             });
             $ctrl.load()();
@@ -32,13 +32,13 @@
             if (undefined !== id) {
                 path += '.' + id;
             }
-            _.set($ctrl.params, path, undefined);
+            _.set($ctrl.params.filters, path, undefined);
             $ctrl.load()();
         };
 
         $ctrl.isShow = function () {
             var cnt = 0;
-            _.each($ctrl.config, function (filter) {
+            _.each($ctrl.filters, function (filter) {
                 switch (filter.type) {
                     case 'boolean':
                         if ($ctrl.isShowBoolean(filter)) {
@@ -74,13 +74,13 @@
             });
             return cnt > 0;
         };
-        $ctrl.isShowBaseChecker = function (filter, type) {
+        $ctrl.isShowCondition = function (filter, type) {
             if (type != filter.type) {
                 return false;
             }
             if (null != filter.condition) {
-                console.log(filter.condition, eval(filter.condition), $ctrl.params.is_planned);
-                console.log((undefined != $ctrl.params.is_planned) && ($ctrl.params.is_planned==-1));
+                console.log(filter.condition, eval(filter.condition), $ctrl.params.filters.is_planned);
+                console.log((undefined != $ctrl.params.filters.is_planned) && ($ctrl.params.filters.is_planned==-1));
                 if (!eval(filter.condition)) {
                     return false;
                 }
@@ -98,19 +98,19 @@
          * @returns {boolean}
          */
         $ctrl.isCurrentValueBoolean = function (name, value) {
-            return _.get($ctrl.params, name) == value;
+            return _.get($ctrl.params.filters, name) == value;
         };
         $ctrl.isShowBoolean = function (filter) {
-            if (!$ctrl.isShowBaseChecker(filter, 'boolean')) {
+            if (!$ctrl.isShowCondition(filter, 'boolean')) {
                 return false;
             }
-            return ($ctrl.params[filter.name] != undefined);
+            return ($ctrl.params.filters[filter.name] != undefined);
         };
         $ctrl.isShowSlider = function (filter) {
-            if (!$ctrl.isShowBaseChecker(filter, 'slider')) {
+            if (!$ctrl.isShowCondition(filter, 'slider')) {
                 return false;
             }
-            return ($ctrl.params[filter.name].from != filter.options.floor || $ctrl.params[filter.name].to != filter.options.ceil);
+            return ($ctrl.params.filters[filter.name].from != filter.options.floor || $ctrl.params.filters[filter.name].to != filter.options.ceil);
         };
 
         //##################################################
@@ -124,27 +124,27 @@
          * @returns {boolean}
          */
         $ctrl.isCurrentValueCheckbox = function (name, id) {
-            return true == _.get($ctrl.params, name + '.' + id);
+            return true == _.get($ctrl.params.filters, name + '.' + id);
         };
         $ctrl.isShowCheckbox = function (filter) {
-            if (!$ctrl.isShowBaseChecker(filter, 'checkbox')) {
+            if (!$ctrl.isShowCondition(filter, 'checkbox')) {
                 return false;
             }
-            if ($ctrl.params[filter.name] == undefined) {
+            if ($ctrl.params.filters[filter.name] == undefined) {
                 return false;
             }
-            return _.filter($ctrl.params[filter.name], function (v) {
+            return _.filter($ctrl.params.filters[filter.name], function (v) {
                     return v;
                 }).length > 0;
         };
         $ctrl.isShowButton = function (filter) {
-            if (!$ctrl.isShowBaseChecker(filter, 'button')) {
+            if (!$ctrl.isShowCondition(filter, 'button')) {
                 return false;
             }
-            if ($ctrl.params[filter.name] == undefined) {
+            if ($ctrl.params.filters[filter.name] == undefined) {
                 return false;
             }
-            return _.filter($ctrl.params[filter.name], function (v) {
+            return _.filter($ctrl.params.filters[filter.name], function (v) {
                     return v;
                 }).length > 0;
         };
@@ -158,23 +158,23 @@
          * @returns {boolean}
          */
         $ctrl.isShowLike = function (filter) {
-            if (!$ctrl.isShowBaseChecker(filter, 'like')) {
+            if (!$ctrl.isShowCondition(filter, 'like')) {
                 return false;
             }
-            return ($ctrl.params[filter.name] != undefined) && $ctrl.params[filter.name].length > 0;
+            return ($ctrl.params.filters[filter.name] != undefined) && $ctrl.params.filters[filter.name].length > 0;
         };
 
         //##################################################
         // SELECT2
         //##################################################
         $ctrl.isShowSelect2 = function (filter) {
-            if (!$ctrl.isShowBaseChecker(filter, 'select2')) {
+            if (!$ctrl.isShowCondition(filter, 'select2')) {
                 return false;
             }
-            return (undefined != $ctrl.params[filter.name]) && $ctrl.params[filter.name].length;
+            return (undefined != $ctrl.params.filters[filter.name]) && $ctrl.params.filters[filter.name].length;
         };
         $ctrl.isCurrentValueSelect2 = function (name, id) {
-            return _.filter($ctrl.params[name], {id: id}).length > 0;
+            return _.filter($ctrl.params.filters[name], {id: id}).length > 0;
         };
     }
 

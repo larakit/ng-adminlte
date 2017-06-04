@@ -49,8 +49,8 @@ class FilterRangeNumeric extends Filter {
     }
     
     function query($model) {
-        if(\Request::has($this->form_field)) {
-            $value = \Request::input($this->form_field);
+        if(\Request::has('filters.'.$this->form_field)) {
+            $value = \Request::input('filters.'.$this->form_field);
             $min   = Arr::get($value, 'from');
             $max   = Arr::get($value, 'to');
             if('' != $min || '' != $max) {

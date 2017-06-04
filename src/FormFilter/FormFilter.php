@@ -11,10 +11,12 @@ namespace Larakit\FormFilter;
 
 abstract class FormFilter {
     
-    protected $filters  = [];
+    protected $filters        = [];
+    protected $sorters        = [];
+    protected $sorter_default = null;
     protected $model;
-    protected $per_page = 10;
-    protected $title    = 'Фильтры списка';
+    protected $per_page       = 10;
+    protected $title          = 'Фильтры списка';
     
     function __construct() {
         $model_class = static::classModel();
@@ -34,7 +36,7 @@ abstract class FormFilter {
     }
     
     static function classModel() {
-        $class     = static::class;
+        $class = static::class;
         
         $r         = new \ReflectionClass($class);
         $namespace = $r->getNamespaceName();
@@ -44,7 +46,7 @@ abstract class FormFilter {
         return str_replace('FormFilters', 'Models', $namespace) . '\\' . $class;
     }
     
-    static function filters() {
+    static function config() {
         $ret = [];
         /** @var FormFilter $formfilter */
         $formfilter = new static();
@@ -52,13 +54,17 @@ abstract class FormFilter {
         //        $formfilter->model->sorted();
         foreach($formfilter->filters as $filter) {
             /* @var $filter Filter */
-            $ret[] = $filter->element();
+            $ret['filters'][] = $filter->element();
         }
-        
+        foreach($formfilter->sorters as $sorter) {
+            /* @var $filter Filter */
+            $ret['sorters'][] = $sorter->element();
+        }
+        $ret['sorter_default'] = $formfilter->sorter_default;
         return $ret;
     }
     
-    static function items() {
+    static function load() {
         $ret = [];
         /** @var FormFilter $formfilter */
         $formfilter = new static();
@@ -71,7 +77,12 @@ abstract class FormFilter {
             }
         }
         \DB::enableQueryLog();
-        $ret['models'] = $formfilter->model->paginate($formfilter->per_page)->appends($_GET);
+        foreach($formfilter->sorters as $sorter) {
+            $sorter->query($formfilter->model);
+        }
+        $ret['models'] = $formfilter->model->paginate($formfilter->per_page)
+                                           ->appends($_GET)
+        ;
         $ret['sql']    = \DB::getQueryLog();
         
         return $ret;
@@ -81,6 +92,15 @@ abstract class FormFilter {
     
     protected function addFilter($filter) {
         $this->filters[] = $filter;
+        return $this;
+    }
+    
+    protected function addSorter($sorter, $is_default = false) {
+        $this->sorters[] = $sorter;
+        if($is_default) {
+            $this->sorter_default = $sorter->getName();
+        }
+        return $this;
     }
     
 }
