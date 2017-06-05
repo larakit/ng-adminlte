@@ -65,6 +65,7 @@ abstract class FormFilter {
     }
     
     static function load() {
+        \DB::enableQueryLog();
         $ret = [];
         /** @var FormFilter $formfilter */
         $formfilter = new static();
@@ -76,7 +77,6 @@ abstract class FormFilter {
                 $filter->query($formfilter->model);
             }
         }
-        \DB::enableQueryLog();
         foreach($formfilter->sorters as $sorter) {
             $sorter->query($formfilter->model);
         }

@@ -1,0 +1,27 @@
+<div style="padding: 0 10px">
+    <div class="box box-solid box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Выберите таблицу БД</h3>
+        </div>
+        <div class="box-body">
+            <ul class="products-list product-list-in-box">
+                <li class="item pointer" ng-repeat="(table, columns) in $ctrl.tables" ng-class="{
+                        'text-success':$ctrl.table==table,
+                    }">
+                    <a href="/lknggen/{{table}}">
+                    <div class="product-img">
+                        <i class="icon fa fa-2x" ng-class="{
+                        'fa-table':$ctrl.table!=table,
+                        'fa-check-square':$ctrl.table==table,
+                    }"></i>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-title pointer">{{table}}</span>
+                    </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

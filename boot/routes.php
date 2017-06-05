@@ -12,7 +12,6 @@ $callback = function () {
         ->setBodyContent('<div class="wrapper">
     <ng-view></ng-view>
 </div>');
-    dd(env('LARAKIT_NG_APP', 'larakit'));
     $page->html()->ngApp(env('LARAKIT_NG_APP', 'larakit'));
     $page->body()
         ->setAttribute('style', 'height: auto; min-height: 100%;')

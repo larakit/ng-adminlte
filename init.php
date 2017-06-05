@@ -17,6 +17,7 @@
     ->jsPackage('services/breadcrumbs-builder.js')
     ->jsPackage('services/lk-hasher.js')
     ->jsPackage('services/lk-list.js')
+    ->jsPackage('services/lknggen.js')
     ->jsPackage('services/lk-alerts.js')
     ->jsPackage('services/lk-page.js')
     ->jsPackage('services/lk-sidebars.js')
@@ -41,3 +42,5 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-list', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-alerts', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-helpbox', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('page-lknggen', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('lknggen-tables', $components_directory);

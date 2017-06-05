@@ -1,0 +1,73 @@
+<adminlte-header></adminlte-header>
+<adminlte-sidebar-left section="'lknggen'">
+    <lknggen-tables></lknggen-tables>
+</adminlte-sidebar-left>
+<adminlte-content-wrapper breadcrumbs="$ctrl.breadcrumbs">
+    {{$ctrl.config}}
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="box box-solid box-info" ng-repeat="column in $ctrl.tables[$ctrl.table]">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{column}}</h3>
+                </div>
+                <div class="box-body">
+                    <formfield-text
+                            model="$ctrl.config.labels[column]"
+                            change="$ctrl.save()"
+                    >Метка
+                    </formfield-text>
+                    <formfield-switch
+                            change="$ctrl.save()"
+                            model="$ctrl.config.fillable[column]"
+                    >
+                        fillable?
+                    </formfield-switch>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="well">
+                <uib-tabset active="active">
+                    <uib-tab index="0" heading="Model">
+                        <div class="tab-content">
+                            <div class="box-body text-sm">
+                                <div ng-bind-html="$ctrl.trustAsHtml($ctrl.code_model)"></div>
+                            </div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Vertical 2">
+                        Vertical content 2
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</adminlte-content-wrapper>
+<adminlte-footer></adminlte-footer>
+<adminlte-sidebar-right>
+    <adminlte-helpbox>
+        123
+    </adminlte-helpbox>
+    <div class="box box-solid box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Выберите таблицу БД</h3>
+        </div>
+        <div class="box-body">
+            <ul class="products-list product-list-in-box">
+                <li class="item pointer" ng-repeat="(table, columns) in $ctrl.tables" ng-click="$ctrl.setTable(table)" ng-class="{
+                        'text-success':$ctrl.table==table,
+                    }">
+                    <div class="product-img">
+                        <i class="icon fa fa-2x" ng-class="{
+                        'fa-table':$ctrl.table!=table,
+                        'fa-check-square':$ctrl.table==table,
+                    }"></i>
+                    </div>
+                    <div class="product-info ">
+                        <span class="product-title pointer">{{table}}</span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</adminlte-sidebar-right>

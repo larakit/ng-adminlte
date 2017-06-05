@@ -1,0 +1,23 @@
+<adminlte-header></adminlte-header>
+<adminlte-sidebar-left section="'lknggen'">
+    <lknggen-tables></lknggen-tables>
+</adminlte-sidebar-left>
+<adminlte-content-wrapper breadcrumbs="$ctrl.breadcrumbs">
+    <div class="box box-solid box-info" ng-repeat="column in $ctrl.tables[$ctrl.table]">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{column}}</h3>
+        </div>
+        <div class="box-body">
+            <formfield-text
+                    change="$ctrl.save()"
+                    model="$ctrl.config.labels[column]">Метка
+            </formfield-text>
+        </div>
+    </div>
+</adminlte-content-wrapper>
+<adminlte-footer></adminlte-footer>
+<adminlte-sidebar-right>
+    <!--<adminlte-helpbox>-->
+        <!--123-->
+    <!--</adminlte-helpbox>-->
+</adminlte-sidebar-right>

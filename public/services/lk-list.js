@@ -29,6 +29,30 @@
         }
 
         function config($ctrl) {
+            /**
+             * Данные для формирования списка
+             */
+            $ctrl.params = {
+                filters: {},
+                page: 1,
+                order_field: null,
+                order_desc: false
+            };
+
+            /**
+             * Элементы списка
+             */
+            $ctrl.data = {};
+
+            /**
+             * Настройки фильтров
+             * Настройки сортировщика
+             */
+            $ctrl.config = {
+                filters: [],
+                sorters: []
+            };
+
             $http
                 .post($ctrl.url_config)
                 .then(function (response) {
