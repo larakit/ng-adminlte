@@ -21,9 +21,9 @@ class FilterRangeNumeric extends Filter {
     function element() {
         $element            = parent::element();
         $element['options'] = [
-            'floor'     => $this->from,
-            'ceil'      => $this->to,
-            'step'      => $this->step,
+            'floor'     => (int)$this->from,
+            'ceil'      => (int)$this->to,
+            'step'      => (int)$this->step,
             'showTicks' => true,
         ];
         
