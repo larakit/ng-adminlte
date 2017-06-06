@@ -8,12 +8,13 @@
 
     function Factory($http, LkAlerts, $timeout, $uibModal) {
         var self = this;
-        self.alerts = [];
+        self.isLoading = false;
 
         return {
             ids: ids,
             config: config,
             actionRemove: actionRemove,
+            isLoading: getLoading,
             actionLoad: actionLoad,
             actionEdit: actionEdit
         };
@@ -26,6 +27,21 @@
                 }
             });
             return ids;
+        }
+
+        function getLoading() {
+            console.log('getLoading');
+            return self.isLoading;
+        }
+
+        function startLoading() {
+            console.log('startLoading');
+            self.isLoading = true;
+        }
+
+        function stopLoading() {
+            console.log('stopLoading');
+            self.isLoading = false;
         }
 
         function config($ctrl) {
@@ -66,6 +82,7 @@
         }
 
         function actionLoad($ctrl, is_clear_filters, page) {
+            startLoading();
             if (true == is_clear_filters) {
                 $ctrl.params.filters = {};
             }
@@ -76,9 +93,10 @@
                 $http
                     .post($ctrl.url_load, $ctrl.params)
                     .then(function (response) {
-                        // console.log($ctrl.url_load, response.data.models);
+                        console.log($ctrl.url_load, response.data);
                         $ctrl.data = response.data.models;
                         $ctrl.extend = response.data.extend;
+                        stopLoading();
                     }, 100);
             });
         }

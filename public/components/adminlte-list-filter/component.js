@@ -13,9 +13,9 @@
             controller: Controller
         });
 
-    Controller.$inject = [];
+    Controller.$inject = ['LkList'];
 
-    function Controller() {
+    function Controller(LkList) {
         var $ctrl = this;
         $ctrl.isShowCondition = function (filter, type) {
             if (type != filter.type) {
@@ -27,6 +27,9 @@
                 }
             }
             return true;
+        };
+        $ctrl.isLoading = function(){
+            return LkList.isLoading();
         };
 
         //##################################################

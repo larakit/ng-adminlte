@@ -79,8 +79,8 @@
                 return false;
             }
             if (null != filter.condition) {
-                console.log(filter.condition, eval(filter.condition), $ctrl.params.filters.is_planned);
-                console.log((undefined != $ctrl.params.filters.is_planned) && ($ctrl.params.filters.is_planned==-1));
+                // console.log(filter.condition, eval(filter.condition), $ctrl.params.filters.is_planned);
+                // console.log((undefined != $ctrl.params.filters.is_planned) && ($ctrl.params.filters.is_planned==-1));
                 if (!eval(filter.condition)) {
                     return false;
                 }
