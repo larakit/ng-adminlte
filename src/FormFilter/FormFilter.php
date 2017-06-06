@@ -61,6 +61,7 @@ abstract class FormFilter {
             $ret['sorters'][] = $sorter->element();
         }
         $ret['sorter_default'] = $formfilter->sorter_default;
+        
         return $ret;
     }
     
@@ -81,8 +82,7 @@ abstract class FormFilter {
             $sorter->query($formfilter->model);
         }
         $ret['models'] = $formfilter->model->paginate($formfilter->per_page)
-                                           ->appends($_GET)
-        ;
+            ->appends($_GET)->toArray();
         $ret['sql']    = \DB::getQueryLog();
         
         return $ret;
@@ -92,6 +92,7 @@ abstract class FormFilter {
     
     protected function addFilter($filter) {
         $this->filters[] = $filter;
+        
         return $this;
     }
     
@@ -100,6 +101,7 @@ abstract class FormFilter {
         if($is_default) {
             $this->sorter_default = $sorter->getName();
         }
+        
         return $this;
     }
     

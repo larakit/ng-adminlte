@@ -71,45 +71,31 @@ class Sorter {
             //            $o = new City();
             //            $o->region()->getParent()
             if($this->relation) {
-                $model = $model->getModel();
-                $this->joinRelation($this->relation, $model, $model);
-                //TODO: тут надо сделать JOIN
-                
-                //                $table_related = $relation->getRelated()->getTable();
-                //                dd($relation->getRelated(), $relation->getRelated()->joiningTable('country'));
-                //                $model->join($table_related, $relation->getForeignKey(), '=', $table_related . '.' . $relation->getOwnerKey());
-                //                $model->orderBy($table_related . '.' . $this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
-                //                dd($model->{$this->relation}());
-                //                $model->whereHas($this->relation, function ($query) use ($values) {
-                //                    $query->whereIn($this->db_field, $values);
-                //                });
+                $model->select($model->getModel()->getTable().'.*');
+                //region.country
+                $relation_names = explode('.', $this->relation);
+                $key            = ['sorter'];
+                $prev_table = $model->getModel()->getTable();
+                foreach($relation_names as $relation_name) {
+                    $key[] = $relation_name;
+                    if(!isset($m)) {
+                        $m = $model->getModel();
+                    }
+                    $relation = $m->getModel()->{$relation_name}();
+                    $model->join(
+                        \DB::raw($relation->getRelated()->getTable() . ' as ' . implode('__', $key)),
+                        $prev_table.'.'.$relation->getForeignKey(),
+                        '=',
+                        implode('__', $key).'.'.$relation->getOwnerKey()
+                    );
+                    $prev_table = implode('__', $key);
+                    $m        = $relation->getRelated();
+                }
+                $model->orderBy(implode('__', $key).'.'.$this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
             } else {
                 $model->orderBy($this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
             }
         }
     }
     
-    function joinRelation($relation_name, $model, $_model, $prefix = null) {
-        $relation_names = explode('.', $relation_name);
-        //        dump($relation_names);
-        $rel_first     = array_shift($relation_names);
-        $relation      = $_model->getModel()->{$rel_first}();
-        $table_related = $relation->getRelated()->getTable();
-        dump($table_related);
-        dump($model);
-        dump($_model);
-        dump(\DB::raw($table_related . ' as ' . Str::snake(($prefix ? $prefix . '_' : '') . $rel_first)),
-            $relation->getForeignKey(),
-            '=',
-            $table_related . '.' . $relation->getOwnerKey());
-        //        dd($relation, $table_related);
-        $model->join(\DB::raw($table_related . ' as ' . Str::snake(($prefix ? $prefix . '_' : '') . $rel_first)),
-            $relation->getForeignKey(),
-            '=',
-            $table_related . '.' . $relation->getOwnerKey()
-        );
-        if(0 < count($relation_names)) {
-            $this->joinRelation(implode('.', $relation_names), $model, $relation->getModel(), ($prefix ? $prefix . '_' : '').$rel_first);
-        }
-    }
 }
