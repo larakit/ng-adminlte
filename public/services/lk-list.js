@@ -76,8 +76,9 @@
                 $http
                     .post($ctrl.url_load, $ctrl.params)
                     .then(function (response) {
-                        console.log($ctrl.url_load, response.data.models);
+                        // console.log($ctrl.url_load, response.data.models);
                         $ctrl.data = response.data.models;
+                        $ctrl.extend = response.data.extend;
                     }, 100);
             });
         }
