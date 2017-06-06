@@ -30,17 +30,17 @@
         }
 
         function getLoading() {
-            console.log('getLoading');
+            // console.log('getLoading');
             return self.isLoading;
         }
 
         function startLoading() {
-            console.log('startLoading');
+            // console.log('startLoading');
             self.isLoading = true;
         }
 
         function stopLoading() {
-            console.log('stopLoading');
+            // console.log('stopLoading');
             self.isLoading = false;
         }
 
@@ -93,7 +93,7 @@
                 $http
                     .post($ctrl.url_load, $ctrl.params)
                     .then(function (response) {
-                        console.log($ctrl.url_load, response.data);
+                        // console.log($ctrl.url_load, response.data);
                         $ctrl.data = response.data.models;
                         $ctrl.extend = response.data.extend;
                         stopLoading();
