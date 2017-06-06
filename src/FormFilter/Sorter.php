@@ -9,8 +9,6 @@
 
 namespace Larakit\FormFilter;
 
-use Illuminate\Support\Str;
-
 class Sorter {
     
     protected $db_field;
@@ -71,11 +69,11 @@ class Sorter {
             //            $o = new City();
             //            $o->region()->getParent()
             if($this->relation) {
-                $model->select($model->getModel()->getTable().'.*');
+                $model->select($model->getModel()->getTable() . '.*');
                 //region.country
                 $relation_names = explode('.', $this->relation);
                 $key            = ['sorter'];
-                $prev_table = $model->getModel()->getTable();
+                $prev_table     = $model->getModel()->getTable();
                 foreach($relation_names as $relation_name) {
                     $key[] = $relation_name;
                     if(!isset($m)) {
@@ -84,16 +82,17 @@ class Sorter {
                     $relation = $m->getModel()->{$relation_name}();
                     $model->join(
                         \DB::raw($relation->getRelated()->getTable() . ' as ' . implode('__', $key)),
-                        $prev_table.'.'.$relation->getForeignKey(),
+                        $prev_table . '.' . $relation->getForeignKey(),
                         '=',
-                        implode('__', $key).'.'.$relation->getOwnerKey()
+                        implode('__', $key) . '.' . $relation->getOwnerKey()
                     );
                     $prev_table = implode('__', $key);
-                    $m        = $relation->getRelated();
+                    $m          = $relation->getRelated();
                 }
-                $model->orderBy(implode('__', $key).'.'.$this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
+                $model->orderBy(implode('__', $key) . '.' . $this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
             } else {
-                $model->orderBy($this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
+                $table = $model->getModel()->getTable();
+                $model->orderBy($table . '.' . $this->db_field, (bool) \Request::input('order_desc') ? 'desc' : 'asc');
             }
         }
     }

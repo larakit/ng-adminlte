@@ -26,11 +26,12 @@ class FilterEqual extends Filter {
                     });
                 });
             } else {
-                $model->where(function ($query) use ($value) {
+                $table = $model->getModel()->getTable();
+                $model->where(function ($query) use ($value, $table) {
                     $db_field = (array) $this->db_field;
-                    $query->where(function ($query) use ($value, $db_field) {
+                    $query->where(function ($query) use ($value, $db_field, $table) {
                         foreach($db_field as $_db_field) {
-                            $query->orWhere($_db_field, '=', $value);
+                            $query->orWhere($table.'.'.$_db_field, '=', $value);
                         }
                     });
                 });

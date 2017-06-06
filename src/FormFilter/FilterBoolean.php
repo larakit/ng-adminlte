@@ -65,7 +65,8 @@ class FilterBoolean extends Filter {
                     $query->where($this->db_field, '=', (1 == $value));
                 });
             } else {
-                $model->where($this->db_field, '=', (1 == $value));
+                $table = $model->getModel()->getTable();
+                $model->where($table.'.'.$this->db_field, '=', (1 == $value));
             }
         }
     }

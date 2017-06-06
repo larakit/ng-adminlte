@@ -40,7 +40,7 @@ class FilterIn extends Filter {
     }
     
     function getValues() {
-        $value = (array) \Request::input('filters.'.$this->form_field);
+        $value = (array) \Request::input('filters.' . $this->form_field);
         $ret   = [];
         if('select2' == $this->getType()) {
             foreach($value as $v) {
@@ -66,7 +66,8 @@ class FilterIn extends Filter {
                     $query->whereIn($this->db_field, $values);
                 });
             } else {
-                $model->whereIn($this->db_field, $values);
+                $table = $model->getModel()->getTable();
+                $model->whereIn($table . '.' . $this->db_field, $values);
             }
         }
     }
