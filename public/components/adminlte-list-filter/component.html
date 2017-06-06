@@ -22,9 +22,9 @@
                 <div class="input-group">
                     <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
                         <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)"
-                               uib-btn-radio="undefined">{{filter.all}}</label>
-                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'">{{filter.on}}</label>
-                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'">{{filter.off}}</label>
+                               uib-btn-radio="undefined" ng-bind-html="filter.all"></label>
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'" ng-bind-html="filter.on"></label>
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'" ng-bind-html="filter.off"></label>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <div ng-if="true==filter.is_vertical" class="checkbox" ng-repeat="group in filter.options">
                         <label ng-click="$ctrl.load()(false, 1)">
                             <input type="checkbox" ng-model="$ctrl.params.filters[filter.name][group.id]">
-                            {{group.toString}}
+                            <span ng-bind-html="group.toString"></span>
                         </label>
                     </div>
                     <label ng-if="true!=filter.is_vertical"
@@ -61,7 +61,7 @@
                            class="checkbox-inline"
                            ng-repeat="group in filter.options">
                         <input type="checkbox" ng-model="$ctrl.params.filters[filter.name][group.id]">
-                        {{group.toString}}
+                        <span ng-bind-html="group.toString"></span>
                     </label>
                 </div>
             </div>

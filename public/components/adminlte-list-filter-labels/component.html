@@ -30,8 +30,8 @@
             <div class="filter-tags" ng-if="$ctrl.isShowBoolean(filter)">
                 <div class="filter-tags__label">{{filter.label}}</div>
                 <div class="filter-tags__label__group">
-                    <div class="filter-tags__item" ng-if="$ctrl.isCurrentValueBoolean(filter.name, 1)" ng-click="$ctrl.clear(filter.name);">{{filter.on}}</div>
-                    <div class="filter-tags__item" ng-if="$ctrl.isCurrentValueBoolean(filter.name, -1)" ng-click="$ctrl.clear(filter.name);">{{filter.off}}</div>
+                    <div class="filter-tags__item" ng-if="$ctrl.isCurrentValueBoolean(filter.name, 1)" ng-click="$ctrl.clear(filter.name);" ng-bind-html="filter.on"></div>
+                    <div class="filter-tags__item" ng-if="$ctrl.isCurrentValueBoolean(filter.name, -1)" ng-click="$ctrl.clear(filter.name);" ng-bind-html="filter.off"></div>
                 </div>
             </div>
             <!-- BOOLEAN end -->
@@ -43,7 +43,7 @@
                     <div class="filter-tags__item"
                          ng-repeat="option in filter.options"
                          ng-if="$ctrl.isCurrentValueCheckbox(filter.name, option.id)"
-                         ng-click="$ctrl.clear(filter.name, option.id);">{{option.toString}}
+                         ng-click="$ctrl.clear(filter.name, option.id);" ng-bind-html="option.toString">
                     </div>
                 </div>
             </div>
