@@ -72,13 +72,14 @@ Route::get('!/adminlte/footer', function () {
     return $ret;
 });
 Route::get('!/adminlte/sidebar', function () {
+    \Larakit\Event\Event::notify('lkng::init');
     $ret = \Larakit\NgAdminlte\LkNgSidebar::sidebars();
 //    dd($ret);
     
     return $ret;
 });
 Route::get('!/adminlte/routes', function () {
-    \Larakit\Event\Event::notify('ng_routes');
+    \Larakit\Event\Event::notify('lkng::init');
     $routes   = \Larakit\NgAdminlte\LkNgRoute::routes();
     $otherwise = \Larakit\NgAdminlte\LkNgRoute::adminUrl();
     $response = Response::make(view('ng-adminlte::ng-routes', compact('routes', 'otherwise')));
