@@ -77,11 +77,11 @@ Route::get('!/adminlte/sidebar', function () {
 //    dd($ret);
     
     return $ret;
-});
+})->middleware('web');
 Route::get('!/adminlte/routes', function () {
     \Larakit\Event\Event::notify('lkng::init');
     $routes   = \Larakit\NgAdminlte\LkNgRoute::routes();
-    $otherwise = \Larakit\NgAdminlte\LkNgRoute::adminUrl();
+    $otherwise = env('LKNG_OTHERWISE', \Larakit\NgAdminlte\LkNgRoute::adminUrl());
     $response = Response::make(view('ng-adminlte::ng-routes', compact('routes', 'otherwise')));
     $response->header('Content-Type', 'application/javascript; charset=UTF-8');
     
