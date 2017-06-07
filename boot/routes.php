@@ -52,7 +52,7 @@ Route::get('!/adminlte/me', function () {
     return null;
 })
     ->middleware('web')
-//    ->middleware('auth')
+    ->middleware('auth')
     ->name('ajax.me');
 
 Route::get('!/adminlte/footer', function () {
@@ -87,5 +87,5 @@ Route::get('!/adminlte/routes', function () {
     return $response;
 })
     ->middleware('web')
-//    ->middleware('auth')
+    ->middleware('auth')
     ->name('adminlte.routes');
