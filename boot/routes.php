@@ -90,3 +90,10 @@ Route::get('!/adminlte/routes', function () {
     ->middleware('web')
     ->middleware('auth')
     ->name('adminlte.routes');
+
+
+Route::get('!/ng-larakit-js', function (){
+    $modules = \Larakit\NgAdminlte\LkNg::modules();
+    $modules = '"'.implode('", "', $modules).'"';
+    return '(function () {angular.module("ng-larakit",['.$modules.'])})();';
+});

@@ -29,6 +29,7 @@ class NgComponentsMiddleware {
             
         }
         $package = \Larakit\StaticFiles\Manager::package('larakit');
+        $package->js('!/ng-larakit-js');
         foreach(LkNgComponent::components() as $path) {
 //            dump($path);
             $file = public_path($path . 'component.js');

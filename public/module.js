@@ -1,0 +1,1 @@
+(function () {angular.module('ng-larakit',['larakit'])})();
