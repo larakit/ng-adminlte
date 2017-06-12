@@ -101,13 +101,18 @@
             });
         }
 
-        function actionRemove(model, $ctrl, confirm_message) {
+        function actionRemove(model, $ctrl, confirm_message, url) {
+            if (undefined == url) {
+                url = $ctrl.url_delete;
+            }
             if (confirm(confirm_message)) {
-                $http.post($ctrl.url_delete, model)
+                $http.post(url, model)
                     .then(function (response) {
                             larakit_toastr(response.data);
                             LkAlerts.add(response.data);
-                            actionLoad($ctrl);
+                            if ('success' == response.data.result) {
+                                actionLoad($ctrl);
+                            }
                         }
                     );
             }

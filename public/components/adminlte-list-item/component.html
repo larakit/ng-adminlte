@@ -1,4 +1,4 @@
-<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':!$ctrl.is_opened}">
+<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':!$ctrl.isOpened}">
     <div class="box-header with-border">
         <div class="row">
             <div class="col-lg-1">
@@ -7,10 +7,10 @@
                         <input type="checkbox" ng-model="$ctrl.model.is_checkbox_bulk" ng-if="$ctrl.isBulk">
                         #{{$ctrl.model.id}}
                     </label>
-                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.is_opened=!$ctrl.is_opened" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
+                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.isOpened=!$ctrl.isOpened" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
                                                                                                                                               ng-class="{
-            'fa-plus':!$ctrl.is_opened,
-            'fa-minus':$ctrl.is_opened
+            'fa-plus':!$ctrl.isOpened,
+            'fa-minus':$ctrl.isOpened
             }"></i></button>
                 </h3>
             </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="box-body" ng-transclude="body"></div>
-    <div class="box-footer">
+    <div class="box-footer" ng-if="!$ctrl.isHideFooter">
         <div class="row text-sm">
             <div class="col-lg-4" ng-if="$ctrl.model.created_at">
                 <strong>Создано:</strong> {{$ctrl.model.created_at}}
