@@ -7,9 +7,9 @@
             controller: Controller
         });
 
-    Controller.$inject = ['BreadCrumbs', 'LkUser'];
+    Controller.$inject = ['BreadCrumbs', 'LkUser', '$http'];
 
-    function Controller(BreadCrumbs, LkUser) {
+    function Controller(BreadCrumbs, LkUser, $http) {
         var $ctrl = this;
         /**
          * Хлебные крошки
@@ -18,6 +18,11 @@
         BreadCrumbs.add('admin');
         $ctrl.breadcrumbs = BreadCrumbs.all();
 
+        $http
+            .get('/!/adminlte/page-admin')
+            .then(function (response) {
+                $ctrl.data = response.data;
+            });
 
         LkUser.me().then(function (data) {
             $ctrl.me = data;

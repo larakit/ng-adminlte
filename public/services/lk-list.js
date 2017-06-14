@@ -119,13 +119,16 @@
 
         }
 
-        function actionEdit(model, componentForm, callback) {
+        function actionEdit(model, componentForm, callback, size) {
+            if(undefined == size){
+                size = 'lg';
+            }
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title-bottom',
                 ariaDescribedBy: 'modal-body-bottom',
                 component: componentForm,
-                size: 'lg',
+                size: size,
                 resolve: {
                     model: function () {
                         return model;

@@ -1,36 +1,23 @@
 <adminlte-header></adminlte-header>
 <adminlte-sidebar-left section="'admin'"></adminlte-sidebar-left>
 <adminlte-content-wrapper breadcrumbs="$ctrl.breadcrumbs">
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
-    123123 <br>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="infobox in $ctrl.data.infoboxes">
+            <div class="small-box {{infobox.class}}">
+                <div class="inner">
+                    <h3>{{infobox.cnt}}</h3>
+                    <p>{{infobox.text}}</p>
+                </div>
+                <div class="icon" ng-if="infobox.icon">
+                    <i class="{{infobox.icon}}"></i>
+                </div>
+                <a href="{{infobox.link.href}}" class="small-box-footer" ng-if="infobox.link.href && infobox.link.text">
+                    {{infobox.link.text}} <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </adminlte-content-wrapper>
 <adminlte-footer></adminlte-footer>
 <adminlte-sidebar-right>

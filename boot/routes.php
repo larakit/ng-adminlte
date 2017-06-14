@@ -49,11 +49,19 @@ Route::get('!/adminlte/me', function () {
     if($me) {
         return $me->toArray();
     }
+    
     return null;
 })
     ->middleware('web')
     ->middleware('auth')
     ->name('ajax.me');
+
+Route::get('!/adminlte/page-admin', function () {
+    return \Larakit\NgAdminlte\LkNgDashboard::all();
+})
+    ->middleware('web')
+    ->middleware('auth')
+    ->name('ajax.page-admin');
 
 Route::get('!/adminlte/footer', function () {
     $year = env('ADMINLTE_FOOTER_FROM', '2014');
@@ -74,15 +82,16 @@ Route::get('!/adminlte/footer', function () {
 Route::get('!/adminlte/sidebar', function () {
     \Larakit\Event\Event::notify('lkng::init');
     $ret = \Larakit\NgAdminlte\LkNgSidebar::sidebars();
-//    dd($ret);
+    
+    //    dd($ret);
     
     return $ret;
 })->middleware('web');
 Route::get('!/adminlte/routes', function () {
     \Larakit\Event\Event::notify('lkng::init');
-    $routes   = \Larakit\NgAdminlte\LkNgRoute::routes();
+    $routes    = \Larakit\NgAdminlte\LkNgRoute::routes();
     $otherwise = env('LKNG_OTHERWISE', \Larakit\NgAdminlte\LkNgRoute::adminUrl());
-    $response = Response::make(view('ng-adminlte::ng-routes', compact('routes', 'otherwise')));
+    $response  = Response::make(view('ng-adminlte::ng-routes', compact('routes', 'otherwise')));
     $response->header('Content-Type', 'application/javascript; charset=UTF-8');
     
     return $response;
@@ -91,9 +100,9 @@ Route::get('!/adminlte/routes', function () {
     ->middleware('auth')
     ->name('adminlte.routes');
 
-
-Route::get('!/ng-larakit-js', function (){
+Route::get('!/ng-larakit-js', function () {
     $modules = \Larakit\NgAdminlte\LkNg::modules();
-    $modules = '"'.implode('", "', $modules).'"';
-    return '(function () {angular.module("ng-larakit",['.$modules.'])})();';
+    $modules = '"' . implode('", "', $modules) . '"';
+    
+    return '(function () {angular.module("ng-larakit",[' . $modules . '])})();';
 });
