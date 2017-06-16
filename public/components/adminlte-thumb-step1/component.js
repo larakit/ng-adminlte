@@ -21,7 +21,7 @@
                 ariaLabelledBy: 'modal-title-bottom',
                 ariaDescribedBy: 'modal-body-bottom',
                 component: 'adminlteThumbStep2',
-                size: 'full',
+                size: 'lg',
                 resolve: {
                     model: function () {
                         return $ctrl.model;

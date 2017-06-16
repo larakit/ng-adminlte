@@ -46,5 +46,6 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 //\Larakit\NgAdminlte\LkNgComponent::register('lknggen-tables', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-thumb-step1', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-thumb-step2', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-thumb-step3', $components_directory);
 
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-uploader', $components_directory);

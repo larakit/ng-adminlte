@@ -2,7 +2,7 @@
 <!--{{$ctrl.model| json}}-->
 <!--</pre>-->
 <div class="modal-header">
-    <h3 class="modal-title">Управление миниатюрами "{{$ctrl.model.thumbs[$ctrl.type].name}}"</h3>
+    <h3 class="modal-title">{{$ctrl.model.thumbs[$ctrl.type].name}} <small>(управление миниатюрами)</small></h3>
 </div>
 <div class="modal-body" id="modal-body">
     <adminlte-uploader url="$ctrl.model.thumbs[$ctrl.type].upload_url" model="$ctrl.model"></adminlte-uploader>
@@ -28,7 +28,7 @@
                         box-overlay__wrap box-overlay__wrap--fade
                         box-overlay__wrap--blue
                         box-overlay__wrap--inline"
-                         ng-click="$ctrl.gotoStep3(thumb, $ctrl.model.thumbs[$ctrl.type].original)"
+                         ng-click="$ctrl.gotoStep3(size)"
                     >
                         <div class="thumb-cropper">
                             <div class="box-overlay">
