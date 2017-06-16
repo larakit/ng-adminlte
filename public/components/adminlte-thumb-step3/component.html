@@ -13,20 +13,54 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            {{$ctrl.thumber.original}}
-            <div class="box-body">
-                <image-cropper
-                        image-url="{{$ctrl.thumber.original}}"
-                        width="{{$ctrl.thumber.sizes[$ctrl.size].w}}"
-                        height="{{$ctrl.thumber.sizes[$ctrl.size].h}}"
-                        show-controls="true"
-                        fit-on-init="true"
-                        center-on-init="true"
-                        crop-callback="$ctrl.myCallbackFunction"
-                        check-cross-origin="false"
-                        zoom-step="0.1"
-                        action-labels="$ctrl.myButtonLabelsObject"
-                ></image-cropper>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Горячие клавиши</h3>
+                        </div>
+                        <div class="box-body">
+                            <dl class="dl-horizontal">
+                                <dt><kbd ng-click="$ctrl.up()">&Uparrow;</kbd></dt>
+                                <dd>Увеличить</dd>
+                                <dt><kbd>&Downarrow;</kbd></dt>
+                                <dd>Уменьшить</dd>
+                                <dt><kbd>&Leftarrow;</kbd></dt>
+                                <dd>Повернуть против часовой</dd>
+                                <dt><kbd>&Rightarrow;</kbd></dt>
+                                <dd>Повернуть по часовой</dd>
+                                <dt><kbd>Ctrl + пробел</kbd></dt>
+                                <dd>В полный размер</dd>
+                            </dl>
+                            <image-cropper
+                                    image-url="{{$ctrl.thumber.original}}"
+                                    width="{{$ctrl.w}}"
+                                    height="{{$ctrl.h}}"
+                                    show-controls="false"
+                                    fit-on-init="true"
+                                    center-on-init="true"
+                                    api="$ctrl.api"
+                                    crop-callback="$ctrl.myCallbackFunction"
+                                    check-cross-origin="false"
+                                    zoom-step="0.1"
+                                    action-labels="$ctrl.myButtonLabelsObject"
+                            ></image-cropper>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Предварительный просмотр результата</h3>
+                        </div>
+                        <div class="box-body">
+                            <img
+                                    width="{{$ctrl.thumber.sizes[$ctrl.size].w}}"
+                                    height="{{$ctrl.thumber.sizes[$ctrl.size].h}}"
+                                    ng-src="{{preview}}" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.box-body -->

@@ -79,6 +79,5 @@
         uploader.onCompleteAll = function () {
             console.info('onCompleteAll');
         };
-        console.info('uploader', uploader);
     }
 })();

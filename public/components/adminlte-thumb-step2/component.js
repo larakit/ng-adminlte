@@ -32,7 +32,7 @@
                 ariaLabelledBy: 'modal-title-bottom',
                 ariaDescribedBy: 'modal-body-bottom',
                 component: 'adminlteThumbStep3',
-                size: 'lg',
+                size: 'full',
                 resolve: {
                     thumber: function () {
                         return $ctrl.model.thumbs[$ctrl.type];
