@@ -8,11 +8,14 @@
  */
 
 $callback = function () {
+    //                $model = \App\Models\Color::find(2);
+    //                dd($model->toArray());
+    
     $page = \Larakit\Page\LkPage::instance()
         ->setBodyContent('<div class="wrapper">
     <ng-view></ng-view>
 </div>');
-    $page->html()->ngApp(env('LARAKIT_NG_APP', 'larakit'));
+    $page->html()->ngApp(env('LARAKIT_NG_APP', 'ng-larakit'));
     $page->body()
         ->setAttribute('style', 'height: auto; min-height: 100%;')
         ->addClass('skin-black')->setAttribute('ng-class', '{
@@ -104,5 +107,8 @@ Route::get('!/ng-larakit-js', function () {
     $modules = \Larakit\NgAdminlte\LkNg::modules();
     $modules = '"' . implode('", "', $modules) . '"';
     
-    return '(function () {angular.module("ng-larakit",[' . $modules . '])})();';
-});
+    return '(function () {
+    
+    angular.module("larakit").constant("CSRF_TOKEN", \'' . csrf_token() . '\');
+    angular.module("ng-larakit",[' . $modules . '])})();';
+})->middleware('web');

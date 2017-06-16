@@ -19,17 +19,11 @@
         $ctrl.model = {};
         $ctrl.$onInit = function () {
             $ctrl.model = $ctrl.resolve.model;
-            $ctrl.thumbType = $ctrl.resolve.thumbType;
+            $ctrl.type = $ctrl.resolve.type;
         };
 
-        $ctrl.thumbs = function () {
-            return _.get($ctrl.model, 'thumbs.' + $ctrl.thumbType, []);
-        };
-
-
-        $ctrl.getUrl = function(thumb){
-            var url = _.get(thumb, 'url', null);
-            return url ? url + '?' + Math.random() : 'http://placehold.it/' + thumb.w + 'x' + thumb.h;
+        $ctrl.cancel = function () {
+            $ctrl.dismiss({$value: 'cancel'});
         };
 
     }

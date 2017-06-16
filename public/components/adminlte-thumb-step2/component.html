@@ -1,36 +1,54 @@
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">Подготовленные миниатюры</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <div class="panel box box-primary" ng-repeat="(size, thumb) in $ctrl.thumbs()">
-            <div class="box-header with-border">
-                <div class="pull-right">
+<!--<pre>-->
+<!--{{$ctrl.model| json}}-->
+<!--</pre>-->
+<div class="modal-header">
+    <h3 class="modal-title">Управление миниатюрами "{{$ctrl.model.thumbs[$ctrl.type].name}}"</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <adminlte-uploader url="$ctrl.model.thumbs[$ctrl.type].upload_url" model="$ctrl.model"></adminlte-uploader>
+    <div class="box box-solid box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Подготовленные миниатюры</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="panel box box-primary" ng-repeat="(size, thumb) in $ctrl.model.thumbs[$ctrl.type].sizes" ng-if="thumb.url">
+                <div class="box-header with-border">
+                    <div class="pull-right">
                         <span class="label  label-default">
                             {{thumb.w}}x{{thumb.h}}
                         </span>
+                    </div>
+                    <h4 class="box-title">
+                        {{thumb.name}}
+                    </h4>
                 </div>
-                <h4 class="box-title">
-                    {{thumb.name}}
-                </h4>
-            </div>
-            <div class="box-body">
-                <div class="crop-box-container
+                <div class="box-body">
+                    <div class="crop-box-container
                         box-overlay__wrap box-overlay__wrap--fade
                         box-overlay__wrap--blue
-                        box-overlay__wrap--inline">
-                    <div class="thumb-cropper">
-                        <div class="box-overlay">
-                            <div class="box-overlay__label">
-                                <i class="box-overlay__label-icon fa fa-crop"></i> <span class="box-overlay__label-text">Обрезать миниатюру</span>
+                        box-overlay__wrap--inline"
+                         ng-click="$ctrl.gotoStep3(thumb, $ctrl.model.thumbs[$ctrl.type].original)"
+                    >
+                        <div class="thumb-cropper">
+                            <div class="box-overlay">
+                                <div class="box-overlay__label">
+                                    <i class="box-overlay__label-icon fa fa-crop"></i> <span class="box-overlay__label-text">Обрезать миниатюру</span>
+                                </div>
                             </div>
+                            <img ng-if="null!=thumb.url" class="img-rounded pointer img-responsive img-thumbnail" ng-src="{{thumb.url}}">
+                            <img ng-if="null==thumb.url" class="img-rounded pointer img-responsive img-thumbnail"
+                                 ng-src="http://placehold.it/{{thumb.w}}x{{thumb.h}}">
+
                         </div>
-                        <img class="img-rounded pointer img-responsive" src="{{$ctrl.getUrl(thumb)}}">
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /.box-body -->
     </div>
-    <!-- /.box-body -->
 </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()">Отмена</button>
+</div>
+

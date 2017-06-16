@@ -15,7 +15,7 @@
     ],
     "require": {
         "larakit/sf-adminlte": "*",
-        "larakit/sf-angular-larakit": "*"
+        "larakit/sf-angular-file-upload": "*"
     },
     "autoload": {
         "psr-4": {

@@ -81,6 +81,7 @@ abstract class FormFilter {
         foreach($formfilter->sorters as $sorter) {
             $sorter->query($formfilter->model);
         }
+//        dd($formfilter->model->paginate($formfilter->per_page));
         $ret['models'] = $formfilter->model->paginate($formfilter->per_page)
             ->appends($_GET);
         $ret['sql']    = \DB::getQueryLog();

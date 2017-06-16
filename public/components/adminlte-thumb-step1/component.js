@@ -5,44 +5,29 @@
         .component('adminlteThumbStep1', {
             templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-thumb-step1/component.html',
             bindings: {
-                model: '=',
-                thumbType: '=',
-                thumbSize: '='
+                model: '='
             },
             controller: Controller
         });
 
-    Controller.$inject = ['$uibModal'];
+    Controller.$inject = ['$uibModal', 'CSRF_TOKEN'];
 
-    function Controller($uibModal) {
+    function Controller($uibModal, CSRF_TOKEN) {
         var $ctrl = this;
-        $ctrl.getUrl = function () {
-            var url = _.get($ctrl.model, 'thumbs.' + $ctrl.thumbType + '.' + $ctrl.thumbSize + '.url', null);
-            return url ? url + '?' + Math.random() : 'http://placehold.it/' + $ctrl.getW() + 'x' + $ctrl.getW();
-        };
-        $ctrl.getTitle = function () {
-            return _.get($ctrl.model, 'thumbs.' + $ctrl.thumbType + '.' + $ctrl.thumbSize + '.name', null);
-        };
-        $ctrl.getH = function () {
-            return _.get($ctrl.model, 'thumbs.' + $ctrl.thumbType + '.' + $ctrl.thumbSize + '.h', null);
-        };
-        $ctrl.getW = function () {
-            return _.get($ctrl.model, 'thumbs.' + $ctrl.thumbType + '.' + $ctrl.thumbSize + '.w', null);
-        };
 
-        $ctrl.gotoStep2 = function () {
+        $ctrl.gotoStep2 = function (type) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title-bottom',
                 ariaDescribedBy: 'modal-body-bottom',
                 component: 'adminlteThumbStep2',
-                size: 'lg',
+                size: 'full',
                 resolve: {
                     model: function () {
                         return $ctrl.model;
                     },
-                    thumbType: function () {
-                        return $ctrl.thumbType;
+                    type: function () {
+                        return type;
                     }
                 }
             });
