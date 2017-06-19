@@ -12,18 +12,28 @@
             controller: Controller
         });
 
-    Controller.$inject = ['$uibModal'];
+    Controller.$inject = ['$uibModal', '$http'];
 
-    function Controller($uibModal) {
+    function Controller($uibModal, $http) {
         var $ctrl = this;
         $ctrl.model = {};
         $ctrl.$onInit = function () {
             $ctrl.model = $ctrl.resolve.model;
             $ctrl.type = $ctrl.resolve.type;
+            $ctrl.load();
         };
 
+        $ctrl.load = function () {
+            $http
+                .get($ctrl.model.thumbs[$ctrl.type].url_thumb)
+                .then(function (response) {
+                    $ctrl.model = response.data.model;
+                });
+        };
+
+
         $ctrl.cancel = function () {
-            $ctrl.dismiss({$value: 'cancel'});
+            $ctrl.dismiss({$value: $ctrl.model});
         };
 
         $ctrl.gotoStep3 = function (size) {
@@ -43,9 +53,9 @@
                 }
             });
             modalInstance.result.then(function (o) {
-                callback.call(null);
+                $ctrl.load();
             }, function () {
-                console.info('modal-component dismissed at: ' + new Date());
+                $ctrl.load();
             });
         };
 

@@ -17,21 +17,34 @@
                 <div class="col-lg-6">
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Горячие клавиши</h3>
+                            <h3 class="box-title">Управление</h3>
                         </div>
                         <div class="box-body">
-                            <dl class="dl-horizontal">
-                                <dt><kbd ng-click="$ctrl.up()">&Uparrow;</kbd></dt>
-                                <dd>Увеличить</dd>
-                                <dt><kbd>&Downarrow;</kbd></dt>
-                                <dd>Уменьшить</dd>
-                                <dt><kbd>&Leftarrow;</kbd></dt>
-                                <dd>Повернуть против часовой</dd>
-                                <dt><kbd>&Rightarrow;</kbd></dt>
-                                <dd>Повернуть по часовой</dd>
-                                <dt><kbd>Ctrl + пробел</kbd></dt>
-                                <dd>В полный размер</dd>
-                            </dl>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click="$ctrl.buttonZoomOut()">
+                                    <i class="fa fa-minus"></i> уменьшить
+                                </a>
+                                <a class="btn btn-default" ng-click="$ctrl.buttonZoomIn()">
+                                    <i class="fa fa-plus"></i> увеличить
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click="$ctrl.buttonRotateLeft()">
+                                    <i class="fa fa-rotate-left"></i> против часовой
+                                </a>
+                                <a class="btn btn-default" ng-click="$ctrl.buttonRotateRight()">
+                                    <i class="fa fa-rotate-right"></i> по часовой
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click="$ctrl.buttonFit()">
+                                    <i class="fa fa-arrows-alt"></i> в полный размер
+                                </a>
+                                <a class="btn btn-default" ng-click="$ctrl.buttonCrop()">
+                                    <i class="fa fa-crop"></i> подрезать
+                                </a>
+                            </div>
+                            <hr>
                             <image-cropper
                                     image-url="{{$ctrl.thumber.original}}"
                                     width="{{$ctrl.w}}"
@@ -67,6 +80,7 @@
     </div>
 </div>
 <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="$ctrl.ok()">Сохранить</button>
     <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()">Отмена</button>
 </div>
 

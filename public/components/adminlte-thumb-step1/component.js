@@ -10,10 +10,18 @@
             controller: Controller
         });
 
-    Controller.$inject = ['$uibModal', 'CSRF_TOKEN'];
+    Controller.$inject = ['$uibModal', '$http'];
 
-    function Controller($uibModal, CSRF_TOKEN) {
+    function Controller($uibModal, $http) {
         var $ctrl = this;
+
+        $ctrl.load = function (type) {
+            $http
+                .get($ctrl.model.thumbs[type].url_thumb)
+                .then(function (response) {
+                    $ctrl.model = response.data.model;
+                });
+        };
 
         $ctrl.gotoStep2 = function (type) {
             var modalInstance = $uibModal.open({
@@ -32,9 +40,10 @@
                 }
             });
             modalInstance.result.then(function (o) {
-                callback.call(null);
+                $ctrl.load(type);
             }, function () {
-                console.info('modal-component dismissed at: ' + new Date());
+                $ctrl.load(type);
+                console.log();
             });
         };
 
