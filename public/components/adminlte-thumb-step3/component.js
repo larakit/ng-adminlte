@@ -12,74 +12,74 @@
             controller: Controller
         });
 
-    Controller.$inject = ['FileUploader', '$scope', 'hotkeys', '$timeout', '$http'];
+    Controller.$inject = ['Cropper', '$http', '$scope', '$timeout'];
 
-    function Controller(FileUploader, $scope, hotkeys, $timeout, $http) {
-        var $ctrl = this;
-        $ctrl.url = '';
+    function Controller(Cropper, $http, $scope, $timeout) {
+        var data, $ctrl = this;
         $ctrl.thumb = {};
-        $scope.preview = '';
+        $ctrl.data = {};
         $ctrl.$onInit = function () {
             $ctrl.size = $ctrl.resolve.size;
             $ctrl.thumber = $ctrl.resolve.thumber;
             $ctrl.w = $ctrl.thumber.sizes[$ctrl.size].w.toString();
             $ctrl.h = $ctrl.thumber.sizes[$ctrl.size].h.toString();
+            var base_image = new Image();
+            base_image.src = 'img/base.png';
+            $scope.dataUrl = $ctrl.thumber.original;
+            $timeout(showCropper);  // wait for $digest to set image's src
         };
-        $ctrl.cancel = function () {
-            $ctrl.dismiss({$value: 'cancel'});
+
+        $scope.cropper = {};
+        $scope.cropperProxy = 'cropper.first';
+
+
+        $scope.options = {
+            maximize: true,
+            aspectRatio: NaN,
+            crop: function (dataNew) {
+                console.log(dataNew);
+                $ctrl.data = dataNew;
+            }
         };
-        $ctrl.ok = function () {
-            $http.post(
-                $ctrl.thumber.sizes[$ctrl.size].url_crop, {
-                    data: $scope.preview
-                }
-            ).then(function (response) {
-                larakit_toastr(response.data)
-                $ctrl.close();
+
+        $scope.showEvent = 'show';
+        $scope.hideEvent = 'hide';
+
+        function showCropper() {
+            $scope.$broadcast($scope.showEvent);
+        }
+
+        function hideCropper() {
+            $scope.$broadcast($scope.hideEvent);
+        }
+        $scope.preview = function () {
+            if (!file || !data) return;
+            Cropper.crop(file, data).then(Cropper.encode).then(function (dataUrl) {
+                ($scope.preview || ($scope.preview = {})).dataUrl = dataUrl;
             });
         };
 
 
-        $ctrl.api = function (api) {
-            function e(){
-                $timeout(function(){
-                    api.crop();
-                    e();
-                },1000);
-            }
-            e();
-            $ctrl.buttonRotateLeft = function () {
-                api.rotate(-90);
-                api.crop();
-            };
-            $ctrl.buttonRotateRight = function () {
-                api.rotate(90);
-                api.crop();
-            };
-            $ctrl.buttonZoomIn = function () {
-                api.zoomIn(.1);
-                api.crop();
-            };
-            $ctrl.buttonZoomOut = function () {
-                api.zoomOut(.1);
-                api.crop();
-            };
-            $ctrl.buttonFit = function () {
-                api.fit();
-                api.crop();
-            };
-            $ctrl.buttonCrop = function () {
-                api.crop();
-            };
-        };
-        $ctrl.myCallbackFunction = function (base64) {
-            // console.log(typeof (data));
-            $scope.preview = base64;
-            $timeout(function () {
-                $scope.$apply(); // Apply the changes.
-            }, 10);
 
+        $ctrl.cancel = function () {
+            $ctrl.dismiss({$value: 'cancel'});
         };
+        // $ctrl.ok = function () {
+        //     Cropper.encode((file = blob)).then(function (dataUrl) {
+        //         $scope.dataUrl = dataUrl;
+        //         $timeout(showCropper);  // wait for $digest to set image's src
+        //     });
+        //     return;
+        //     $http.post(
+        //         $ctrl.thumber.sizes[$ctrl.size].url_crop, {
+        //             data: $scope.preview
+        //         }
+        //     ).then(function (response) {
+        //         larakit_toastr(response.data)
+        //         $ctrl.close();
+        //     });
+        // };
+
 
         $ctrl.myButtonLabelsObject = {
             rotateLeft: ' <span class="fa fa-rotate-left"> Против часовой (стрелка вниз)</span> ',

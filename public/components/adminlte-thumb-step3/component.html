@@ -9,7 +9,7 @@
 <div class="modal-body" id="modal-body">
     <div class="box box-solid box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Подготовленные миниатюры</h3>
+            <h3 class="box-title">Коррекция миниатюры</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -20,64 +20,86 @@
                             <h3 class="box-title">Управление</h3>
                         </div>
                         <div class="box-body">
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click="$ctrl.buttonZoomOut()">
-                                    <i class="fa fa-minus"></i> уменьшить
-                                </a>
-                                <a class="btn btn-default" ng-click="$ctrl.buttonZoomIn()">
-                                    <i class="fa fa-plus"></i> увеличить
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click="$ctrl.buttonRotateLeft()">
-                                    <i class="fa fa-rotate-left"></i> против часовой
-                                </a>
-                                <a class="btn btn-default" ng-click="$ctrl.buttonRotateRight()">
-                                    <i class="fa fa-rotate-right"></i> по часовой
-                                </a>
-                            </div>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click="$ctrl.buttonFit()">
-                                    <i class="fa fa-arrows-alt"></i> в полный размер
-                                </a>
-                                <a class="btn btn-default" ng-click="$ctrl.buttonCrop()">
-                                    <i class="fa fa-crop"></i> подрезать
-                                </a>
-                            </div>
+                            <button ng-click="preview()">Show preview</button>
+                            <button ng-click="scale(200)">Scale to 200px width</button>
+                            <button ng-click="clear()">Clear selection</button>
+
+                            <br>
+                            <br>
+                            <br>
+                            <!--<div class="btn-group">-->
+                            <!--<a class="btn btn-default" ng-click="$ctrl.buttonZoomOut()">-->
+                            <!--<i class="fa fa-minus"></i> уменьшить-->
+                            <!--</a>-->
+                            <!--<a class="btn btn-default" ng-click="$ctrl.buttonZoomIn()">-->
+                            <!--<i class="fa fa-plus"></i> увеличить-->
+                            <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="btn-group">-->
+                            <!--<a class="btn btn-default" ng-click="$ctrl.buttonRotateLeft()">-->
+                            <!--<i class="fa fa-rotate-left"></i> против часовой-->
+                            <!--</a>-->
+                            <!--<a class="btn btn-default" ng-click="$ctrl.buttonRotateRight()">-->
+                            <!--<i class="fa fa-rotate-right"></i> по часовой-->
+                            <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="btn-group">-->
+                            <!--<a class="btn btn-default" ng-click="$ctrl.buttonFit()">-->
+                            <!--<i class="fa fa-arrows-alt"></i> в полный размер-->
+                            <!--</a>-->
+                            <!--<a class="btn btn-default" ng-click="$ctrl.buttonCrop()">-->
+                            <!--<i class="fa fa-crop"></i> подрезать-->
+                            <!--</a>-->
+                            <!--</div>-->
                             <hr>
-                            <image-cropper
-                                    image-url="{{$ctrl.thumber.original}}"
-                                    width="{{$ctrl.w}}"
-                                    height="{{$ctrl.h}}"
-                                    show-controls="false"
-                                    fit-on-init="true"
-                                    center-on-init="true"
-                                    api="$ctrl.api"
-                                    crop-callback="$ctrl.myCallbackFunction"
-                                    check-cross-origin="false"
-                                    zoom-step="0.1"
-                                    action-labels="$ctrl.myButtonLabelsObject"
-                            ></image-cropper>
+                            <img ng-if="dataUrl" ng-src="{{dataUrl}}" width="800"
+                                 ng-cropper
+                                 class="img-responsive"
+                                 ng-cropper-show="showEvent"
+                                 ng-cropper-hide="hideEvent"
+                                 ng-cropper-options="options">
+
+                            <!--<img ng-if="$ctrl.thumber.original" ng-src="{{$ctrl.thumber.original}}"-->
+                            <!--ng-cropper-->
+                            <!--ng-cropper-proxy="cropperProxy"-->
+                            <!--ng-cropper-show="showEvent"-->
+                            <!--ng-cropper-hide="hideEvent"-->
+                            <!--class="img-responsive"-->
+                            <!--ng-cropper-options="options">-->
+                            {{data}}
                         </div>
+
+                        <!--<image-cropper-->
+                        <!--image-url="{{$ctrl.thumber.original}}"-->
+                        <!--width="{{$ctrl.w}}"-->
+                        <!--height="{{$ctrl.h}}"-->
+                        <!--show-controls="false"-->
+                        <!--fit-on-init="true"-->
+                        <!--center-on-init="true"-->
+                        <!--api="$ctrl.api"-->
+                        <!--crop-callback="$ctrl.myCallbackFunction"-->
+                        <!--check-cross-origin="false"-->
+                        <!--zoom-step="0.1"-->
+                        <!--action-labels="$ctrl.myButtonLabelsObject"-->
+                        <!--&gt;</image-cropper>-->
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="box box-default">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Предварительный просмотр результата</h3>
-                        </div>
-                        <div class="box-body">
-                            <img
-                                    width="{{$ctrl.thumber.sizes[$ctrl.size].w}}"
-                                    height="{{$ctrl.thumber.sizes[$ctrl.size].h}}"
-                                    ng-src="{{preview}}" alt="">
+            </div>
+            <div class="col-lg-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Предварительный просмотр результата</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="preview-container">
+                            <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.box-body -->
     </div>
+    <!-- /.box-body -->
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" ng-click="$ctrl.ok()">Сохранить</button>
