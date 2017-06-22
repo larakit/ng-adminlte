@@ -7,9 +7,8 @@
  * Time: 10:55
  */
 $callback = function () {
-//    $model = \App\Models\Color::find(2);
-//    dd($model->toArray());
-    
+    //    $model = \App\Models\Color::find(2);
+    //    dd($model->toArray());
     $page = \Larakit\Page\LkPage::instance()
         ->setBodyContent('<div class="wrapper">
     <ng-view></ng-view>

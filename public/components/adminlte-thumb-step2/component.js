@@ -23,6 +23,14 @@
             $ctrl.load();
         };
 
+        $ctrl.clear = function () {
+            $http
+                .post($ctrl.model.thumbs[$ctrl.type].url_clear)
+                .then(function (response) {
+                    $ctrl.load();
+                });
+        };
+
         $ctrl.load = function () {
             $http
                 .get($ctrl.model.thumbs[$ctrl.type].url_thumb)

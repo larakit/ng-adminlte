@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body" id="modal-body">
     <adminlte-uploader url="$ctrl.model.thumbs[$ctrl.type].url_upload" model="$ctrl.model"></adminlte-uploader>
-    <div class="box box-solid box-default">
+    <div class="box box-solid box-default" ng-if="$ctrl.model.thumbs[$ctrl.type].original">
         <div class="box-header with-border">
             <h3 class="box-title">Подготовленные миниатюры</h3>
         </div>
@@ -16,7 +16,8 @@
                 <div class="box-header with-border">
                     <div class="pull-right">
                         <span class="label  label-default">
-                            {{thumb.w}}x{{thumb.h}}
+                            Ширина: {{thumb.w}}px
+                            <span ng-if="thumb.h">| Высота:{{thumb.h}}px</span>
                         </span>
                     </div>
                     <h4 class="box-title">
@@ -49,6 +50,7 @@
     </div>
 </div>
 <div class="modal-footer">
+    <button type="button" ng-if="$ctrl.model.thumbs[$ctrl.type].original" class="btn btn-warning" ng-click="$ctrl.clear()">Удалить миниатюры</button>
     <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()">Отмена</button>
 </div>
 
