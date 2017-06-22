@@ -1,16 +1,16 @@
-<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':!$ctrl.isOpened}">
+<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':!$ctrl.model.is_list_item_opened}">
     <div class="box-header with-border">
         <div class="row">
             <div class="col-lg-1">
                 <h3 class="box-title">
                     <label>
-                        <input type="checkbox" ng-model="$ctrl.model.is_checkbox_bulk" ng-if="$ctrl.isBulk">
+                        <input type="checkbox" ng-model="$ctrl.model.is_list_item_checkbox">
                         #{{$ctrl.model.id}}
                     </label>
-                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.isOpened=!$ctrl.isOpened" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
+                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.model.is_list_item_opened=!$ctrl.model.is_list_item_opened" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
                                                                                                                                             ng-class="{
-            'fa-plus':!$ctrl.isOpened,
-            'fa-minus':$ctrl.isOpened
+            'fa-plus':!$ctrl.model.is_list_item_opened,
+            'fa-minus':$ctrl.model.is_list_item_opened
             }"></i></button>
                 </h3>
             </div>

@@ -12,7 +12,6 @@
             bindings: {
                 model: '=',
                 color: '=',
-                isOpened: '=?',
                 isHideFooter: '=?',
                 isBulk: '='
             },
