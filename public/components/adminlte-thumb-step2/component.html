@@ -2,7 +2,9 @@
 <!--{{$ctrl.model| json}}-->
 <!--</pre>-->
 <div class="modal-header">
-    <h3 class="modal-title">{{$ctrl.model.thumbs[$ctrl.type].name}} <small>(управление миниатюрами)</small></h3>
+    <h3 class="modal-title">{{$ctrl.model.thumbs[$ctrl.type].name}}
+        <small>(управление миниатюрами)</small>
+    </h3>
 </div>
 <div class="modal-body" id="modal-body">
     <adminlte-uploader url="$ctrl.model.thumbs[$ctrl.type].url_upload" model="$ctrl.model"></adminlte-uploader>
@@ -37,9 +39,14 @@
                                     <i class="box-overlay__label-icon fa fa-crop"></i> <span class="box-overlay__label-text">Обрезать миниатюру</span>
                                 </div>
                             </div>
-                            <img ng-if="null!=thumb.url" class="img-rounded pointer img-responsive img-thumbnail" ng-src="{{thumb.url}}">
-                            <img ng-if="null==thumb.url" class="img-rounded pointer img-responsive img-thumbnail"
-                                 ng-src="http://placehold.it/{{thumb.w}}x{{thumb.h}}">
+                            <img
+                                    ng-if="null!=thumb.url" class="img-rounded pointer img-responsive img-thumbnail"
+                                    ng-class="{'img-circle':thumb.is_round}"
+                                    ng-src="{{thumb.url}}">
+                            <img
+                                    ng-if="null==thumb.url" class="img-rounded pointer img-responsive img-thumbnail"
+                                    ng-class="{'img-circle':thumb.is_round}"
+                                    ng-src="http://placehold.it/{{thumb.w}}x{{thumb.h}}">
 
                         </div>
                     </div>

@@ -8,7 +8,12 @@
             <i class="box-overlay__label-icon fa fa-folder-open-o"></i> <span class="box-overlay__label-text"></span>
         </div>
     </div>
-    <img ng-if="null!=thumber.sizes._.url" class="img-rounded pointer img-responsive img-thumbnail" ng-src="{{thumber.sizes._.url}}">
-    <img ng-if="null==thumber.sizes._.url" class="img-rounded pointer img-responsive img-thumbnail"
-         ng-src="http://placehold.it/{{thumber.sizes._.w}}x{{thumber.sizes._.h}}">
+    <img
+            ng-if="null!=thumber.sizes._.url" class="img-rounded pointer img-responsive img-thumbnail"
+            ng-class="{'img-circle':thumber.sizes._.is_round}"
+            ng-src="{{thumber.sizes._.url}}">
+    <img
+            ng-if="null==thumber.sizes._.url" class="img-rounded pointer img-responsive img-thumbnail"
+            ng-class="{'img-circle':thumber.sizes._.is_round}"
+            ng-src="http://placehold.it/{{thumber.sizes._.w}}x{{thumber.sizes._.h}}">
 </div>

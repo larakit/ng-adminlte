@@ -5,7 +5,8 @@
         .component('adminlteThumbStep1', {
             templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-thumb-step1/component.html',
             bindings: {
-                model: '='
+                model: '=',
+                isRound: '=?'
             },
             controller: Controller
         });

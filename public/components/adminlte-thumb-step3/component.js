@@ -26,6 +26,15 @@
             $ctrl.thumber = $ctrl.resolve.thumber;
             $ctrl.w = $ctrl.thumber.sizes[$ctrl.size].w;
             $ctrl.h = $ctrl.thumber.sizes[$ctrl.size].h;
+            $ctrl.is_round = $ctrl.thumber.sizes[$ctrl.size].is_round;
+            if ($ctrl.w) {
+                $crop_img_final.attr('width', $ctrl.w);
+                $crop_img_original.css('width', $ctrl.w);
+            }
+            if ($ctrl.h) {
+                $crop_img_final.attr('height', $ctrl.h);
+                $crop_img_original.css('height', $ctrl.h);
+            }
         };
         $ctrl.buttonRotateRight = function () {
             $crop_img_original.cropper('rotate', 5);
@@ -52,7 +61,8 @@
         $ctrl.$postLink = function () {
             $timeout(function () {
                 $crop_img_original.attr('src', $ctrl.thumber.original);
-
+                console.log($crop_img_final.attr('width'), $crop_img_final.attr('height'));
+                console.log('$ctrl',$ctrl.w, $ctrl.h);
                 if ($ctrl.w) {
                     $crop_img_final.attr('width', $ctrl.w);
                     $crop_img_original.css('width', $ctrl.w);
@@ -61,6 +71,7 @@
                     $crop_img_final.attr('height', $ctrl.h);
                     $crop_img_original.css('height', $ctrl.h);
                 }
+                console.log($crop_img_final.attr('width'), $crop_img_final.attr('height'));
                 var k, options = {
                     autoCrop: true,
                     background: false,
@@ -79,6 +90,8 @@
                             k = $ctrl.thumber.sizes[$ctrl.size].w / dataNew.width;
                             $ctrl.h = parseInt(k * dataNew.height);
                         }
+                        $crop_img_final.attr('width', $ctrl.w);
+                        $crop_img_final.attr('height', $ctrl.h);
                         safeApply($scope);
                     }
                 };
@@ -88,7 +101,7 @@
                     options.aspectRatio = NaN;
                 }
                 $crop_img_original.cropper(options);
-            }, 100);
+            }, 500);
         };
 
         $ctrl.cancel = function () {
