@@ -7,15 +7,22 @@
             controller: Controller
         });
 
-    Controller.$inject = ['LkngGen', '$route'];
+    Controller.$inject = ['LkngGen', '$route', '$rootScope'];
 
-    function Controller(LkngGen, $route) {
+    function Controller(LkngGen, $route, $rootScope) {
         var $ctrl = this;
         $ctrl.tables = {};
         $ctrl.table = $route.current.params.table;
 
-        LkngGen.tables().then(function (tables) {
-            $ctrl.tables = tables;
+        $ctrl.load = function(is_clear){
+            LkngGen.tables(is_clear).then(function (tables) {
+                $ctrl.tables = tables;
+            });
+        };
+        $ctrl.load();
+
+        $rootScope.$on('lknggen.migration', function (event, data) {
+            $ctrl.load(true);
         });
     }
 

@@ -1,0 +1,24 @@
+<?php
+
+namespace {{ namespace }}\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends Model {
+
+    protected $table = '{{ table }}';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $appends  = {{ appends }};
+
+    protected $fillable = [
+        'name',
+    ];
+}
+
+{{ class }}::saving(function ($model) {
+    $model->name = (string) $model->name;
+});

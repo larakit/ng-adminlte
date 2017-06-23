@@ -14,7 +14,10 @@
             tables: tables
         };
 
-        function tables() {
+        function tables(is_clear) {
+            if (true == is_clear) {
+                self.tables = null;
+            }
             var deferred = $q.defer();
             if (null === self.tables) {
                 $http

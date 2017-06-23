@@ -6,12 +6,12 @@
  * Date: 26.05.17
  * Time: 15:22
  */
-return;
 //##################################################
 //      Регистрация компонента страницы
 //##################################################
 \Larakit\NgAdminlte\LkNgComponent::register('page-lknggen', '/packages/larakit/ng-adminlte/components/');
 \Larakit\NgAdminlte\LkNgComponent::register('page-lknggen-table', '/packages/larakit/ng-adminlte/components/');
+\Larakit\NgAdminlte\LkNgComponent::register('lknggen-tables', '/packages/larakit/ng-adminlte/components/');
 //\Larakit\NgAdminlte\LkNgComponent::register('page-lknggen-model', '/packages/larakit/ng-adminlte/components/');
 
 //##################################################

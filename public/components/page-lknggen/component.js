@@ -7,9 +7,9 @@
             controller: Controller
         });
 
-    Controller.$inject = ['BreadCrumbs', '$http', '$timeout'];
+    Controller.$inject = ['BreadCrumbs', '$http', '$timeout', '$rootScope'];
 
-    function Controller(BreadCrumbs, $http, $timeout) {
+    function Controller(BreadCrumbs, $http, $timeout, $rootScope) {
         var $ctrl = this;
         /**
          * Хлебные крошки
@@ -18,12 +18,27 @@
         BreadCrumbs.add('lknggen');
         $ctrl.breadcrumbs = BreadCrumbs.all();
 
-        $ctrl.tables = {};
         $ctrl.config = {
-            labels:{}
+            labels: {}
         };
         $ctrl.table = '';
 
+        $ctrl.callMigrate = function () {
+            $http
+                .post('/!/lknggen/call-migrate')
+                .then(function (response) {
+                    larakit_toastr(response.data);
+                    $rootScope.$broadcast('lknggen.migration');
+                });
+        };
+        $ctrl.callMakeMigration = function (table) {
+            $http
+                .post('/!/lknggen/call-make-migration', {table: table})
+                .then(function (response) {
+                    larakit_toastr(response.data);
+                    $ctrl.migration = response.data.migration;
+                });
+        };
         $ctrl.setTable = function (table) {
             $ctrl.table = table;
             $http
@@ -33,16 +48,14 @@
                 });
         };
 
-        $ctrl.save = function(){
-            $timeout(function(){
+        $ctrl.save = function () {
+            $timeout(function () {
                 $http
-                    .post('/!/lknggen/save', {table: $ctrl.table, data:$ctrl.config})
+                    .post('/!/lknggen/save', {table: $ctrl.table, data: $ctrl.config})
                     .then(function (response) {
                         larakit_toastr(response.data)
                     });
-            },500);
+            }, 500);
         };
-
-
     }
 })();

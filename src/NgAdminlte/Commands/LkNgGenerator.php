@@ -19,7 +19,7 @@ class LkNgGenerator extends Command {
      *
      * @var string
      */
-    protected $signature = 'larakit:ng {name}';
+    protected $signature = 'larakit:ng {name : Название модели} {--thumb? : Нужны превьюшки}';
     
     /**
      * The console command description.
@@ -37,12 +37,17 @@ class LkNgGenerator extends Command {
         parent::__construct();
     }
     
+    protected $name_studly;
+    protected $table;
+    
     /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle() {
+        $this->name_studly = Str::studly($this->argument('name'));
+        $this->table       = Str::plural(Str::snake(class_basename($this->argument('name'))));
         //создали миграцию
         $this->makeMigration();
         //создали модель
@@ -50,14 +55,13 @@ class LkNgGenerator extends Command {
     }
     
     function makeModel() {
-        $name = Str::studly(class_basename($this->argument('name')));
-        \Artisan::call('make:model', [
-            'name' => $name,
-        ]);
+        $file = base_path('app/Models/' . $this->name_studly.'.php');
+        if(!file_exists($file)){
+            
+        }
     }
     
     function makeMigration() {
-        $table = Str::plural(Str::snake(class_basename($this->argument('name'))));
         if(!class_exists('Create' . Str::studly($table) . 'Table')) {
             \Artisan::call('make:migration', [
                 'name'     => "create_{$table}_table",
