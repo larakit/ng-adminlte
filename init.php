@@ -24,6 +24,7 @@
     ->jsPackage('services/lk-user.js');
 
 \Larakit\Boot::register_middleware(\Larakit\NgAdminlte\NgComponentsMiddleware::class);
+\Larakit\Boot::register_command(\Larakit\NgAdminlte\Commands\LkNgGenerator::class);
 
 //##################################################
 //components
