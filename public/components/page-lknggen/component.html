@@ -3,37 +3,54 @@
     <lknggen-tables></lknggen-tables>
 </adminlte-sidebar-left>
 <adminlte-content-wrapper breadcrumbs="$ctrl.breadcrumbs">
-    <div class="callout callout-info">
-        <h4>Шаг 1</h4>
-        <p>
-            Для начала работы создайте миграцию, для этого впишите название сущности во множественном числе
-        </p>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Шаг 1. Введите название таблицы БД</h3>
+        </div>
+        <div class="box-body">
+            <formfield-text
+                    examples="[['news'], ['posts'],['comments'], ['articles']]"
+                    desc="'Впишите название сущности во множественном числе'"
+                    model="table">
+            </formfield-text>
+        </div>
     </div>
-    <formfield-text
-            examples="[['news'], ['posts'],['comments'], ['articles']]"
-            model="table">Название таблицы
-    </formfield-text>
-    <div class="input-group input-group-lg" ng-if="table">
-        <input type="text" class="form-control" readonly ng-value="'php artisan make:migration create_'+table+'_table --create='+table">
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.callMakeMigration(table)">Создать миграцию</button>
-        </span>
+    <div class="box box-primary" ng-if="table">
+        <div class="box-header with-border">
+            <h3 class="box-title">Шаг 2. Создайте миграцию</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group form-group-lg">
+                <input type="text" class="form-control" readonly ng-value="'php artisan make:migration create_'+table+'_table --create='+table">
+            </div>
+        </div>
     </div>
-    <hr>
-    <div class="callout callout-info" ng-if="$ctrl.migration">
-        <h4>Шаг 2</h4>
-        <p>
-            Откройте в IDE миграцию {{$ctrl.migration}}, внесите необходимые поля и запустите миграции
-        </p>
+    <div class="box box-primary" ng-if="table">
+        <div class="box-header with-border">
+            <h3 class="box-title">Шаг 3. Наполните миграцию инструкциями</h3>
+        </div>
+        <div class="box-body">
+            Откройте в IDE миграцию "YYYY_MM_DD_create_{{table}}_table", внесите необходимые поля
+        </div>
     </div>
-    <hr>
-    <div class="input-group input-group-lg" ng-if="$ctrl.migration">
-        <input type="text" class="form-control" readonly ng-value="'php artisan make:migrate'">
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.callMigrate()">Запустить миграции</button>
-        </span>
+    <div class="box box-primary" ng-if="table">
+        <div class="box-header with-border">
+            <h3 class="box-title">Шаг 4. Запустите миграции</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group form-group-lg">
+                <input type="text" class="form-control" readonly ng-value="'php artisan migrate'">
+            </div>
+        </div>
     </div>
-
+    <div class="box box-primary" ng-if="table">
+        <div class="box-header with-border">
+            <h3 class="box-title">Шаг 5. Done</h3>
+        </div>
+        <div class="box-body">
+            Обновите страницу и выберите слева созданную таблицу
+        </div>
+    </div>
 </adminlte-content-wrapper>
 <adminlte-footer></adminlte-footer>
 <adminlte-sidebar-right>
