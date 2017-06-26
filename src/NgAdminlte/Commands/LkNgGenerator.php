@@ -19,7 +19,7 @@ class LkNgGenerator extends Command {
      *
      * @var string
      */
-    protected $signature = 'larakit:ng {name : Название модели} {--thumb? : Нужны превьюшки}';
+    protected $signature = 'larakit:ng {name : Название модели} {section=admin : Секция (admin,account)} {--thumb? : Нужны превьюшки}';
     
     /**
      * The console command description.
@@ -46,6 +46,7 @@ class LkNgGenerator extends Command {
      * @return mixed
      */
     public function handle() {
+        dd($this->arguments(), $this->options());
         $this->name_studly = Str::studly($this->argument('name'));
         $this->table       = Str::plural(Str::snake(class_basename($this->argument('name'))));
         //создали миграцию
