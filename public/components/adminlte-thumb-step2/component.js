@@ -38,6 +38,10 @@
                     $ctrl.model = response.data.model;
                 });
         };
+        $ctrl.onCompleteItem = function(fileItem, response, status, headers){
+            larakit_toastr(response);
+            $ctrl.model.thumbs = response.model.thumbs;
+        };
 
 
         $ctrl.cancel = function () {

@@ -8,6 +8,16 @@
             bindings: {
                 exts: '=?',
                 model: '=',
+                onCompleteAll: '&?',
+                onCompleteItem: '&?',
+                onCancelItem: '&?',
+                onSuccessItem: '&?',
+                onProgressAll: '&?',
+                onProgressItem: '&?',
+                onBeforeUploadItem: '&?',
+                onAfterAddingAll: '&?',
+                onAfterAddingFile: '&?',
+                onWhenAddingFileFailed: '&?',
                 url: '=',
                 isMultiple: '=?'
             }
@@ -35,7 +45,7 @@
                     return true;
                 }
                 var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-                return ('|' + $ctrl.exts.join('|') + '|').indexOf(type) !== -1;
+                return ($ctrl.exts).indexOf(type) !== -1;
                 //return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
         });
@@ -43,41 +53,74 @@
         // CALLBACKS
 
         uploader.onWhenAddingFileFailed = function (item, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
+            // console.info('onWhenAddingFileFailed', item, filter, options);
+            if (undefined != $ctrl.onWhenAddingFileFailed) {
+                $ctrl.onWhenAddingFileFailed()(item, filter, options);
+            }
         };
         uploader.onAfterAddingFile = function (fileItem) {
-            console.info('onAfterAddingFile', fileItem);
+            // console.info('onAfterAddingFile', fileItem);
+            if (undefined != $ctrl.onAfterAddingFile) {
+                $ctrl.onAfterAddingFile()(fileItem);
+            }
         };
         uploader.onAfterAddingAll = function (addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
+            // console.info('onAfterAddingAll', addedFileItems);
+            if (undefined != $ctrl.onAfterAddingAll) {
+                $ctrl.onAfterAddingAll()(addedFileItems);
+            }
         };
         uploader.onBeforeUploadItem = function (item) {
-            console.info('onBeforeUploadItem', item);
+            // console.info('onBeforeUploadItem', item);
+            if (undefined != $ctrl.onBeforeUploadItem) {
+                $ctrl.onBeforeUploadItem()(item);
+            }
         };
         uploader.onProgressItem = function (fileItem, progress) {
             // console.info('onProgressItem', fileItem, progress);
             // larakit_toastr(progress);
             // $ctrl.model = progress.model;
+            if (undefined != $ctrl.onProgressItem) {
+                $ctrl.onProgressItem()(fileItem, progress);
+            }
         };
         uploader.onProgressAll = function (progress) {
-            console.info('onProgressAll', progress);
+            // console.info('onProgressAll', progress);
+            if (undefined != $ctrl.onProgressAll) {
+                $ctrl.onProgressAll()(progress);
+            }
         };
         uploader.onSuccessItem = function (fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
+            // console.info('onSuccessItem', fileItem, response, status, headers);
+            if (undefined != $ctrl.onSuccessItem) {
+                $ctrl.onSuccessItem()(fileItem, response, status, headers);
+            }
         };
         uploader.onErrorItem = function (fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
+            // console.info('onErrorItem', fileItem, response, status, headers);
+            if (undefined != $ctrl.onCancelItem) {
+                $ctrl.onCancelItem()(fileItem, response, status, headers);
+            }
         };
         uploader.onCancelItem = function (fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
+            // console.info('onCancelItem', fileItem, response, status, headers);
+            if (undefined != $ctrl.onCancelItem) {
+                $ctrl.onCancelItem()(fileItem, response, status, headers);
+            }
         };
         uploader.onCompleteItem = function (fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
-            larakit_toastr(response);
-            $ctrl.model = response.model;
+            if (undefined != $ctrl.onCompleteItem) {
+                $ctrl.onCompleteItem()();
+            }
+            // console.info('onCompleteItem', fileItem, response, status, headers);
+            // larakit_toastr(response);
+            // $ctrl.model = response.model;
         };
         uploader.onCompleteAll = function () {
-            console.info('onCompleteAll');
+            if (undefined != $ctrl.onCompleteAll) {
+                $ctrl.onCompleteAll()();
+            }
+            // console.info('onCompleteAll');
         };
     }
 })();

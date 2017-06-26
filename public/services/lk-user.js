@@ -13,8 +13,11 @@
             me: getAuthUser
         };
 
-        function getAuthUser() {
+        function getAuthUser(is_clear) {
             var deferred = $q.defer();
+            if (true == is_clear) {
+                self.user = {};
+            }
             if ('undefined' === typeof (self.user.id)) {
                 $http
                     .get('/!/adminlte/me')
