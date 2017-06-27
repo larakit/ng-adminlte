@@ -110,7 +110,7 @@
         };
         uploader.onCompleteItem = function (fileItem, response, status, headers) {
             if (undefined != $ctrl.onCompleteItem) {
-                $ctrl.onCompleteItem()();
+                $ctrl.onCompleteItem()(fileItem, response, status, headers);
             }
             // console.info('onCompleteItem', fileItem, response, status, headers);
             // larakit_toastr(response);

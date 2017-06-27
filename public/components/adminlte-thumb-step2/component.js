@@ -39,6 +39,7 @@
                 });
         };
         $ctrl.onCompleteItem = function(fileItem, response, status, headers){
+            console.log('111111111111111',fileItem, response, status, headers);
             larakit_toastr(response);
             $ctrl.model.thumbs = response.model.thumbs;
         };
