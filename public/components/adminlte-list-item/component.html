@@ -1,16 +1,16 @@
-<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':!$ctrl.model.is_list_item_opened}">
+<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':(true!=$ctrl.listOpened[$ctrl.model.id])}">
     <div class="box-header with-border">
         <div class="row">
             <div class="col-lg-1">
                 <h3 class="box-title">
                     <label>
-                        <input type="checkbox" ng-model="$ctrl.model.is_list_item_checkbox">
+                        <input type="checkbox" ng-model="$ctrl.listChecked[$ctrl.model.id]">
                         #{{$ctrl.model.id}}
                     </label>
-                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.model.is_list_item_opened=!$ctrl.model.is_list_item_opened" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
+                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
                                                                                                                                             ng-class="{
-            'fa-plus':!$ctrl.model.is_list_item_opened,
-            'fa-minus':$ctrl.model.is_list_item_opened
+            'fa-plus':!$ctrl.listOpened[$ctrl.model.id],
+            'fa-minus':$ctrl.listOpened[$ctrl.model.id]
             }"></i></button>
                 </h3>
             </div>

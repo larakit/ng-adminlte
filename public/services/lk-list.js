@@ -61,6 +61,16 @@
             $ctrl.data = {};
 
             /**
+             * Развернутые элементы списка
+             * @type {{}}
+             */
+            $ctrl.listOpened = {};
+            /**
+             * Выделенные элементы списка
+             * @type {{}}
+             */
+            $ctrl.listChecked = {};
+            /**
              * Настройки фильтров
              * Настройки сортировщика
              */
@@ -120,7 +130,7 @@
         }
 
         function actionEdit(model, componentForm, callback, size) {
-            if(undefined == size){
+            if (undefined == size) {
                 size = 'lg';
             }
             var modalInstance = $uibModal.open({

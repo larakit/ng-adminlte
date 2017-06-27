@@ -13,6 +13,8 @@
                 data: '=',
                 load: '=',
                 params: '=',
+                listOpened: '=',
+                listChecked: '=',
                 config: '=',
                 isBulk: '='
             },
@@ -27,30 +29,24 @@
         $ctrl.isAdd = $transclude.isSlotFilled('add');
         $ctrl.collapseMinus = function () {
             _.each($ctrl.data.data, function (model) {
-                if(model.is_list_item_checkbox){
-                    model.is_list_item_opened = false;
-                }
-
+                $ctrl.listOpened[model.id] = false;
             });
         };
         $ctrl.collapsePlus = function () {
             _.each($ctrl.data.data, function (model) {
-                if(model.is_list_item_checkbox){
-                    model.is_list_item_opened = true;
-                }
-
+                $ctrl.listOpened[model.id] = true;
             });
         };
         $ctrl.toggle = function () {
             $ctrl.is = !$ctrl.is;
             _.each($ctrl.data.data, function (model) {
-                model.is_list_item_checkbox = $ctrl.is;
+                $ctrl.listChecked[model.id] = $ctrl.is;
             });
             //
         };
         $ctrl.countSelected = function () {
             return _.filter($ctrl.data.data, function (model) {
-                return (true == model.is_list_item_checkbox);
+                return (true == $ctrl.listChecked[model.id]);
             }).length;
         }
     }
