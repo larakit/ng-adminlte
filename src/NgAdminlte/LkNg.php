@@ -9,6 +9,7 @@
 
 namespace Larakit\NgAdminlte;
 
+use App\Models\Advice;
 use Illuminate\Routing\Route;
 
 class LkNg {
