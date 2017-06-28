@@ -26,6 +26,8 @@ class LkNg {
         }
         
         return \Route::get($url, function () {
+            \Config::set('larakit.lk-staticfiles.js.external.build', false);
+            \Config::set('larakit.lk-staticfiles.js.external.min', false);
             define('LKNG_ROUTE', true);
             $page = \Larakit\Page\LkPage::instance()
                 ->setBodyContent('<div class="wrapper">
