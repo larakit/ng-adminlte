@@ -13,4 +13,5 @@ Route::get('!/adminlte/sidebar', function () {
     //    dd($ret);
     
     return $ret;
-})->middleware('web');
+})->middleware('web')
+    ->middleware('ng-larakit');

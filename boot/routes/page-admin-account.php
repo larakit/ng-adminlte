@@ -6,33 +6,17 @@
  * Date: 19.06.17
  * Time: 10:55
  */
-$callback = function () {
-    //    $model = \App\Models\Color::find(2);
-    //    dd($model->toArray());
-    $page = \Larakit\Page\LkPage::instance()
-        ->setBodyContent('<div class="wrapper">
-    <ng-view></ng-view>
-</div>');
-    $page->html()->ngApp(env('LARAKIT_NG_APP', 'ng-larakit'));
-    $page->body()
-        ->setAttribute('style', 'height: auto; min-height: 100%;')
-        ->addClass('skin-black')->setAttribute('ng-class', '{
-        \'sidebar-collapse\':leftValue(),
-        \'control-sidebar-open\':rightValue(),
-}');
-    
-    return $page;
-};
 
-Route::get(\Larakit\NgAdminlte\LkNgRoute::accountUrl() . '{path?}', $callback)
+//$url = \Larakit\NgAdminlte\LkNgRoute::adminUrl('colors');
+//\Larakit\NgAdminlte\LkNg::proxyRoute($url);
+
+\Larakit\NgAdminlte\LkNg::proxyRoute(\Larakit\NgAdminlte\LkNgRoute::accountUrl() . '{path?}', true)
     ->name('account')
-    ->where('path', '.*')
-    ->middleware('web')
-    ->middleware('auth');
-
-Route::get(\Larakit\NgAdminlte\LkNgRoute::adminUrl() . '{path?}', $callback)
+    ->middleware('ng-larakit')
+    ->where('path', '.*');
+\Larakit\NgAdminlte\LkNg::proxyRoute(\Larakit\NgAdminlte\LkNgRoute::adminUrl() . '{path?}', true)
     ->name('admin')
-    ->where('path', '.*')
-    ->middleware('web')
-    ->middleware('auth')
-    ->middleware('admin');
+    ->middleware('admin')
+    ->middleware('ng-larakit')
+    ->where('path', '.*');
+

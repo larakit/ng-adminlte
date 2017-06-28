@@ -31,7 +31,7 @@ class NgComponentsMiddleware {
         $package = \Larakit\StaticFiles\Manager::package('larakit');
         $package->js('!/ng-larakit-js');
         foreach(LkNgComponent::components() as $path) {
-//            dump($path);
+            //            dump($path);
             $file = public_path($path . 'component.js');
             if(file_exists($file)) {
                 $package->js($path . 'component.js');
@@ -41,9 +41,9 @@ class NgComponentsMiddleware {
                 $package->css($path . 'component.css');
             }
         }
-//        dump(__FILE__);
+        //        dump(__FILE__);
         $package->js('/!/adminlte/routes');
-        $package->js('/!/adminlte/routes');
+        
         return $next($request);
     }
 }

@@ -26,7 +26,20 @@ class LkNg {
         }
         
         return \Route::get($url, function () {
-            return view('ng-adminlte::layout');
+            define('LKNG_ROUTE', true);
+            $page = \Larakit\Page\LkPage::instance()
+                ->setBodyContent('<div class="wrapper">
+    <ng-view></ng-view>
+</div>');
+            $page->html()->ngApp(env('LARAKIT_NG_APP', 'ng-larakit'));
+            $page->body()
+                ->setAttribute('style', 'height: auto; min-height: 100%;')
+                ->addClass('skin-black')->setAttribute('ng-class', '{
+        \'sidebar-collapse\':leftValue(),
+        \'control-sidebar-open\':rightValue(),
+}');
+    
+            return $page;
         })->middleware($middlewares);
     }
     

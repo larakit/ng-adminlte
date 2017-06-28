@@ -22,9 +22,11 @@
     ->jsPackage('services/lk-alerts.js')
     ->jsPackage('services/lk-page.js')
     ->jsPackage('services/lk-sidebars.js')
-    ->jsPackage('services/lk-user.js');
+    ->jsPackage('services/lk-user.js')
+    ->jsPackage('module.js')
+;
 
-\Larakit\Boot::register_middleware(\Larakit\NgAdminlte\NgComponentsMiddleware::class);
+\Larakit\Boot::register_middleware_route('ng-larakit',\Larakit\NgAdminlte\NgComponentsMiddleware::class);
 \Larakit\Boot::register_command(\Larakit\NgAdminlte\Commands\LkNgGenerator::class);
 
 //##################################################

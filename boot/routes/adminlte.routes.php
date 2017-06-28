@@ -17,4 +17,5 @@ Route::get('!/adminlte/routes', function () {
 })
     ->middleware('web')
     ->middleware('auth')
+    ->middleware('ng-larakit')
     ->name('adminlte.routes');
