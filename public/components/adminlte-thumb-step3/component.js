@@ -12,9 +12,9 @@
             controller: Controller
         });
 
-    Controller.$inject = ['$http', '$scope', '$timeout', 'hotkeys', 'safeApply'];
+    Controller.$inject = ['$http', '$scope', '$timeout', 'hotkeys', 'safeApply', 'LkThumb'];
 
-    function Controller($http, $scope, $timeout, hotkeys, safeApply) {
+    function Controller($http, $scope, $timeout, hotkeys, safeApply, LkThumb) {
         var data,
             $crop_img_final = $('#crop_img_final'),
             $crop_img_original = $('#crop_img_original'),
@@ -60,7 +60,7 @@
 
         $ctrl.$postLink = function () {
             $timeout(function () {
-                $crop_img_original.attr('src', $ctrl.thumber.original);
+                $crop_img_original.attr('src', LkThumb.refreshHash($ctrl.thumber.original));
                 console.log($crop_img_final.attr('width'), $crop_img_final.attr('height'));
                 console.log('$ctrl',$ctrl.w, $ctrl.h);
                 if ($ctrl.w) {
@@ -71,7 +71,6 @@
                     $crop_img_final.attr('height', $ctrl.h);
                     $crop_img_original.css('height', $ctrl.h);
                 }
-                console.log($crop_img_final.attr('width'), $crop_img_final.attr('height'));
                 var k, options = {
                     autoCrop: true,
                     background: false,

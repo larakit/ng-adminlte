@@ -21,6 +21,7 @@
     ->jsPackage('services/lknggen.js')
     ->jsPackage('services/lk-alerts.js')
     ->jsPackage('services/lk-page.js')
+    ->jsPackage('services/lk-thumb.js')
     ->jsPackage('services/lk-sidebars.js')
     ->jsPackage('services/lk-user.js')
     ->jsPackage('module.js')

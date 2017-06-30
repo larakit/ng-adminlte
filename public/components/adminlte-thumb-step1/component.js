@@ -11,16 +11,16 @@
             controller: Controller
         });
 
-    Controller.$inject = ['$uibModal', '$http'];
+    Controller.$inject = ['$uibModal', '$http', 'LkThumb'];
 
-    function Controller($uibModal, $http) {
+    function Controller($uibModal, $http, LkThumb) {
         var $ctrl = this;
 
         $ctrl.load = function (type) {
             $http
                 .get($ctrl.model.thumbs[type].url_thumb)
                 .then(function (response) {
-                    $ctrl.model = response.data.model;
+                    $ctrl.model = LkThumb.refreshHashModel(response.data.model);
                 });
         };
 
@@ -44,7 +44,6 @@
                 $ctrl.load(type);
             }, function () {
                 $ctrl.load(type);
-                console.log();
             });
         };
 

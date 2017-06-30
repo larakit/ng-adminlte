@@ -12,9 +12,9 @@
             controller: Controller
         });
 
-    Controller.$inject = ['$uibModal', '$http'];
+    Controller.$inject = ['$uibModal', '$http', 'LkThumb'];
 
-    function Controller($uibModal, $http) {
+    function Controller($uibModal, $http, LkThumb) {
         var $ctrl = this;
         $ctrl.model = {};
         $ctrl.$onInit = function () {
@@ -35,7 +35,7 @@
             $http
                 .get($ctrl.model.thumbs[$ctrl.type].url_thumb)
                 .then(function (response) {
-                    $ctrl.model = response.data.model;
+                    $ctrl.model = LkThumb.refreshHashModel(response.data.model);
                 });
         };
         $ctrl.onCompleteItem = function(fileItem, response, status, headers){

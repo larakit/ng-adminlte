@@ -7,7 +7,6 @@
             controller: Controller,
             bindings: {
                 exts: '=?',
-                model: '=',
                 onCompleteAll: '&?',
                 onCompleteItem: '&?',
                 onCancelItem: '&?',
@@ -79,7 +78,6 @@
         uploader.onProgressItem = function (fileItem, progress) {
             // console.info('onProgressItem', fileItem, progress);
             // larakit_toastr(progress);
-            // $ctrl.model = progress.model;
             if (undefined != $ctrl.onProgressItem) {
                 $ctrl.onProgressItem()(fileItem, progress);
             }
@@ -112,9 +110,6 @@
             if (undefined != $ctrl.onCompleteItem) {
                 $ctrl.onCompleteItem()(fileItem, response, status, headers);
             }
-            // console.info('onCompleteItem', fileItem, response, status, headers);
-            // larakit_toastr(response);
-            // $ctrl.model = response.model;
         };
         uploader.onCompleteAll = function () {
             if (undefined != $ctrl.onCompleteAll) {
