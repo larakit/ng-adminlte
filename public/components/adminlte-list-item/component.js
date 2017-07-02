@@ -15,7 +15,7 @@
                 listOpened: '=',
                 listChecked: '=',
                 isHideFooter: '=?',
-                isBulk: '='
+                isHideId: '=?'
             },
             controller: Controller
         });

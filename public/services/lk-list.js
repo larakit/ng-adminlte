@@ -119,7 +119,6 @@
                 $http.post(url, model)
                     .then(function (response) {
                             larakit_toastr(response.data);
-                            LkAlerts.add(response.data);
                             if ('success' == response.data.result) {
                                 actionLoad($ctrl);
                             }

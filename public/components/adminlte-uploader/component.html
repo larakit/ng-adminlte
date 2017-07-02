@@ -12,6 +12,11 @@
 </div>
 <div class="row" nv-file-drop="" uploader="$ctrl.uploader" ng-if="undefined != $ctrl.isMultiple">
     <div class="col-sm-12">
+        <div class="progress" style="">
+            <div class="progress-bar" role="progressbar" ng-style="{ 'width': $ctrl.uploader.progress + '%' }"></div>
+        </div>
+    </div>
+    <div class="col-sm-12">
         <!-- 3. nv-file-over uploader="link" over-class="className" -->
         <label style="display: block">
             <div class="well ng-fileupload-drop-zone" nv-file-over="" uploader="$ctrl.uploader">

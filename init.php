@@ -8,7 +8,7 @@
  */
 //$ng_boot_dir =
 \Larakit\Boot::register_boot(__DIR__ . '/boot');
-\Larakit\Boot::register_middleware(\Larakit\LkNg\LkNgSnippetMiddleware::class);
+//\Larakit\Boot::register_middleware(\Larakit\LkNg\LkNgSnippetMiddleware::class);
 \Larakit\Boot::register_view_path(__DIR__ . '/views', 'ng-adminlte');
 
 \Larakit\StaticFiles\Manager::package('larakit/ng-adminlte')
