@@ -18,9 +18,13 @@
         var $ctrl = this;
 
         $ctrl.route = $route.current;
-        if($ctrl.breadcrumbs && $ctrl.breadcrumbs.length){
-            $ctrl.current_page = $ctrl.breadcrumbs[$ctrl.breadcrumbs.length-1];
-        }
+
+        $ctrl.getTitle = function () {
+            return $ctrl.breadcrumbs[$ctrl.breadcrumbs.length - 1].title;
+        };
+        $ctrl.getSubTitle = function () {
+            return $ctrl.breadcrumbs[$ctrl.breadcrumbs.length - 1].subtitle;
+        };
     }
 
 })();

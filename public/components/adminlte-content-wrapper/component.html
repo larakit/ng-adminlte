@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{$ctrl.current_page.title}}
-            <small ng-if="$ctrl.current_page.subtitle" ng-bind="$ctrl.current_page.subtitle"></small>
+            {{$ctrl.getTitle()}}
+            <small ng-if="$ctrl.getSubTitle()" ng-bind="$ctrl.getSubTitle()"></small>
         </h1>
         <ol class="breadcrumb" ng-if="$ctrl.breadcrumbs.length>0">
             <li>
