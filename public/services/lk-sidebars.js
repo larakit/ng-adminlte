@@ -19,6 +19,8 @@
         // rightSet($cookies.get(self.cookie_name_right));
 
         return {
+            rightSet: rightSet,
+            leftSet: leftSet,
             leftValue: leftValue,
             leftToggle: leftToggle,
             rightValue: rightValue,
