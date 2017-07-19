@@ -32,6 +32,7 @@ Route::post('!/thumb/{model}/{id}/{type}/upload', function () {
     $model = \Larakit\NgAdminlte\LkNgThumb::model();
     if($model) {
         $type = Request::route('type');
+        $model->thumbHashed();
         if($model->thumbUpload($type)) {
             return [
                 'result'  => 'success',
