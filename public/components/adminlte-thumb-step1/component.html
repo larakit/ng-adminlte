@@ -10,10 +10,10 @@
     </div>
     <img
             ng-if="thumber.sizes._.url" class="img-rounded pointer img-responsive img-thumbnail"
-            ng-class="{'img-circle':thumber.sizes._.is_round}"
+            ng-class="{'img-circle':thumber.sizes._.is_round || $ctrl.isRound}"
             ng-src="{{thumber.sizes._.url}}">
     <img
             ng-if="!thumber.sizes._.url" class="img-rounded pointer img-responsive img-thumbnail"
-            ng-class="{'img-circle':thumber.sizes._.is_round}"
+            ng-class="{'img-circle':thumber.sizes._.is_round || $ctrl.isRound}"
             ng-src="http://placehold.it/{{thumber.sizes._.w}}x{{thumber.sizes._.h}}">
 </div>
