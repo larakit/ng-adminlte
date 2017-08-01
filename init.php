@@ -26,10 +26,9 @@
     ->jsPackage('services/lk-thumb.js')
     ->jsPackage('services/lk-sidebars.js')
     ->jsPackage('services/lk-user.js')
-    ->jsPackage('module.js')
-;
+    ->jsPackage('module.js');
 
-\Larakit\Boot::register_middleware_route('ng-larakit',\Larakit\NgAdminlte\NgComponentsMiddleware::class);
+\Larakit\Boot::register_middleware_route('ng-larakit', \Larakit\NgAdminlte\NgComponentsMiddleware::class);
 \Larakit\Boot::register_command(\Larakit\NgAdminlte\Commands\LkNgGenerator::class);
 
 //##################################################
@@ -54,5 +53,8 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-thumb-step1', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-thumb-step2', $components_directory);
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-thumb-step3', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-attach-step1', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-attach-step2', $components_directory);
+\Larakit\NgAdminlte\LkNgComponent::register('adminlte-attach-step3', $components_directory);
 
 \Larakit\NgAdminlte\LkNgComponent::register('adminlte-uploader', $components_directory);

@@ -1,0 +1,64 @@
+<!--<pre>-->
+<!--{{$ctrl.model| json}}-->
+<!--</pre>-->
+<div class="modal-header">
+    <h3 class="modal-title">Управление вложениями</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="box box-primary box-solid" ng-repeat="(name, block) in $ctrl.model.attaches_blocks">
+        <div class="box-header ui-sortable-handle" style="cursor: move;">
+            <i class="fa fa-paperclip"></i>
+            <h3 class="box-title">{{block.label}}</h3>
+        </div>
+        <div class="box-body">
+            <adminlte-uploader
+                    on-complete-item="$ctrl.onCompleteItem"
+                    exts="block.exts"
+                    is-multiple="true"
+                    url="block.url_upload"></adminlte-uploader>
+            <div ng-if="block.ext" class="callout callout-info">
+                <p>
+                    <i class="fa fa-exclamation-triangle"></i>
+                    Разрешенные типы:
+                    <span ng-repeat="ext in block.ext">{{ext}}<span ng-if="!$last">, </span></span>
+                </p>
+            </div>
+            <table class="table table-striped table-condensed" ng-if="block.items.length>0">
+                <tr>
+                    <th width="1%">#</th>
+                    <th>Название</th>
+                    <th width="1%">Тип</th>
+                    <th width="10%">Приоритет</th>
+                    <th width="10%">Размер</th>
+                    <th width="5%">Управление</th>
+                </tr>
+                <tr ng-repeat="file in block.items">
+                    <td><i class="fa fa-paperclip"></i></td>
+                    <!--<th>{{file.id}}</th>-->
+                    <td>{{file.name}}</td>
+                    <td>
+                        <span class="label label-default">{{file.ext}}</span>
+                    </td>
+                    <td>
+                        <i class="fa fa-sort"></i>&nbsp;{{file.priority}}
+                    </td>
+                    <td>{{file.size_text}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                                    <span class="btn btn-primary btn-xs" title="Редактировать вложение" ng-click="$ctrl.actionEdit(file)">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>
+                            <span class="btn btn-danger btn-xs" title="Удалить вложение" ng-click="$ctrl.actionRemove(file)">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()">Отмена</button>
+</div>
+
