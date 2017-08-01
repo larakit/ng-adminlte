@@ -21,14 +21,16 @@
             $ctrl.model = response.model;
         };
         $ctrl.actionRemove = function (file) {
-            $http
-                .post('/!/attach/' + file.id + '/delete')
-                .then(function (response) {
-                    if ('success' == response.data.result) {
-                        $ctrl.model = response.data.model;
-                    }
-                    larakit_toastr(response.data);
-                });
+            if(confirm('Вы действительно хотите удалить вложение?')) {
+                $http
+                    .post('/!/attach/' + file.hash + '/delete')
+                    .then(function (response) {
+                        if ('success' == response.data.result) {
+                            $ctrl.model = response.data.model;
+                        }
+                        larakit_toastr(response.data);
+                    });
+            }
         };
         $ctrl.$onInit = function () {
             $ctrl.model = $ctrl.resolve.model;
@@ -50,6 +52,9 @@
             }, function () {
             });
 
+        };
+        $ctrl.cancel = function () {
+            $ctrl.dismiss({$value: 'cancel'});
         };
 
     }

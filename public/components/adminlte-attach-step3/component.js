@@ -25,7 +25,7 @@
         };
 
         $ctrl.save = function () {
-            $http.post('/!/attach/' + $ctrl.model.id + '/save', $ctrl.model)
+            $http.post('/!/attach/' + $ctrl.model.hash + '/save', $ctrl.model)
                 .then(
                     function (response) {
                         if ('error' == response.data.result) {
