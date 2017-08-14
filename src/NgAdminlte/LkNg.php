@@ -22,6 +22,7 @@ class LkNg {
      */
     static function proxyRoute($url, $is_auth = true) {
         $middlewares = ['web'];
+        $middlewares[] = 'ng-larakit';
         if($is_auth) {
             $middlewares[] = 'auth';
         }
