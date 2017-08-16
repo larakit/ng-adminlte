@@ -84,7 +84,7 @@
                 .then(function (response) {
                     $ctrl.config = response.data;
                     $ctrl.params.order_field = response.data.sorter_default;
-                    $ctrl.params.order_desc = false;
+                    $ctrl.params.order_desc = response.data.sorter_desc;
                     //первоначальное наполнение
                     actionLoad($ctrl);
                 });

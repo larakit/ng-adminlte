@@ -14,6 +14,7 @@ abstract class FormFilter {
     protected $filters        = [];
     protected $sorters        = [];
     protected $sorter_default = null;
+    protected $sorter_desc    = false;
     protected $model;
     protected $per_page       = 10;
     protected $title          = 'Фильтры списка';
@@ -61,6 +62,7 @@ abstract class FormFilter {
             $ret['sorters'][] = $sorter->element();
         }
         $ret['sorter_default'] = $formfilter->sorter_default;
+        $ret['sorter_desc']    = (bool) $formfilter->sorter_desc;
         
         return $ret;
     }
@@ -81,7 +83,7 @@ abstract class FormFilter {
         foreach($formfilter->sorters as $sorter) {
             $sorter->query($formfilter->model);
         }
-//        dd($formfilter->model->paginate($formfilter->per_page));
+        //        dd($formfilter->model->paginate($formfilter->per_page));
         $ret['models'] = $formfilter->model->paginate($formfilter->per_page)
             ->appends($_GET);
         $ret['sql']    = \DB::getQueryLog();
@@ -97,10 +99,11 @@ abstract class FormFilter {
         return $this;
     }
     
-    protected function addSorter($sorter, $is_default = false) {
+    protected function addSorter($sorter, $is_default = false, $is_desc = false) {
         $this->sorters[] = $sorter;
         if($is_default) {
             $this->sorter_default = $sorter->getName();
+            $this->sorter_desc    = $is_desc;
         }
         
         return $this;
