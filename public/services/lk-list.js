@@ -128,11 +128,11 @@
 
         }
 
-        function actionEdit(model, componentForm, callback, size) {
+        function actionEdit(model, componentForm, callback, size, is_modal) {
             if (undefined == size) {
                 size = 'lg';
             }
-            var modalInstance = $uibModal.open({
+            var config = {
                 animation: true,
                 ariaLabelledBy: 'modal-title-bottom',
                 ariaDescribedBy: 'modal-body-bottom',
@@ -143,14 +143,19 @@
                         return model;
                     }
                 }
-            });
+            };
+            if (undefined != is_modal) {
+                config.backdrop = 'static';
+                config.keyboard = false;
+            }
+            var modalInstance = $uibModal.open(config);
             modalInstance.result.then(function (o) {
                 callback.call(null);
             }, function () {
-                console.info('modal-component dismissed at: ' + new Date());
+                // console.info('modal-component dismissed at: ' + new Date());
             });
-
         }
+
     }
 
 })();
