@@ -85,7 +85,7 @@ abstract class FormFilter {
         }
         //        dd($formfilter->model->paginate($formfilter->per_page));
         $ret['models'] = $formfilter->model->paginate($formfilter->per_page)
-            ->appends($_GET);
+            ->appends($_GET)->toArray();
         $ret['sql']    = \DB::getQueryLog();
         
         return $ret;
