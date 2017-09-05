@@ -63,11 +63,15 @@ class LkNgSidebar {
      *
      * @return $this
      */
-    function addLabel($access_name, $cnt, $class = 'success') {
+    function addLabel($access_name, $text, $class = 'success') {
         $access_name = str_replace('/', '.', $access_name);
-        $path        = str_replace('.', '._items_.', $access_name) . '.item.labels';
-        $labels      = (array) Arr::get($this->items, $path);
-        $labels[]    = compact('cnt', 'class');
+        if(mb_strpos($access_name, '.')) {
+            $path = str_replace('.', '._items_.', $access_name) . '.item.labels';
+        } else {
+            $path = $access_name . '.labels';
+        }
+        $labels   = (array) Arr::get($this->items, $path);
+        $labels[] = compact('text', 'class');
         Arr::set($this->items, $path, $labels);
         
         return $this;
@@ -101,6 +105,9 @@ class LkNgSidebar {
         if(!Arr::get($this->items, $path . '.childs')) {
             Arr::set($this->items, $path . '.childs', []);
         }
+        if(!Arr::get($this->items, $path . '.labels')) {
+            Arr::set($this->items, $path . '.labels', []);
+        }
         if($url) {
             $childs   = Arr::get($this->items, $path . '.childs');
             $childs[] = $url;
@@ -121,10 +128,12 @@ class LkNgSidebar {
                 'access_name' => Arr::get($v, 'access_name'),
                 'url'         => Arr::get($v, 'url'),
                 'icon'        => Arr::get($v, 'icon'),
+                'labels'      => Arr::get($v, 'labels', []),
                 'childs'      => Arr::get($v, 'childs'),
                 '_items_'     => $this->values(Arr::get($v, '_items_', [])),
             ];
         }
+        
         return $ret;
     }
     
