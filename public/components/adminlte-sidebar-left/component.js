@@ -11,9 +11,9 @@
             controller: Controller
         });
 
-    Controller.$inject = ['$http', '$route', 'LkSidebars', 'hotkeys'];
+    Controller.$inject = ['$http', '$route', 'LkSidebars', 'hotkeys', 'LkEvent'];
 
-    function Controller($http, $route, LkSidebars, hotkeys) {
+    function Controller($http, $route, LkSidebars, hotkeys, LkEvent) {
         var $ctrl = this;
         $ctrl.opened = {};
 
@@ -29,6 +29,9 @@
         };
         $ctrl.current = $route.current.originalPath;
         $ctrl.load();
+        LkEvent.listener('sidebar-reload', function () {
+            $ctrl.load();
+        });
 
         $ctrl.treeViewMenuStyle = function (item) {
             return {

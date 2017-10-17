@@ -22,6 +22,7 @@
     ->jsPackage('services/lk-list.js')
     ->jsPackage('services/lk-alerts.js')
     ->jsPackage('services/lk-page.js')
+    ->jsPackage('services/lk-event.js')
     ->jsPackage('services/lk-sidebars.js')
     ->jsPackage('services/lk-user.js')
     ->jsPackage('module.js');
