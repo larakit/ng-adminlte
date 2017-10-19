@@ -15,6 +15,7 @@
     ],
     "require": {
         "larakit/lk-twig": "*",
+        "larakit/lk-angular": "*",
         "larakit/sf-adminlte": "*",
         "larakit/sf-angular-file-upload": "*"
     },
