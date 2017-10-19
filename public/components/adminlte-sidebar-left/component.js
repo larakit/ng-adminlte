@@ -19,7 +19,7 @@
 
         $ctrl.load = function () {
             $http
-                .get('/!/adminlte/sidebar')
+                .get('/!/lkng/sidebar')
                 .then(function (response) {
                     $ctrl.menu_items = response.data[$ctrl.section];
                     // console.log(response.data);
@@ -29,7 +29,8 @@
         };
         $ctrl.current = $route.current.originalPath;
         $ctrl.load();
-        LkEvent.listener('sidebar-reload', function () {
+        //навешиваем слушателя на событие
+        LkEvent.subscribe('sidebar-reload', 'adminlte-sidebar', function () {
             $ctrl.load();
         });
 

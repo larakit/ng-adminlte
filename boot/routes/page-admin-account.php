@@ -7,14 +7,27 @@
  * Time: 10:55
  */
 
-//$url = \Larakit\NgAdminlte\LkNgRoute::adminUrl('colors');
+//$url = \Larakit\LkNgRoute::adminUrl('colors');
 //\Larakit\NgAdminlte\LkNg::proxyRoute($url);
 
-\Larakit\NgAdminlte\LkNg::proxyRoute(\Larakit\NgAdminlte\LkNgRoute::accountUrl() . '{path?}', true)
+$adminlte_callback = function (\Larakit\Page\LkPage $page) {
+    $page = \Larakit\Page\LkPage::instance()
+        ->setBodyContent('<div class="wrapper">
+    <ng-view></ng-view>
+</div>');
+    $page->body()
+        ->setAttribute('style', 'height: auto; min-height: 100%;')
+        ->addClass('skin-black')->setAttribute('ng-class', '{
+        \'sidebar-collapse\':leftValue(),
+        \'control-sidebar-open\':rightValue(),
+}');
+    
+};
+\Larakit\LkNgRoute::proxy(\Larakit\LkNgRoute::accountUrl() . '{path?}', true, $adminlte_callback)
     ->name('account')
     ->middleware('ng-larakit')
     ->where('path', '.*');
-\Larakit\NgAdminlte\LkNg::proxyRoute(\Larakit\NgAdminlte\LkNgRoute::adminUrl() . '{path?}', true)
+\Larakit\LkNgRoute::proxy(\Larakit\LkNgRoute::adminUrl() . '{path?}', true, $adminlte_callback)
     ->name('admin')
     ->middleware('admin')
     ->middleware('ng-larakit')

@@ -27,24 +27,24 @@
     ->jsPackage('services/lk-user.js')
     ->jsPackage('module.js');
 
-\Larakit\Boot::register_middleware_route('ng-larakit', \Larakit\NgAdminlte\NgComponentsMiddleware::class);
+
 \Larakit\Boot::register_command(\Larakit\NgAdminlte\Commands\LkNgGenerator::class);
 
 //##################################################
 //components
 //##################################################
 $components_directory = '/packages/larakit/ng-adminlte/components/';
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-header', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-left', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-sidebar-right', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-content-wrapper', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-footer', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-pagination', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-filter', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-sorter', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-filter-labels', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list-item', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-list', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-alerts', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-helpbox', $components_directory);
-\Larakit\NgAdminlte\LkNgComponent::register('adminlte-uploader', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-header', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-sidebar-left', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-sidebar-right', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-content-wrapper', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-footer', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-pagination', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-filter', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-sorter', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-filter-labels', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-item', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-alerts', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-helpbox', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-uploader', $components_directory);

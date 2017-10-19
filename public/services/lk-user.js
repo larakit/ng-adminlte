@@ -20,7 +20,7 @@
             }
             if ('undefined' === typeof (self.user.id)) {
                 $http
-                    .get('/!/adminlte/me')
+                    .get('/!/lkng/me')
                     .then(function (response) {
                         self.user = response.data;
                         deferred.resolve(self.user);
