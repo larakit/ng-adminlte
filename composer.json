@@ -17,7 +17,15 @@
         "larakit/lk-twig": "*",
         "larakit/lk-angular": "*",
         "larakit/sf-adminlte": "*",
-        "larakit/sf-angular-file-upload": "*"
+        "larakit/sf-angular-file-upload": "*",
+        "larakit/sf-angular-ui-switch":"*",
+        "larakit/sf-angular-color-picker":"*",
+        "larakit/sf-angular-ui-bootstrap":"*",
+        "larakit/sf-angular-ui-tree":"*",
+        "larakit/sf-angular-ui-select":"*",
+        "larakit/sf-angular-rzslider":"*",
+        "larakit/sf-angular-quilljs":"*"
+
     },
     "autoload": {
         "psr-4": {
