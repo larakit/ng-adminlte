@@ -1,0 +1,21 @@
+<div class="form-group" ng-class="{'has-error': $ctrl.error}">
+    <label class="control-label" ng-transclude></label>
+    <ui-select ng-if="$ctrl.multiple" multiple ng-model="$ctrl.model">
+        <ui-select-match>{{$item[$ctrl.optionKey]}}</ui-select-match>
+        <ui-select-choices group-by="$ctrl.groupField" repeat="item in ($ctrl.options | filter: $select.search) track by item.id">
+            <span ng-bind="item[$ctrl.optionKey]"></span>
+        </ui-select-choices>
+    </ui-select>
+
+
+    <ui-select ng-if="!$ctrl.multiple" ng-model="$ctrl.select_model" on-select="$ctrl.selected()">
+        <ui-select-match>
+            <span ng-bind="$ctrl.getLabel()"></span>
+        </ui-select-match>
+        <ui-select-choices group-by="$ctrl.groupField" repeat="item in ($ctrl.options | filter: $select.search) track by item.id">
+            <span ng-bind="item[$ctrl.optionKey]"></span>
+        </ui-select-choices>
+    </ui-select>
+    <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
+    <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
+</div>

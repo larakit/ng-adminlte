@@ -1,0 +1,16 @@
+<div class="form-group" ng-class="{'has-error': $ctrl.error}">
+    <label class="control-label" ng-transclude></label>
+    <div class="input-group" ng-if="undefined!=$ctrl.append || undefined!=$ctrl.prepend">
+        <div ng-if="$ctrl.prepend" class="input-group-addon" ng-bind-html="$ctrl.prepend"></div>
+        <input type="text" class="form-control" ng-model="$ctrl.model" ng-change="$ctrl.onChange()" ng-model-options="{debounce: 200}">
+        <div ng-if="$ctrl.append" class="input-group-addon" ng-bind-html="$ctrl.append"></div>
+    </div>
+    <input ng-if="!$ctrl.append && !$ctrl.prepend" type="text" class="form-control" ng-model="$ctrl.model" ng-change="$ctrl.onChange()"
+           ng-model-options="{debounce: 200}">
+
+
+    <span class="help-block" ng-bind="$ctrl.example" ng-click="$ctrl.applyExample()" ng-if="$ctrl.example"></span>
+    <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
+    <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
+    <form-examples model="$ctrl.model" examples="$ctrl.examples" is-example-append="$ctrl.isExampleAppend"></form-examples>
+</div>

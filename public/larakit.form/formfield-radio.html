@@ -1,0 +1,11 @@
+<div class="form-group" ng-class="{'has-error': $ctrl.error}">
+    <label class="control-label" ng-transclude></label><br>
+    <div class="btn-group" ng-class="{
+    'btn-group-vertical':$ctrl.isVertical,
+    'btn-block':$ctrl.isFull,
+    }">
+        <label class="btn btn-primary" ng-repeat="(k,v) in $ctrl.options" ng-model="$ctrl.model" uib-btn-radio="{{k}}" uib-uncheckable="uncheckable">{{v}}</label>
+    </div>
+    <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
+    <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
+</div>

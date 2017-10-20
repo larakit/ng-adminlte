@@ -1,0 +1,7 @@
+<div class="form-group" ng-class="{'has-error': $ctrl.error}">
+    <label class="control-label" ng-transclude></label><br>
+    <color-picker options="$ctrl.options" ng-model="$ctrl.model"></color-picker>
+    <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
+    <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
+    <form-examples model="$ctrl.model" examples="$ctrl.examples" is-example-append="$ctrl.isExampleAppend"></form-examples>
+</div>

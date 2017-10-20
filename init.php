@@ -15,18 +15,25 @@
 
 \Larakit\StaticFiles\Manager::package('larakit/ng-adminlte')
     ->usePackage('larakit/sf-adminlte')
-    ->usePackage('larakit/sf-angular-larakit')
+    ->usePackage('larakit/lk-angular')
     ->setSourceDir('public')
-    ->jsPackage('services/breadcrumbs-builder.js')
-    ->jsPackage('services/lk-hasher.js')
-    ->jsPackage('services/lk-list.js')
-    ->jsPackage('services/lk-alerts.js')
-    ->jsPackage('services/lk-page.js')
-    ->jsPackage('services/lk-event.js')
-    ->jsPackage('services/lk-sidebars.js')
-    ->jsPackage('services/lk-user.js')
-    ->jsPackage('module.js');
-
+    ->jsPackage('larakit.form.js')
+    ->jsPackage('larakit.form/form-examples.js')
+    ->jsPackage('larakit.form/formfield-textarea.js')
+    ->jsPackage('larakit.form/formfield-text.js')
+    ->jsPackage('larakit.form/formfield-priority.js')
+    ->jsPackage('larakit.form/formfield-number.js')
+    ->jsPackage('larakit.form/formfield-radio.js')
+    ->jsPackage('larakit.form/formfield-select.js')
+    ->jsPackage('larakit.form/formfield-color.js')
+    ->jsPackage('larakit.form/formfield-checkbox.js')
+    ->jsPackage('larakit.form/formfield-date.js')
+    ->jsPackage('larakit.form/formfield-icons.js')
+    ->jsPackage('larakit.form/formfield-switch.js')
+    ->jsPackage('larakit.form/formfield-quill.js')
+    ->cssPackage('larakit.form/formfield-quill.css')
+    ->cssPackage('larakit.form/example.css');
+\Larakit\LkNgModule::register('larakit.form');
 
 \Larakit\Boot::register_command(\Larakit\NgAdminlte\Commands\LkNgGenerator::class);
 

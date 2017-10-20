@@ -1,7 +1,7 @@
 (function () {
 
     angular
-        .module('ng-larakit')
+        .module('larakit')
         .component('adminlteUploader', {
             templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-uploader/component.html',
             controller: Controller,

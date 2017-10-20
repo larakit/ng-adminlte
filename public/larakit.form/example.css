@@ -1,0 +1,15 @@
+.example-block {
+    color         : #cc6633;
+    display       : block;
+    margin-bottom : 5px;
+    margin-top    : 5px;
+}
+.help-block, .example-block {
+    font-size : 80%;
+}
+
+.example-block span span{
+    border-bottom: 1px dashed #cc6633;
+    cursor: pointer;
+    margin: 0 5px;
+}

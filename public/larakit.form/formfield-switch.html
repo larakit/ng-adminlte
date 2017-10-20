@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label class="control-label" ng-transclude></label><br>
+    <switch
+            ng-change="$ctrl.onChange()" ng-model-options="{debounce: 200}"
+            class="{{$ctrl.switchClass}} {{$ctrl.switchInverse?'inverse':''}}"
+            ng-model="$ctrl.model"
+            on="{{$ctrl.switchOn}}"
+            off="{{$ctrl.switchOff}}">
+    </switch>
+    <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
+</div>

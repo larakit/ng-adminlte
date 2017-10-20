@@ -1,0 +1,13 @@
+<div class="form-group" ng-class="{'has-error': $ctrl.error}">
+    <label ng-if="$ctrl.label" class="control-label" ng-bind="$ctrl.label"></label>
+
+    <div class="{{$ctrl.cssClass}}">
+        <ng-quill-editor ng-model="$ctrl.model" placeholder="Введите текст здесь ..." theme="{{$ctrl.theme}}">
+            <ng-quill-toolbar ng-transclude>
+            </ng-quill-toolbar>
+        </ng-quill-editor>
+    </div>
+    <span class="help-block" ng-bind="$ctrl.error" ng-show="$ctrl.error"></span>
+    <span class="help-block" ng-bind="$ctrl.desc" ng-show="$ctrl.desc"></span>
+    <form-examples model="$ctrl.model" examples="$ctrl.examples" is-example-append="$ctrl.isExampleAppend"></form-examples>
+</div>

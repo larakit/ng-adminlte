@@ -1,0 +1,7 @@
+<p class="example-block" rel="name-0" ng-show="undefined!=$ctrl.examples">
+    Например:
+    <span ng-repeat="example in $ctrl.examples">
+        <span ng-click="$ctrl.setExample(example[0])" ng-bind="((undefined !== example[1]) ? example[1] : example[0])"></span>
+        &nbsp;
+    </span>
+</p>

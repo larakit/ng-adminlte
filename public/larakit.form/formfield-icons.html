@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label class="control-label" ng-transclude></label><br>
+
+    <div class="btn-group">
+        <button type="button"
+                style="color: #fff"
+                title="{{$ctrl.labels[code]}}"
+                class="btn btn-default" ng-class="{
+                            'btn-active':code==$ctrl.model.svg
+                            }" ng-model="$ctrl.model" uib-btn-radio="'{{code}}'" uncheckable
+                ng-repeat="(code, url) in $ctrl.options">
+            <img ng-src="{{url}}" alt="" height="{{$ctrl.h}}" width="{{$ctrl.w}}">
+        </button>
+    </div>
+</div>
