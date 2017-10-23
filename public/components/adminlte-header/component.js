@@ -18,9 +18,11 @@
         $ctrl.menu_items = [];
 
         $ctrl.leftToggle = function () {
+            console.log('$ctrl.leftToggle');
             LkSidebars.leftToggle();
         };
         $ctrl.rightToggle = function () {
+            console.log('$ctrl.rightToggle');
             LkSidebars.rightToggle();
             return false;
         };
