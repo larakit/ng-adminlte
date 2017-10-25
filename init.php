@@ -35,6 +35,7 @@
     ->jsPackage('larakit.form/formfield-checkbox.js')
     ->jsPackage('larakit.form/formfield-date.js')
     ->jsPackage('larakit.form/formfield-icons.js')
+    ->jsPackage('larakit.form/formfield-phone.js')
     ->jsPackage('larakit.form/formfield-switch.js')
     ->jsPackage('larakit.form/formfield-quill.js')
     ->cssPackage('larakit.form/formfield-quill.css')
