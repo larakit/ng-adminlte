@@ -20,6 +20,8 @@ $adminlte_callback = function (\Larakit\Page\LkPage $page) {
         ->addClass('skin-black')->setAttribute('ng-class', '{
         \'sidebar-collapse\':leftValue(),
         \'control-sidebar-open\':rightValue(),
+        \'sidebar-open\':!leftValue(),
+        \'control-sidebar-open\':rightValue(),
 }');
     
 };
