@@ -1,0 +1,8 @@
+.adminlte-list-item {
+    display         : flex;
+    justify-content : space-between;
+}
+
+.adminlte-list-item--header {
+    width: 100%;
+}

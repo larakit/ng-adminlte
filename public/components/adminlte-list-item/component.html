@@ -1,24 +1,21 @@
 <div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':(true!=$ctrl.listOpened[$ctrl.model.id])}">
     <div class="box-header with-border">
-        <div class="row">
-            <div class="col-lg-1">
-                <h3 class="box-title">
-                    <label>
-                        <input type="checkbox" ng-model="$ctrl.listChecked[$ctrl.model.id]">
-                        <span ng-if="!$ctrl.isHideId">#{{$ctrl.model.id}}</span>
-                    </label>
-                    <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-box-tool" type="button"><i class="fa fa-arrow-down"
-                                                                                                                                            ng-class="{
+        <div class="adminlte-list-item">
+            <div style="width: {{$ctrl.wLeft}};">
+                <label>
+                    <input type="checkbox" ng-model="$ctrl.listChecked[$ctrl.model.id]">
+                    <span ng-if="!$ctrl.isHideId">#{{$ctrl.model.id}}</span>
+                </label>
+                <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-box-tool"
+                        type="button"><i class="fa fa-arrow-down"
+                                         ng-class="{
             'fa-plus':!$ctrl.listOpened[$ctrl.model.id],
             'fa-minus':$ctrl.listOpened[$ctrl.model.id]
             }"></i></button>
-                </h3>
             </div>
-            <div class="col-lg-9" ng-transclude="header">
-            </div>
-            <div class="col-lg-2">
-                <div class="btn-group pull-right" ng-transclude="buttons">
-                </div>
+            <div class="adminlte-list-item--header" ng-transclude="header"></div>
+            <div style="width: {{$ctrl.wRight}};">
+                <div class="btn-group pull-right" ng-transclude="buttons"></div>
             </div>
         </div>
     </div>
@@ -37,5 +34,3 @@
         </div>
     </div>
 </div>
-{{$ctrl.body}}
-{{$ctrl.itemBody}}
