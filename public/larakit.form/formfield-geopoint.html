@@ -1,0 +1,55 @@
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-text-width"></i>
+        <h3 class="box-title" ng-transclude></h3>
+    </div>
+    <div class="box-body">
+        <div class="form-group" ng-class="{'has-error': $ctrl.error}">
+            <div class="row">
+                <div class="col-lg-6">
+                    <dl class="dl">
+                        <dt>Долгота</dt>
+                        <dd>{{$ctrl.coords[0]}}</dd>
+                        <dt>Широта</dt>
+                        <dd>{{$ctrl.coords[1]}}</dd>
+                    </dl>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="$ctrl.search">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.find()">Искать</button>
+                        </span>
+                    </div>
+                    <table class="table table-bordered" ng-if="$ctrl.results.length">
+                        <tbody>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Результаты поиска</th>
+                            <th style="width: 40px">&nbsp;</th>
+                        </tr>
+                        <tr ng-repeat="result in $ctrl.results">
+                            <td>{{$index+1}}</td>
+                            <td>{{result.GeoObject.metaDataProperty.GeocoderMetaData.text}}</td>
+                            <td><span class="badge bg-red pointer" ng-click="$ctrl.apply(result)">применить</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-lg-6">
+                    <ya-map ya-zoom="5" ya-behaviors="default" ya-controls="" ya-event-click="$ctrl.click($event)" ya-after-init="$ctrl.afterMapInit($target)">
+                        <ya-geo-object
+                                ya-source="$ctrl.geoObject"></ya-geo-object>
+                    </ya-map>
+
+                </div>
+            </div>
+            <span class="help-block" ng-bind="$ctrl.example" ng-click="$ctrl.applyExample()" ng-if="$ctrl.example"></span>
+            <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
+            <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
+            <form-examples model="$ctrl.model" examples="$ctrl.examples" is-example-append="$ctrl.isExampleAppend"></form-examples>
+        </div>
+    </div>
+    <div class="box-footer text-sm text-muted">
+        Крутите колесиком мышки для изменения масштаба, кликайте на карте для установки точки вручную, используйте поиск для нахождения координат
+    </div>
+</div>

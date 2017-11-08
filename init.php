@@ -30,6 +30,8 @@
     ->jsPackage('larakit.form/formfield-priority.js')
     ->jsPackage('larakit.form/formfield-number.js')
     ->jsPackage('larakit.form/formfield-radio.js')
+    ->jsPackage('larakit.form/formfield-geopoint.js')
+    ->cssPackage('larakit.form/formfield-geopoint.css')
     ->jsPackage('larakit.form/formfield-select.js')
     ->jsPackage('larakit.form/formfield-color.js')
     ->jsPackage('larakit.form/formfield-checkbox.js')
