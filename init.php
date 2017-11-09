@@ -64,3 +64,4 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\LkNgComponent::register('adminlte-alerts', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-helpbox', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-uploader', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-priority', $components_directory);
