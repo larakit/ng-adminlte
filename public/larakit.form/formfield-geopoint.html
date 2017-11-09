@@ -17,7 +17,7 @@
                             </dl>
                         </div>
                         <div class="col-lg-8">
-                            <dl class="dl pointer" title="Поставить точку в центр карты" ng-click="$ctrl.center()">
+                            <dl class="dl" title="Поставить точку в центр карты" ng-click="$ctrl.center()">
                                 <dt>Масштаб</dt>
                                 <dd>
                                     <div class="btn-group">
@@ -32,16 +32,20 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="$ctrl.search" ng-keyup="$ctrl.findByKey($event)">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.find()">
-                                <span ng-if="!$ctrl.find_process">Искать</span>
-                                <i ng-if="$ctrl.find_process" class="fa fa-spinner fa-spin"></i>
-                            </button>
-                        </span>
-                    </div>
-                    <br>
+                    <dl class="dl" title="Поставить точку в центр карты" ng-click="$ctrl.center()">
+                        <dt>Поиск по адресу</dt>
+                        <dd>
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="$ctrl.search" ng-keyup="$ctrl.findByKey($event)">
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.find()">
+                                    <span ng-if="!$ctrl.find_process">Искать</span>
+                                    <i ng-if="$ctrl.find_process" class="fa fa-spinner fa-spin"></i>
+                                </button>
+                                </span>
+                            </div>
+                        </dd>
+                    </dl>
                 </div>
             </div>
             <div class="row">
