@@ -63,14 +63,13 @@
                     <table class="table table-bordered" ng-if="$ctrl.results.length">
                         <tbody>
                         <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Результаты поиска</th>
-                            <th style="width: 40px">&nbsp;</th>
+                            <th colspan="2">Результаты поиска</th>
                         </tr>
                         <tr ng-repeat="result in $ctrl.results">
-                            <td>{{$index+1}}</td>
+                            <td>
+                                <i class="fa fa-check pointer" ng-click="$ctrl.apply(result)" title="Применить"></i>
+                            </td>
                             <td class="text-sm">{{result.GeoObject.metaDataProperty.GeocoderMetaData.text}}</td>
-                            <td><span class="badge bg-red pointer" ng-click="$ctrl.apply(result)">применить</span></td>
                         </tr>
                         </tbody>
                     </table>
