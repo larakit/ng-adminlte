@@ -14,7 +14,7 @@
                         <dd>{{$ctrl.coords[1]}}</dd>
                     </dl>
                     <div class="input-group">
-                        <input type="text" class="form-control" ng-model="$ctrl.search">
+                        <input type="text" class="form-control" ng-model="$ctrl.search" ng-keyup="$ctrl.findByKey($event)">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.find()">Искать</button>
                         </span>

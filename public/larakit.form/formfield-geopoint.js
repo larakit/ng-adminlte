@@ -13,7 +13,7 @@ angular
             $ctrl.coords = {};
             $ctrl.geoObject = {};
             var map;
-            $ctrl.search='';
+            $ctrl.search = '';
             $ctrl.afterMapInit = function ($map) {
                 map = $map;
                 console.log(arguments);
@@ -58,10 +58,15 @@ angular
                     .get(url + $ctrl.search)
                     .then(function (response) {
                         $ctrl.results = response.data.response.GeoObjectCollection.featureMember;
-                        if(1==$ctrl.results.length){
+                        if (1 == $ctrl.results.length) {
                             $ctrl.apply(response.data.response.GeoObjectCollection.featureMember[0])
                         }
                     })
+            }
+            $ctrl.findByKey = function ($event) {
+                if (13 == $event.keyCode) {
+                    $ctrl.find();
+                }
             }
             $ctrl.apply = function (result) {
                 $ctrl.model = result.GeoObject.Point.pos;
