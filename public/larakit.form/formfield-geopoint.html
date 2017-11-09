@@ -42,7 +42,16 @@
                         </span>
                     </div>
                     <br>
-
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <ya-map ya-zoom="5" ya-behaviors="default" ya-controls="" ya-event-click="$ctrl.click($event)" ya-after-init="$ctrl.afterMapInit($target)">
+                        <ya-geo-object
+                                ya-source="$ctrl.geoObject"></ya-geo-object>
+                    </ya-map>
+                </div>
+                <div class="col-lg-4">
                     <div class="callout callout-info" ng-if="$ctrl.find_process">
                         <h4>Идет поиск</h4>
                         <div class="text-center"></div>
@@ -60,17 +69,13 @@
                         </tr>
                         <tr ng-repeat="result in $ctrl.results">
                             <td>{{$index+1}}</td>
-                            <td>{{result.GeoObject.metaDataProperty.GeocoderMetaData.text}}</td>
+                            <td class="text-sm">{{result.GeoObject.metaDataProperty.GeocoderMetaData.text}}</td>
                             <td><span class="badge bg-red pointer" ng-click="$ctrl.apply(result)">применить</span></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <ya-map ya-zoom="5" ya-behaviors="default" ya-controls="" ya-event-click="$ctrl.click($event)" ya-after-init="$ctrl.afterMapInit($target)">
-                <ya-geo-object
-                        ya-source="$ctrl.geoObject"></ya-geo-object>
-            </ya-map>
             <span class="help-block" ng-bind="$ctrl.example" ng-click="$ctrl.applyExample()" ng-if="$ctrl.example"></span>
             <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
             <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
