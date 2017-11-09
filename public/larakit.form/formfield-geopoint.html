@@ -7,17 +7,48 @@
         <div class="form-group" ng-class="{'has-error': $ctrl.error}">
             <div class="row">
                 <div class="col-lg-6">
-                    <dl class="dl">
-                        <dt>Долгота</dt>
-                        <dd>{{$ctrl.coords[0]}}</dd>
-                        <dt>Широта</dt>
-                        <dd>{{$ctrl.coords[1]}}</dd>
-                    </dl>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <dl class="dl pointer" title="Поставить точку в центр карты" ng-click="$ctrl.center()">
+                                <dt>Долгота</dt>
+                                <dd>{{$ctrl.coords[0]}}</dd>
+                                <dt>Широта</dt>
+                                <dd>{{$ctrl.coords[1]}}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-lg-8">
+                            <dl class="dl pointer" title="Поставить точку в центр карты" ng-click="$ctrl.center()">
+                                <dt>Масштаб</dt>
+                                <dd>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" ng-click="$ctrl.scale(3)">страна</button>
+                                        <button type="button" class="btn btn-default" ng-click="$ctrl.scale(10)">город</button>
+                                        <button type="button" class="btn btn-default" ng-click="$ctrl.scale(14)">улица</button>
+                                        <button type="button" class="btn btn-default" ng-click="$ctrl.scale(17)">дом</button>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="$ctrl.search" ng-keyup="$ctrl.findByKey($event)">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.find()">Искать</button>
+                            <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.find()">
+                                <span ng-if="!$ctrl.find_process">Искать</span>
+                                <i ng-if="$ctrl.find_process" class="fa fa-spinner fa-spin"></i>
+                            </button>
                         </span>
+                    </div>
+                    <br>
+
+                    <div class="callout callout-info" ng-if="$ctrl.find_process">
+                        <h4>Идет поиск</h4>
+                        <div class="text-center"></div>
+                    </div>
+                    <div class="callout callout-warning" ng-if="!$ctrl.find_process && $ctrl.cnt_find && !$ctrl.results.length">
+                        <h4>Ничего не найдено!</h4>
+
+                        <p>Измените условия поиска или укажите точку кликом на карте</p>
                     </div>
                     <table class="table table-bordered" ng-if="$ctrl.results.length">
                         <tbody>

@@ -11,6 +11,7 @@ angular
         controller: function ($http) {
             var $ctrl = this;
             $ctrl.coords = {};
+            $ctrl.cnt_find = 0;
             $ctrl.geoObject = {};
             var map;
             $ctrl.search = '';
@@ -40,20 +41,29 @@ angular
                         type: 'Point'
                     }
                 };
-                console.log('onSetValue', map);
+                $ctrl.center();
+            };
+            $ctrl.scale = function (zoom) {
+                console.log(map);
+                map.setCenter($ctrl.coords, zoom);
+            };
+            $ctrl.center = function () {
                 map.panTo($ctrl.coords, {
                     // Задержка перед началом перемещения.
                     delay: 1500
                 });
-            };
+            }
 
             $ctrl.click = function (e) {
                 var coords = e.get('coords');
                 $ctrl.model = coords.join(' ');
                 $ctrl.onSetValue();
             }
+            $ctrl.find_process = false;
             $ctrl.find = function () {
                 var url = 'https://geocode-maps.yandex.ru/1.x/?format=json&geocode=';
+                $ctrl.cnt_find++;
+                $ctrl.find_process = true;
                 $http
                     .get(url + $ctrl.search)
                     .then(function (response) {
@@ -61,6 +71,7 @@ angular
                         if (1 == $ctrl.results.length) {
                             $ctrl.apply(response.data.response.GeoObjectCollection.featureMember[0])
                         }
+                        $ctrl.find_process = false;
                     })
             }
             $ctrl.findByKey = function ($event) {
