@@ -10,9 +10,9 @@
                  ng-init="$ctrl.params.filters[filter.name].from=filter.options.floor;$ctrl.params.filters[filter.name].to=filter.options.ceil;"
             >
                 <label class="control-label">{{filter.label}}</label>
-                    <rzslider rz-slider-model="$ctrl.params.filters[filter.name].from"
-                              rz-slider-options="$ctrl.sliderOptions(filter.options)"
-                              rz-slider-high="$ctrl.params.filters[filter.name].to"></rzslider>
+                <rzslider rz-slider-model="$ctrl.params.filters[filter.name].from"
+                          rz-slider-options="$ctrl.sliderOptions(filter.options)"
+                          rz-slider-high="$ctrl.params.filters[filter.name].to"></rzslider>
             </div>
             <!-- BOOLEAN end -->
 
@@ -23,8 +23,10 @@
                     <div class="btn-group" ng-class="{'btn-group-vertical':true==filter.is_vertical, 'btn-group-justified':true!=filter.is_vertical}">
                         <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)"
                                uib-btn-radio="undefined" ng-bind-html="filter.all"></label>
-                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'" ng-bind-html="filter.on"></label>
-                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'" ng-bind-html="filter.off"></label>
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'1'"
+                               ng-bind-html="filter.on"></label>
+                        <label class="btn btn-default" ng-model="$ctrl.params.filters[filter.name]" ng-click="$ctrl.load()(false, 1)" uib-btn-radio="'-1'"
+                               ng-bind-html="filter.off"></label>
                     </div>
                 </div>
             </div>
@@ -82,7 +84,8 @@
             <!-- SELECT2 start -->
             <div class="form-group" ng-if="$ctrl.isShowSelect2(filter)">
                 <label class="control-label">{{filter.label}}</label>
-                <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params.filters[filter.name]" close-on-select="false">
+                <ui-select on-remove="$ctrl.load()(false, true)" on-select="$ctrl.load()(false, 1)" multiple ng-model="$ctrl.params.filters[filter.name]"
+                           close-on-select="false">
                     <ui-select-match>{{$item.toString}}</ui-select-match>
                     <ui-select-choices repeat="option in filter.options| filter:$select.search">
                         {{option.toString}}
@@ -91,6 +94,26 @@
 
             </div>
             <!-- SELECT2 end -->
+
+            <!-- RANGE_DATE start -->
+            <div class="form-group" ng-if="$ctrl.isShowRangeDate(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <formfield-date
+                                desc="'с даты (включительно)'"
+                                model="$ctrl.params.filters[filter.name][from]"
+                        ></formfield-date>
+                    </div>
+                    <div class="col-lg-6">
+                        <formfield-date
+                                desc="'по дату (включительно)'"
+                                model="$ctrl.params.filters[filter.name][from]"
+                        ></formfield-date>
+                    </div>
+                </div>
+            </div>
+            <!-- RANGE_DATE end -->
 
         </div>
     </div>

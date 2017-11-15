@@ -78,6 +78,12 @@
         $ctrl.isShowSelect2 = function (filter) {
             return $ctrl.isShowCondition(filter, 'select2');
         };
+        //##################################################
+        // SELECT2
+        //##################################################
+        $ctrl.isShowRangeDate = function (filter) {
+            return $ctrl.isShowCondition(filter, 'range_date');
+        };
     }
 
 })();

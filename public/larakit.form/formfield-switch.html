@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label class="control-label" ng-transclude></label><br>
+    $ctrl<label class="control-label hide_empty" ng-transclude></label><br>
     <switch
             ng-change="$ctrl.onChange()" ng-model-options="{debounce: 200}"
             class="{{$ctrl.switchClass}} {{$ctrl.switchInverse?'inverse':''}}"

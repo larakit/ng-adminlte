@@ -7,10 +7,10 @@
                     <span ng-if="!$ctrl.isHideId">#{{$ctrl.model.id}}</span>
                 </label>
                 <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-box-tool"
-                        type="button"><i class="fa fa-arrow-down"
+                        type="button"><i class="fa "
                                          ng-class="{
-            'fa-plus':!$ctrl.listOpened[$ctrl.model.id],
-            'fa-minus':$ctrl.listOpened[$ctrl.model.id]
+            'fa-chevron-right':!$ctrl.listOpened[$ctrl.model.id],
+            'fa-chevron-down':$ctrl.listOpened[$ctrl.model.id]
             }"></i></button>
             </div>
             <div class="adminlte-list-item--header" ng-transclude="header"></div>

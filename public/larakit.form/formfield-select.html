@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{'has-error': $ctrl.error}">
-    <label class="control-label" ng-transclude></label>
+    $ctrl<label class="control-label hide_empty" ng-transclude></label>
     <ui-select ng-if="$ctrl.multiple" multiple ng-model="$ctrl.model">
         <ui-select-match>{{$item[$ctrl.optionKey]}}</ui-select-match>
         <ui-select-choices group-by="$ctrl.groupField" repeat="item in ($ctrl.options | filter: $select.search) track by item.id">

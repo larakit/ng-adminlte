@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{'has-error': $ctrl.error}">
-    <label class="control-label" ng-transclude></label>
+    $ctrl<label class="control-label hide_empty" ng-transclude></label>
     <div class="btn-group">
         <label class="btn btn-primary" ng-model="$ctrl.model" uib-btn-radio="1" uib-uncheckable="uncheckable">Да</label>
         <label class="btn btn-primary" ng-model="$ctrl.model" uib-btn-radio="0" uib-uncheckable="uncheckable">Нет</label>
