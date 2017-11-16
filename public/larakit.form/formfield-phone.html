@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{'has-error': $ctrl.error}">
-    $ctrl<label class="control-label hide_empty" ng-transclude></label>
+    <label class="control-label hide_empty" ng-transclude></label>
     <div class="input-group" ng-if="undefined!=$ctrl.append || undefined!=$ctrl.prepend">
         <div ng-if="$ctrl.prepend" class="input-group-addon" ng-bind-html="$ctrl.prepend"></div>
         <input type="text" class="form-control"
