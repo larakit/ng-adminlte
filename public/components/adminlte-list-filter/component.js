@@ -3,7 +3,7 @@
     angular
         .module('larakit')
         .component('adminlteListFilter', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-filter/component.html',
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-filter/component.html?'+Math.random(),
             transclude: true,
             bindings: {
                 params: '=',

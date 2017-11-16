@@ -34,18 +34,14 @@ class FilterRangeDate extends Filter {
         $min   = Arr::get($value, 'from');
         $max   = Arr::get($value, 'to');
         
-        try {
+        if($min) {
             $min = Carbon::parse($min)->format('Y-m-d 00:00:00');
-        } catch(\Exception $e) {
-            $min = '';
         }
-        try {
+        if($max) {
             $max = Carbon::parse($max)->format('Y-m-d 23:59:59');
-        } catch(\Exception $e) {
-            $max = '';
         }
         
-        if('' != $min || '' != $max) {
+        if($min && $max) {
             if($this->relation) {
                 $model->whereHas($this->relation, function ($query) use ($min, $max) {
                     if('' != $min) {
