@@ -1,7 +1,7 @@
 angular
     .module('larakit.form')
     .component('formfieldDate', {
-        templateUrl: '/packages/larakit/ng-adminlte/larakit.form/formfield-date.html',
+        templateUrl: '/packages/larakit/ng-adminlte/larakit.form/formfield-date.html?'+Math.random(),
         transclude: true,
         bindings: {
             error: '=',
@@ -9,6 +9,7 @@ angular
             label: '=',
             max: '=',
             min: '=',
+            change: '&?',
             model: '='
         },
         controller: function () {
@@ -28,5 +29,10 @@ angular
             self.clear = function(){
 
             }
+            self.onChange = function () {
+                if (self.change) {
+                    self.change();
+                }
+            };
         }
     });

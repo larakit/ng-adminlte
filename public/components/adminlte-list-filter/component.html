@@ -102,13 +102,15 @@
                     <div class="col-lg-6">
                         <formfield-date
                                 desc="'с даты (включительно)'"
-                                model="$ctrl.params.filters[filter.name][from]"
+                                change="$ctrl.load()(false, 1)"
+                                model="$ctrl.params.filters[filter.name].from"
                         ></formfield-date>
                     </div>
                     <div class="col-lg-6">
                         <formfield-date
+                                change="$ctrl.load()(false, 1)"
                                 desc="'по дату (включительно)'"
-                                model="$ctrl.params.filters[filter.name][from]"
+                                model="$ctrl.params.filters[filter.name].to"
                         ></formfield-date>
                     </div>
                 </div>
