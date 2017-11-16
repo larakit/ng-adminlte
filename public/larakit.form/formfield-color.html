@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{'has-error': $ctrl.error}">
-    $ctrl<label class="control-label hide_empty" ng-transclude></label><br>
+    <label class="control-label hide_empty" ng-transclude></label><br>
     <color-picker options="$ctrl.options" ng-model="$ctrl.model"></color-picker>
     <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
     <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
