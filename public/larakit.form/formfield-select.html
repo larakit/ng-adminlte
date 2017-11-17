@@ -3,7 +3,8 @@
     <ui-select ng-if="$ctrl.multiple" multiple ng-model="$ctrl.model">
         <ui-select-match>{{$item[$ctrl.optionKey]}}</ui-select-match>
         <ui-select-choices group-by="$ctrl.groupField" repeat="item in ($ctrl.options | filter: $select.search) track by item.id">
-            <span ng-bind="item[$ctrl.optionKey]"></span>
+            <div ng-bind="item[$ctrl.optionKey]"></div>
+            <small class="formfield-select--desc" ng-if="item.select2Desc" ng-bind-html="item.select2Desc"></small>
         </ui-select-choices>
     </ui-select>
 
@@ -13,7 +14,8 @@
             <span ng-bind="$ctrl.getLabel()"></span>
         </ui-select-match>
         <ui-select-choices group-by="$ctrl.groupField" repeat="item in ($ctrl.options | filter: $select.search) track by item.id">
-            <span ng-bind="item[$ctrl.optionKey]"></span>
+            <div ng-bind="item[$ctrl.optionKey]"></div>
+            <small class="formfield-select--desc" ng-if="item.select2Desc" ng-bind-html="item.select2Desc"></small>
         </ui-select-choices>
     </ui-select>
     <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>

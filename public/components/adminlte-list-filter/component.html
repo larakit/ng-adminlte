@@ -81,6 +81,18 @@
             </div>
             <!-- LIKE end -->
 
+            <!-- EQUAL start -->
+            <div class="form-group" ng-if="$ctrl.isShowEqual(filter)">
+                <label class="control-label">{{filter.label}}</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="$ctrl.params.filters[filter.name]" ng-change="$ctrl.load()(false, 1)">
+                    <span class="input-group-addon pointer" title="Очистить поле"
+                          ng-click="$ctrl.params.filters[filter.name] = undefined;$ctrl.load()(false, 1)">&times;</span>
+                </div>
+
+            </div>
+            <!-- EQUAL end -->
+
             <!-- SELECT2 start -->
             <div class="form-group" ng-if="$ctrl.isShowSelect2(filter)">
                 <label class="control-label">{{filter.label}}</label>
@@ -88,7 +100,8 @@
                            close-on-select="false">
                     <ui-select-match>{{$item.toString}}</ui-select-match>
                     <ui-select-choices repeat="option in filter.options| filter:$select.search">
-                        {{option.toString}}
+                        <div>{{option.toString}}</div>
+                        <small class="formfield-select--desc" ng-if="option.select2Desc" ng-bind-html="option.select2Desc"></small>
                     </ui-select-choices>
                 </ui-select>
 

@@ -1,0 +1,17 @@
+.formfield-select--desc {
+    font-size  : .8em;
+    color      : #428bca;
+    font-style : italic;
+}
+
+.active .formfield-select--desc {
+    color : #fff;
+}
+
+.ui-select-bootstrap .ui-select-choices-row > span {
+    line-height : 1.2em;
+}
+
+.ui-select-bootstrap .ui-select-choices-row > span, .ui-select-choices-row-inner {
+    padding : 7px 20px;
+}
