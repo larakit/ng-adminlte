@@ -11,7 +11,8 @@
                     <input type="checkbox" ng-model="$ctrl.listChecked[$ctrl.model.id]">
                     <span ng-if="!$ctrl.isHideId">#{{$ctrl.model.id}}</span>
                 </label>
-                <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-box-tool"
+                <br>
+                <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-primary"
                         type="button"><i class="fa "
                                          ng-class="{
             'fa-chevron-right':!$ctrl.listOpened[$ctrl.model.id],
