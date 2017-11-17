@@ -1,4 +1,9 @@
-<div class="box {{$ctrl.color}} box-solid" ng-class="{'collapsed-box':(true!=$ctrl.listOpened[$ctrl.model.id])}">
+<div class="box {{$ctrl.color}} box-solid"
+     ng-class="{
+     'box--half':$ctrl.half,
+     'collapsed-box':!$ctrl.half && (true!=$ctrl.listOpened[$ctrl.model.id]),
+     'collapsed-box--half':$ctrl.half && (true==$ctrl.listOpened[$ctrl.model.id])
+     }">
     <div class="box-header with-border">
         <div class="adminlte-list-item">
             <div style="width: {{$ctrl.wLeft}};">

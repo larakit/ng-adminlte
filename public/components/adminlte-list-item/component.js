@@ -12,6 +12,7 @@
             bindings: {
                 model: '=',
                 color: '=',
+                half: '=?',
                 wLeft: '=?',
                 wRight: '=?',
                 listOpened: '=',

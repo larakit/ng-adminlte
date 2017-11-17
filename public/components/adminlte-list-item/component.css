@@ -4,5 +4,13 @@
 }
 
 .adminlte-list-item--header {
-    width: 100%;
+    width : 100%;
+}
+
+.box--half {
+    overflow : hidden;
+    height   : 125px;
+}
+.collapsed-box--half {
+    height : auto;
 }
