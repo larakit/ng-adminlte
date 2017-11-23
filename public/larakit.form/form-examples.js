@@ -6,6 +6,7 @@ angular
         bindings: {
             examples: '=',
             isExampleAppend: '=?',
+            isForceNumber: '=?',
             model: '='
         },
         controller: function () {
@@ -19,7 +20,20 @@ angular
                     }
                 } else {
                     self.model = val;
+                    if (self.isFloat(self.model)) {
+                        self.model = parseFloat(self.model);
+                    }
+                    if (self.isInt(self.model)) {
+                        self.model = parseInt(self.model);
+                    }
                 }
             };
+            self.isInt = function (n) {
+                return Number(n) === n && n % 1 === 0;
+            }
+
+            self.isFloat = function (n) {
+                return Number(n) === n && n % 1 !== 0;
+            }
         }
     });

@@ -4,6 +4,7 @@
         <div ng-if="$ctrl.prepend" class="input-group-addon" ng-bind-html="$ctrl.prepend"></div>
         <input ng-if="1==$ctrl.getStep()"
                step="1"
+               lang="en"
                type="number"
                class="form-control"
                ng-model="$ctrl.model"
@@ -11,6 +12,7 @@
                ng-model-options="{debounce: 200}">
         <input ng-if="1!=$ctrl.getStep()"
                step="any"
+               lang="en"
                type="number"
                class="form-control"
                ng-model="$ctrl.model"
@@ -19,14 +21,16 @@
         <div ng-if="$ctrl.append" class="input-group-addon" ng-bind-html="$ctrl.append"></div>
     </div>
     <input ng-if="1!=$ctrl.getStep() && !$ctrl.append && !$ctrl.prepend"
-           step="any"
+           step="{{$ctrl.getStep()}}"
            type="number"
+           lang="en"
            class="form-control"
            ng-model="$ctrl.model"
            ng-change="$ctrl.onChange()"
            ng-model-options="{debounce: 200}">
     <input ng-if="1==$ctrl.getStep() && !$ctrl.append && !$ctrl.prepend"
            step="1"
+           lang="en"
            type="number"
            class="form-control"
            ng-model="$ctrl.model"
@@ -34,5 +38,5 @@
            ng-model-options="{debounce: 200}">
     <span class="help-block" ng-bind-html="$ctrl.error" ng-show="$ctrl.error"></span>
     <span class="help-block" ng-bind-html="$ctrl.desc" ng-show="$ctrl.desc"></span>
-    <form-examples model="$ctrl.model" examples="$ctrl.examples" is-example-append="$ctrl.isExampleAppend"></form-examples>
+    <form-examples model="$ctrl.model" examples="$ctrl.examples" is-force-number="true" is-example-append="$ctrl.isExampleAppend"></form-examples>
 </div>
