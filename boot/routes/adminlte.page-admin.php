@@ -7,7 +7,7 @@
  * Time: 10:52
  */
 Route::get('!/adminlte/page-admin', function () {
-    return \Larakit\NgAdminlte\LkNgDashboard::all();
+    return \Larakit\LkNgDashboard::all();
 })
     ->middleware('web')
     ->middleware('auth')

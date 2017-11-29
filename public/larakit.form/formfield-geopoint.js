@@ -8,23 +8,49 @@ angular
             desc: '=?',
             model: '='
         },
-        controller: function ($http) {
+        controller: function ($http, $timeout) {
             var $ctrl = this;
-            $ctrl.coords = {};
+            $ctrl.coords = [0, 0];
             $ctrl.cnt_find = 0;
-            $ctrl.geoObject = {};
+            $ctrl.geoObject = {
+                "geometry": {
+                    "coordinates": [
+                        0, 0
+                    ],
+                    "type": "Point"
+                }
+            };
+
+
             var map;
             $ctrl.search = '';
             $ctrl.afterMapInit = function ($map) {
                 map = $map;
-                console.log(arguments);
-                console.log('afterMapInit', map);
-                $ctrl.onSetValue();
+                if (!$ctrl.model) {
+                    ymaps.geolocation.get().then(function (res) {
+                        $ctrl.model = res.geoObjects.position.join(' ');
+                        $ctrl.onSetValue();
+                    }, function (e) {
+                        console.log(e);
+                    });
+                }
+
+                $timeout(function () {
+                    $ctrl.onSetValue();
+                }, 1000);
+
             };
             $ctrl.onSetValue = function () {
                 if (!$ctrl.model) {
-                    $ctrl.coords = {};
-                    $ctrl.geoObject = {};
+                    $ctrl.coords = [0, 0];
+                    $ctrl.geoObject = {
+                        "geometry": {
+                            "coordinates": [
+                                0, 0
+                            ],
+                            "type": "Point"
+                        }
+                    };
                 } else {
                     var val = $ctrl.model.split(' ');
                     $ctrl.coords = [
@@ -35,6 +61,7 @@ angular
                 if (0 == Object.keys($ctrl.coords).length) {
                     return null;
                 }
+                // console.log('onSetValue', $ctrl.coords);
                 $ctrl.geoObject = {
                     geometry: {
                         coordinates: $ctrl.coords,
@@ -44,10 +71,13 @@ angular
                 $ctrl.center();
             };
             $ctrl.scale = function (zoom) {
-                console.log(map);
+                // console.log(map);
                 map.setCenter($ctrl.coords, zoom);
             };
             $ctrl.center = function () {
+                if (0 == Object.keys($ctrl.coords).length) {
+                    return null;
+                }
                 map.panTo($ctrl.coords, {
                     // Задержка перед началом перемещения.
                     delay: 1500
@@ -56,8 +86,11 @@ angular
 
             $ctrl.click = function (e) {
                 var coords = e.get('coords');
+                // console.log('coords', coords);
                 $ctrl.model = coords.join(' ');
-                $ctrl.onSetValue();
+                $timeout(function () {
+                    $ctrl.onSetValue();
+                }, 1000);
             }
             $ctrl.find_process = false;
             $ctrl.find = function () {
@@ -81,6 +114,7 @@ angular
             }
             $ctrl.apply = function (result) {
                 $ctrl.model = result.GeoObject.Point.pos;
+                // console.log('$ctrl.model', $ctrl.model);
                 $ctrl.onSetValue();
             };
 

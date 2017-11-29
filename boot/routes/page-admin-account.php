@@ -8,7 +8,7 @@
  */
 
 //$url = \Larakit\LkNgRoute::adminUrl('colors');
-//\Larakit\NgAdminlte\LkNg::proxyRoute($url);
+//\Larakit\LkNgRoute::proxy($url);
 
 $adminlte_callback = function (\Larakit\Page\LkPage $page) {
     $page = \Larakit\Page\LkPage::instance()
