@@ -35,7 +35,7 @@
     ->jsPackage('larakit.form/formfield-select.js')
     ->cssPackage('larakit.form/formfield-select.css')
     ->jsPackage('larakit.form/formfield-dualselect.js')
-    ->cssPackage('larakit.form/formfield-dualselect.css')
+//    ->cssPackage('larakit.form/formfield-dualselect.css')
     ->jsPackage('larakit.form/formfield-color.js')
     ->jsPackage('larakit.form/formfield-checkbox.js')
     ->jsPackage('larakit.form/formfield-date.js')

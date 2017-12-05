@@ -1,8 +1,104 @@
-<div class="row">
-    <div class="col-lg-6">
-
+<div class="box box-default box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title" ng-transclude></h3>
     </div>
-    <div class="col-lg-6">
+    <div class="box-body">
 
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="box box-default box-solid1">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Доступные для выбора ({{$ctrl.items_no.length}} из {{$ctrl.options.length}})</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-responsive table-striped">
+                            <tr>
+                                <th colspan="2">
+                                    <input class="form-control" placeholder="Фильтр" type="text" ng-model="$ctrl.filter_no">
+                                </th>
+                                <th  width="2%">
+                                    <button class="btn btn-success btn-xs" ng-click="$ctrl.yes(0)" ng-show="$ctrl.items_no.length">
+                                        <i class="fa fa-arrow-right fa-4x"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in $ctrl.items_no | filter: $ctrl.filter_no | orderBy:toString | limitTo: $ctrl.perPage : ($ctrl.page_no-1)*$ctrl.perPage">
+                                <td width="2%">
+                                    #{{item.id}}
+                                </td>
+                                <td>
+                                    <strong>{{item.toDualSelect?item.toDualSelect:item.toString}}</strong>
+                                </td>
+                                <td class="text-right" width="2%">
+                                    <button class="btn btn-success btn-xs" ng-click="$ctrl.yes(item.id)"><i class="fa fa-arrow-right"></i></button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <ul
+                                    previous-text="&lsaquo;"
+                                    next-text="&rsaquo;"
+                                    first-text="&laquo;"
+                                    last-text="&raquo;"
+                                    uib-pagination
+                                    total-items="$ctrl.items_no.length"
+                                    boundary-link-numbers="true"
+                                    boundary-links="true"
+                                    ng-model="$ctrl.page_no"
+                                    max-size="10"
+                                    items-per-page="$ctrl.perPage"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="box box-default box-solid1">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Выбранные ({{$ctrl.items_yes.length}} из {{$ctrl.options.length}})</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-responsive table-striped">
+                            <tr>
+                                <th width="2%">
+                                    <button class="btn btn-danger btn-xs" ng-click="$ctrl.no(0)" ng-show="$ctrl.items_yes.length">
+                                        <i class="fa fa-arrow-left fa-4x"></i>
+                                    </button>
+                                </th>
+                                <th colspan="2" >
+                                    <input class="form-control" placeholder="Фильтр" type="text" ng-model="$ctrl.filter_yes">
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in $ctrl.items_yes | filter: $ctrl.filter_yes  | orderBy:toString| limitTo: $ctrl.perPage : ($ctrl.page_yes-1)*$ctrl.perPage">
+                                <td>
+                                    <button class="btn btn-danger btn-xs" ng-click="$ctrl.no(item.id)"><i class="fa fa-arrow-left"></i></button>
+                                </td>
+                                <td width="2%">
+                                    #{{item.id}}
+                                </td>
+                                <td>
+                                    <strong>{{item.toDualSelect?item.toDualSelect:item.toString}}</strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <ul
+                                    previous-text="&lsaquo;"
+                                    next-text="&rsaquo;"
+                                    first-text="&laquo;"
+                                    last-text="&raquo;"
+                                    uib-pagination
+                                    total-items="$ctrl.items_yes.length"
+                                    boundary-link-numbers="true"
+                                    boundary-links="true"
+                                    ng-model="$ctrl.page_yes"
+                                    max-size="10"
+                                    items-per-page="$ctrl.perPage"></ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
