@@ -28,7 +28,7 @@ angular
                 $ctrl.ids = $ctrl.model.split(',').map(Number);
                 $timeout(function () {
                     $ctrl.onChange();
-                }, 100);
+                }, 1000);
             };
 
             $ctrl.onChange = function () {
