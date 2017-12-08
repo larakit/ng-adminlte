@@ -1,0 +1,9 @@
+.dualselect-filters {
+    display : -ms-flexbox;
+    display : -webkit-flex;
+    display : flex;
+}
+
+.dualselect-filters--item {
+    width : 100%;
+}

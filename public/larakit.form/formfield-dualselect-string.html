@@ -1,0 +1,140 @@
+<div class="box box-default box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title" ng-transclude></h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="box box-default box-solid1">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{$ctrl.titleNo}} ({{$ctrl.items_no.length}} из {{$ctrl.options.length}})</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-responsive table-striped">
+                            <tr>
+                                <th ng-if="!$ctrl.isHideId" width="10%">
+                                    <input
+                                            class="form-control"
+                                            type="text"
+                                            ng-model="$ctrl.filter_no.id"
+                                            ng-change="$ctrl.onChange()"
+                                    >
+                                </th>
+                                <th ng-repeat="field in $ctrl.fields">
+                                    <input class="form-control"
+                                           ng-change="$ctrl.onChange()"
+                                           type="text" ng-model="$ctrl.filter_no[field.field]">
+                                </th>
+                                <th width="10%">
+                                    <button class="btn btn-success btn-xs btn-block" ng-click="$ctrl.yes(0)" ng-show="$ctrl.items_no.length">
+                                        <i class="fa fa-arrow-right fa-2x"></i>
+                                    </button>
+                                </th>
+                            <tr>
+                                <th ng-if="!$ctrl.isHideId">
+                                    #
+                                </th>
+                                <th ng-repeat="field in $ctrl.fields">
+                                    <strong>{{field.name}}</strong>
+                                </th>
+                                <th>&nbsp;</th>
+                            </tr>
+                            <tr ng-repeat="item in $ctrl.items_no | orderBy:toString| limitTo: $ctrl.perPage : ($ctrl.page_no-1)*$ctrl.perPage">
+                                <td width="2%" ng-if="!$ctrl.isHideId">
+                                    #{{item.id}}
+                                </td>
+                                <td ng-repeat="field in $ctrl.fields">
+                                    {{$ctrl.get(item, field.field)}}
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-success btn-xs" ng-click="$ctrl.yes(item.id)"><i class="fa fa-arrow-right"></i></button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <ul
+                                    previous-text="&lsaquo;"
+                                    next-text="&rsaquo;"
+                                    first-text="&laquo;"
+                                    last-text="&raquo;"
+                                    uib-pagination
+                                    total-items="$ctrl.items_no.length"
+                                    boundary-link-numbers="true"
+                                    boundary-links="true"
+                                    ng-model="$ctrl.page_no"
+                                    max-size="10"
+                                    items-per-page="$ctrl.perPage"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="box box-default box-solid1">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{$ctrl.titleYes}} ({{$ctrl.items_yes.length}} из {{$ctrl.options.length}})</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-responsive table-striped">
+                            <tr>
+                                <th width="10%">
+                                    <button class="btn btn-danger btn-xs btn-block" ng-click="$ctrl.no(0)" ng-show="$ctrl.items_yes.length">
+                                        <i class="fa fa-arrow-left fa-2x"></i>
+                                    </button>
+                                </th>
+                                <th ng-if="!$ctrl.isHideId" width="10%">
+                                    <input
+                                            class="form-control"
+                                            type="text"
+                                            ng-model="$ctrl.filter_yes.id"
+                                            ng-change="$ctrl.onChange()"
+                                    >
+                                </th>
+
+                                <th ng-repeat="field in $ctrl.fields">
+                                    <input class="form-control"
+                                           ng-change="$ctrl.onChange()"
+                                           type="text" ng-model="$ctrl.filter_yes[field.field]">
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th ng-if="!$ctrl.isHideId">
+                                    #
+                                </th>
+                                <th ng-repeat="field in $ctrl.fields">
+                                    <strong>{{field.name}}</strong>
+                                </th>
+
+                            </tr>
+                            <tr ng-repeat="item in $ctrl.items_yes | orderBy:toString| limitTo: $ctrl.perPage : ($ctrl.page_yes-1)*$ctrl.perPage">
+                                <td>
+                                    <button class="btn btn-danger btn-xs" ng-click="$ctrl.no(item.id)"><i class="fa fa-arrow-left"></i></button>
+                                </td>
+                                <td width="2%" ng-if="!$ctrl.isHideId">
+                                    #{{item.id}}
+                                </td>
+                                <td ng-repeat="field in $ctrl.fields">
+                                    {{$ctrl.get(item, field.field)}}
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <ul
+                                    previous-text="&lsaquo;"
+                                    next-text="&rsaquo;"
+                                    first-text="&laquo;"
+                                    last-text="&raquo;"
+                                    uib-pagination
+                                    total-items="$ctrl.items_yes.length"
+                                    boundary-link-numbers="true"
+                                    boundary-links="true"
+                                    ng-model="$ctrl.page_yes"
+                                    max-size="10"
+                                    items-per-page="$ctrl.perPage"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
