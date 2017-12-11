@@ -1,0 +1,6 @@
+<button ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-primary"
+        type="button"><i class="fa "
+                         ng-class="{
+            'fa-chevron-right':!$ctrl.listOpened[$ctrl.model.id],
+            'fa-chevron-down':$ctrl.listOpened[$ctrl.model.id]
+            }"></i></button>

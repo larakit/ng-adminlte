@@ -1,0 +1,26 @@
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <a class="btn btn-social btn-facebook" ng-click="$ctrl.toggle()">
+                            <i class="fa" ng-class="{'fa-check-circle-o':$ctrl.is,'fa-check-circle':!$ctrl.is,}"></i>
+                            <span ng-show="$ctrl.countSelected()">Выделено: {{$ctrl.countSelected()}}</span>
+                            <span ng-show="!$ctrl.countSelected()">Выделить все</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-8">
+                        &nbsp;
+                        <div class="btn-group" ng-show="$ctrl.countSelected()">
+                            <button title="свернуть все" type="button" class="btn btn-default" ng-click="$ctrl.collapseMinus()"><i class="fa fa-minus"></i></button>
+                            <button title="развернуть все" type="button" class="btn btn-default" ng-click="$ctrl.collapsePlus()"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <span ng-transclude="buttons" ng-show="$ctrl.countSelected()"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 text-right" ng-transclude="add"></div>
+        </div>
+    </div>
+</div>

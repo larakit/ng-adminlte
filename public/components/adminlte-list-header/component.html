@@ -1,0 +1,10 @@
+<adminlte-list-bulk data="$ctrl.data"
+                    list-checked="$ctrl.listChecked"
+                    list-opened="$ctrl.listOpened">
+    <list-buttons ng-transclude="buttons"></list-buttons>
+    <list-add ng-transclude="add"></list-add>
+</adminlte-list-bulk>
+
+<adminlte-list-filter-labels filters="$ctrl.config.filters" load="$ctrl.load" params="$ctrl.params"></adminlte-list-filter-labels>
+
+<adminlte-list-sorter params="$ctrl.params" sorters="$ctrl.config.sorters" load="$ctrl.load"></adminlte-list-sorter>

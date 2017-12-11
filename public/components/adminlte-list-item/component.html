@@ -7,17 +7,16 @@
     <div class="box-header with-border">
         <div class="adminlte-list-item">
             <div style="width: {{$ctrl.wLeft}};">
-                <label>
-                    <input type="checkbox" ng-model="$ctrl.listChecked[$ctrl.model.id]">
-                    <span ng-if="!$ctrl.isHideId">#{{$ctrl.model.id}}</span>
-                </label>
-                <br>
-                <button ng-if="!$ctrl.isHideToggle" ng-click="$ctrl.listOpened[$ctrl.model.id]=!$ctrl.listOpened[$ctrl.model.id]" class="btn btn-primary"
-                        type="button"><i class="fa "
-                                         ng-class="{
-            'fa-chevron-right':!$ctrl.listOpened[$ctrl.model.id],
-            'fa-chevron-down':$ctrl.listOpened[$ctrl.model.id]
-            }"></i></button>
+                <adminlte-list-item-checked
+                        model="$ctrl.model"
+                        is-hide-id="$ctrl.isHideId"
+                        list-checked="$ctrl.listChecked"
+                ></adminlte-list-item-checked>
+                <adminlte-list-item-opened
+                        model="$ctrl.model"
+                        list-opened="$ctrl.listOpened"
+                        ng-if="!$ctrl.isHideToggle"
+                ></adminlte-list-item-opened>
             </div>
             <div class="adminlte-list-item--header" ng-transclude="header"></div>
             <div style="width: {{$ctrl.wRight}};">
