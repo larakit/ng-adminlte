@@ -3,7 +3,7 @@
     angular
         .module('larakit')
         .component('adminlteSidebarLeft', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-sidebar-left/component.html',
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-sidebar-left/component.html?'+Math.random(),
             transclude: true,
             bindings: {
                 section: '='

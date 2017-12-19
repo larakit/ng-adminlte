@@ -2,7 +2,7 @@
     <section class="sidebar" style="height: auto;">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" ng-repeat="(group, items) in $ctrl.menu_items">
-            <li class="header" ng-if="group">{{group}}</li>
+            <li class="header" ng-if="group">{{group|translate}}</li>
             <li ng-class="{
                     'treeview':item._items_.length>0,
                     'active':$ctrl.isActive(item),
@@ -17,9 +17,9 @@
 </aside>
 <script type="text/ng-template" id="sidebar-branch">
     <a href="{{item.url}}" ng-click="$ctrl.toggle(item, $event);">
-        <i ng-if="item.icon" class="{{item.icon}}"></i> <span ng-bind="item.text"></span>
+        <i ng-if="item.icon" class="{{item.icon}}"></i> <span ng-bind="item.text|translate"></span>
         <span class="pull-right-container" ng-if="item.labels.length>0">
-            <small ng-repeat="label in item.labels" class="label pull-right label-{{label.class}}">{{label.text}}</small>
+            <small ng-repeat="label in item.labels" class="label pull-right label-{{label.class}}">{{label.text | translate}}</small>
         </span>
         <span class="pull-right-container" ng-if="item._items_.length>0">
           <i class="fa fa-angle-left pull-right"></i>

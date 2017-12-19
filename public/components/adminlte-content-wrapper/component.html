@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{$ctrl.getTitle()}}
-            <small ng-if="$ctrl.getSubTitle()" ng-bind="$ctrl.getSubTitle()"></small>
+            {{$ctrl.getTitle()|translate}}
+            <small ng-if="$ctrl.getSubTitle()" ng-bind="$ctrl.getSubTitle()|translate"></small>
         </h1>
         <ol class="breadcrumb" ng-if="$ctrl.breadcrumbs.length>0">
             <li>
@@ -11,7 +11,7 @@
             </li>
             <li ng-repeat="(i,breadcrumb) in $ctrl.breadcrumbs">
                 <a href="{{breadcrumb.url}}" ng-class="{'active':i==$ctrl.breadcrumbs.length}"><i ng-if="breadcrumb.icon" class="{{breadcrumb.icon}}"></i>
-                    {{breadcrumb.title}}</a>
+                    {{breadcrumb.title|translate}}</a>
             </li>
         </ol>
     </section>
