@@ -44,6 +44,24 @@
                         </li>
                     </ul>
                 </li>
+                <li class="dropdown tasks-menu" ng-class="{'open':(0)}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        {{$ctrl.currentLanguage()}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <ul class="menu">
+                                <li ng-repeat="lang in $ctrl.langs">
+                                    <a ng-click="$ctrl.changeLanguage(lang, $event)">
+                                        {{lang}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer" ng-if="menu_item.footer_url"><a href="{{menu_item.footer_url}}">{{menu_item.footer_text?menu_item.footer_text:menu_item.footer_url}}</a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">

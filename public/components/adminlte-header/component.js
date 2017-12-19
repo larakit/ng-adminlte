@@ -39,6 +39,8 @@
                     $ctrl.menu_items = response.data.items;
                     $ctrl.logo_mini = response.data.logo_mini;
                     $ctrl.logo_lg = response.data.logo_lg;
+                    $ctrl.langs = response.data.langs;
+                    $ctrl.lang = response.data.lang;
                 });
         };
         $ctrl.load();
@@ -53,6 +55,14 @@
 
             })
         }
+        $ctrl.currentLanguage = function () {
+            return $translate.use();
+        };
+
+        $ctrl.changeLanguage = function (langKey, $event) {
+            $translate.use(langKey);
+            $event.preventDefault();
+        };
     }
 
 })();
