@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h3 class="modal-title">Выберите из списка</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <!--{{$ctrl.model}}-->
+    <div class="box box-success box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Характеристики акции</h3>
+        </div>
+        <div class="box-body">
+            <pre>{{$ctrl.url|json}}</pre>
+            <div class="row">
+                <div class="col-lg-8">
+                    <adminlte-list data="$ctrl.data"
+                                   config="$ctrl.config"
+                                   params="$ctrl.params"
+                                   load="$ctrl.load"
+                                   list-checked="$ctrl.listChecked"
+                                   list-opened="$ctrl.listOpened">
+                        <list-body>
+                            <table class="table table-bordered table-responsive">
+                                <tr>
+                                    <th width="5%">#</th>
+                                    <th>Название</th>
+                                    <th width="1%">&nbsp;</th>
+                                </tr>
+                                <tr class="{{model.action_state_class}}" ng-repeat="model in $ctrl.data.data" ng-class="{
+                    'row_action_collapse ':!$ctrl.listOpened[model.id]
+                }">
+                                    <td>
+                                        <button ng-click="$ctrl.select(model)" class="btn btn-primary" type="button">
+                                            <i
+                                                    class="fa"
+                                                    ng-class="{'fa-check-circle':$ctrl.model.id==model.id,'fa-check-circle-o':$ctrl.model.id!=model.id}"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>{{model.toString}}</strong>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group-vertical">
+                                <span class="btn btn-primary btn-xs" title="Редактировать"
+                                      ng-click="$ctrl.actionEdit(model)">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                            <span class="btn btn-danger btn-xs" title="Удалить"
+                                                  ng-click="$ctrl.actionRemove(model)">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </list-body>
+                        <list-add>
+                            <a class="btn btn-social btn-facebook" ng-click="$ctrl.actionEdit({id:0})">
+                                <i class="fa fa-plus"></i>
+                                Добавить партнера
+                            </a>
+                        </list-add>
+                        <list-buttons>
+                            <a class="btn btn-social btn-facebook" ng-click="$ctrl.actionEdit({id:0})">
+                                <i class="fa fa-plus"></i>
+                                Добавить партнера
+                            </a>
+                        </list-buttons>
+                    </adminlte-list>
+                </div>
+                <div class="col-lg-4">
+                    <adminlte-list-filter params="$ctrl.params" load="$ctrl.load" filters="$ctrl.config.filters"></adminlte-list-filter>
+                </div>
+            </div>
+            <pre>{{$ctrl.model|json}}</pre>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-if="0<$ctrl.model.id" ng-click="$ctrl.save()">Сохранить</button>
+    <button type="submit" class="btn btn-primary" ng-if="0==$ctrl.model.id" ng-click="$ctrl.save()">Создать</button>
+    <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()">Отмена</button>
+</div>

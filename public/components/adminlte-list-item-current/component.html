@@ -1,0 +1,13 @@
+<button
+        ng-click="$ctrl.toggleCurrent()"
+        class="btn pointer"
+        ng-class="{
+            'btn-default':!$ctrl.is_current,
+            'btn-success':$ctrl.is_current
+        }"
+        type="button"><i class="fa" ng-class="{
+            'fa-circle-thin':!$ctrl.is_current && ('belongsTo' == $ctrl.currentMode),
+            'fa-check-circle-o':$ctrl.is_current && ('belongsTo' == $ctrl.currentMode),
+            'fa-square-o':!$ctrl.is_current && ('belongsTo' != $ctrl.currentMode),
+            'fa-check-square-o':$ctrl.is_current && ('belongsTo' != $ctrl.currentMode),
+        }"></i></button>

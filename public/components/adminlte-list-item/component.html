@@ -7,11 +7,11 @@
     <div class="box-header with-border">
         <div class="adminlte-list-item">
             <div style="width: {{$ctrl.wLeft}};">
-                <adminlte-list-item-checked
+                <adminlte-list-item-bulk
                         model="$ctrl.model"
                         is-hide-id="$ctrl.isHideId"
                         list-checked="$ctrl.listChecked"
-                ></adminlte-list-item-checked>
+                ></adminlte-list-item-bulk>
                 <adminlte-list-item-opened
                         model="$ctrl.model"
                         list-opened="$ctrl.listOpened"
@@ -19,6 +19,13 @@
                 ></adminlte-list-item-opened>
             </div>
             <div class="adminlte-list-item--header" ng-transclude="header"></div>
+            <div style="width: 40px" ng-if="$ctrl.currentMode">
+                <adminlte-list-item-current
+                        model="$ctrl.model"
+                        current="$ctrl.current"
+                        current-mode="$ctrl.currentMode"
+                ></adminlte-list-item-current>
+            </div>
             <div style="width: {{$ctrl.wRight}};">
                 <div class="btn-group pull-right" ng-transclude="buttons"></div>
             </div>

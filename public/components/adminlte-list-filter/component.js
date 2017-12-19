@@ -3,9 +3,11 @@
     angular
         .module('larakit')
         .component('adminlteListFilter', {
-            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-filter/component.html?'+Math.random(),
+            templateUrl: '/packages/larakit/ng-adminlte/components/adminlte-list-filter/component.html?' + Math.random(),
             transclude: true,
             bindings: {
+                current: '=?',
+                currentMode: '=?',
                 params: '=',
                 filters: '=',
                 load: '&'
@@ -28,9 +30,27 @@
             }
             return true;
         };
-        $ctrl.isLoading = function(){
+        $ctrl.isLoading = function () {
             return LkList.isLoading();
         };
+
+        $ctrl.filterCurrentOne = function (model) {
+            if($ctrl.params.filters.id == model.id){
+                $ctrl.params.filters.id = '';
+            } else {
+                $ctrl.params.filters.id = model.id.toString();
+            }
+
+            $ctrl.load()(false, 1);
+        };
+        $ctrl.filterCurrentAll = function(){
+            var ids = [];
+            _.each($ctrl.current, function(o){
+                ids.push(o.id);
+            });
+            $ctrl.params.filters.id = ids.join();
+            $ctrl.load()(false, 1);
+        }
 
         //##################################################
         // BOOLEAN
