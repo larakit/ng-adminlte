@@ -9,6 +9,8 @@
 Route::get('!/adminlte/header', function () {
     $ret = [
         'items'     => \Larakit\NgAdminlte\LkNgHeader::items(),
+        'langs'     => config('app.locales'),
+        'lang'      => App::getLocale(),
         'logo_mini' => env('ADMINLTE_HEADER_LOGO_MINI', '<b>L</b>K'),
         'logo_lg'   => env('ADMINLTE_HEADER_LOGO_LG', '<b>Lara</b>kit'),
     ];
