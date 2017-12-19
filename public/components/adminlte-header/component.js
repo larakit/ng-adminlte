@@ -10,9 +10,9 @@
             controller: Controller
         });
 
-    Controller.$inject = ['LkSidebars', 'LkUser', '$location', '$http'];
+    Controller.$inject = ['LkSidebars', 'LkUser', '$location', '$http', '$translate'];
 
-    function Controller(LkSidebars, LkUser, $location, $http) {
+    function Controller(LkSidebars, LkUser, $location, $http,$translate) {
         var $ctrl = this;
         $ctrl.me = {};
         $ctrl.menu_items = [];
