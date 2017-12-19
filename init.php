@@ -36,6 +36,7 @@
     ->cssPackage('larakit.form/formfield-select.css')
 
     ->jsPackage('larakit.form/formfield-dualselect-array.js')
+    ->jsPackage('larakit.form/formfield-belongsto.js')
     ->jsPackage('larakit.form/formfield-dualselect-string.js')
     ->cssPackage('larakit.form/formfield-dualselect.css')
 
@@ -68,7 +69,8 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\LkNgComponent::register('adminlte-list-filter-labels', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-list-item', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-list-item-opened', $components_directory);
-\Larakit\LkNgComponent::register('adminlte-list-item-checked', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-item-bulk', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-list-item-current', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-list', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-list-bulk', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-list-header', $components_directory);
@@ -76,3 +78,4 @@ $components_directory = '/packages/larakit/ng-adminlte/components/';
 \Larakit\LkNgComponent::register('adminlte-helpbox', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-uploader', $components_directory);
 \Larakit\LkNgComponent::register('adminlte-priority', $components_directory);
+\Larakit\LkNgComponent::register('adminlte-modal-belongsto', $components_directory);

@@ -12,6 +12,8 @@
             bindings: {
                 model: '=',
                 color: '=',
+                current: '=?',
+                currentMode: '=?',
                 half: '=?',
                 wLeft: '=?',
                 wRight: '=?',

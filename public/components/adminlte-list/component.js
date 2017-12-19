@@ -29,14 +29,14 @@
         $ctrl.isAdd = $transclude.isSlotFilled('add');
         $ctrl.collapseMinus = function () {
             _.each($ctrl.data.data, function (model) {
-                if($ctrl.listChecked[model.id]){
+                if ($ctrl.listChecked[model.id]) {
                     $ctrl.listOpened[model.id] = false;
                 }
             });
         };
         $ctrl.collapsePlus = function () {
             _.each($ctrl.data.data, function (model) {
-                if($ctrl.listChecked[model.id]) {
+                if ($ctrl.listChecked[model.id]) {
                     $ctrl.listOpened[model.id] = true;
                 }
             });

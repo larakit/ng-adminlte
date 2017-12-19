@@ -1,0 +1,10 @@
+<div class="form-group" ng-class="{'has-error': $ctrl.error}">
+    <label class="control-label" ng-transclude></label>
+    <div class="input-group" ng-click="$ctrl.selectPartner()">
+        <input type="text" class="form-control" ng-model="$ctrl.model.toString" disabled="">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-info btn-flat" ng-click="$ctrl.showModal()">Изменить</button>
+        </span>
+    </div>
+    <span class="help-block ng-binding ng-hide" ng-bind="$ctrl.error" ng-show="$ctrl.error"></span>
+</div>
