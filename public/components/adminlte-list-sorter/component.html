@@ -5,7 +5,7 @@
           ng-class="{
             'list-sorter__item--active':$ctrl.params.order_field==sorter.name
         }">
-                {{sorter.label}}
+                {{sorter.label|translate}}
             <i class="fa" ng-if="$ctrl.params.order_field==sorter.name" ng-class="{
                 'fa-chevron-down':$ctrl.params.order_desc,
                 'fa-chevron-up':!$ctrl.params.order_desc,
