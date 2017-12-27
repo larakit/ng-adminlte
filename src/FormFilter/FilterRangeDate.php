@@ -41,21 +41,21 @@ class FilterRangeDate extends Filter {
             $max = Carbon::parse($max)->format('Y-m-d 23:59:59');
         }
         
-        if($min && $max) {
+        if($min || $max) {
             if($this->relation) {
                 $model->whereHas($this->relation, function ($query) use ($min, $max) {
-                    if('' != $min) {
+                    if($min) {
                         $query->where($this->db_field, '>=', $min);
                     }
-                    if('' != $max) {
+                    if($max) {
                         $query->where($this->db_field, '<=', $max);
                     }
                 });
             } else {
-                if('' != $min) {
+                if($min) {
                     $model->where($this->db_field, '>=', $min);
                 }
-                if('' != $max) {
+                if($max) {
                     $model->where($this->db_field, '<=', $max);
                 }
             }
