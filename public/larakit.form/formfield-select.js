@@ -10,6 +10,7 @@ angular
             desc: '=',
             options: '=',
             change: '&?',
+            tagging: '&?',
             groupField: '=',
             model: '=',
             optionKey: '=?'
@@ -17,6 +18,12 @@ angular
         controller: function () {
             var self = this;
             self.multiple = !!self.multiple;
+            self.newTag = function(newTag){
+                if(!self.tagging){
+                    return {};
+                }
+                return self.tagging()(newTag);
+            };
             self.select_model = {id: 0};
             self.onChange = function () {
                 if (self.change) {
