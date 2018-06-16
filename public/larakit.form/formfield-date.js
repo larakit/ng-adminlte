@@ -22,7 +22,9 @@ angular
                 startingDay: 1
             };
             self.$postLink = function(){
-                self.model = new Date(self.model);
+                if(self.model){
+                    self.model = new Date(self.model);
+                }
             };
 
             self.format = 'dd.MM.yyyy';
