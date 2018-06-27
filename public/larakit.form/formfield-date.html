@@ -1,7 +1,6 @@
 <div class="form-group" ng-class="{'has-error': $ctrl.error}">
     <label class="control-label hide_empty" ng-transclude></label>
     <p class="input-group">
-
         <input type="text"
                uib-datepicker-popup="{{$ctrl.format}}"
                class="form-control"
@@ -9,9 +8,12 @@
                is-open="$ctrl.opened"
                datepicker-options="$ctrl.dateOptions"
                close-text="Закрыть"
+               ng-model-options="{timezone: 'utc'}"
                ng-change="$ctrl.onChange()"
                clear-text="Очистить"
-               current-text="Сегодня"/>
+               current-text="Сегодня"
+               datetimepicker-neutral-timezone
+        />
         <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.opened=1"><i class="fa fa-calendar"></i></button>
         </span>
