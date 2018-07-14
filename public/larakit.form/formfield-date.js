@@ -1,7 +1,7 @@
 angular
     .module('larakit.form')
     .component('formfieldDate', {
-        templateUrl: '/packages/larakit/ng-adminlte/larakit.form/formfield-date.html?'+Math.random(),
+        templateUrl: '/packages/larakit/ng-adminlte/larakit.form/formfield-date.html?' + Math.random(),
         transclude: true,
         bindings: {
             error: '=',
@@ -17,8 +17,8 @@ angular
             self.opened = false;
             self.dateOptions = {
                 formatYear: 'yy',
-                maxDate: (undefined!==self.max)?new Date(self.max):null,
-                minDate: (undefined!==self.min)?new Date(self.min):null,
+                maxDate: (undefined !== self.max) ? new Date(self.max) : null,
+                minDate: (undefined !== self.min) ? new Date(self.min) : null,
                 startingDay: 1
             };
             self.$postLink = function(){
@@ -28,7 +28,7 @@ angular
             };
 
             self.format = 'dd.MM.yyyy';
-            self.clear = function(){
+            self.clear = function () {
 
             }
             self.onChange = function () {
@@ -37,4 +37,32 @@ angular
                 }
             };
         }
+    })
+    .directive('datetimepickerNeutralTimezone', function () {
+        return {
+            restrict: 'A',
+            priority: 1,
+            require: 'ngModel',
+            link: function (scope, element, attrs, ctrl) {
+                ctrl.$formatters.push(function (value) {
+                    if (value) {
+                        var date = new Date(Date.parse(value));
+                        date = new Date(date.getTime() + (60000 * date.getTimezoneOffset()));
+                        return date;
+                    } else {
+                        return null;
+                    }
+                });
+
+                ctrl.$parsers.push(function (value) {
+                    if (value) {
+                        var date = new Date(value.getTime() - (60000 * value.getTimezoneOffset()));
+                        return date;
+                    } else {
+                        return null;
+                    }
+                });
+            }
+        };
     });
+;
