@@ -13,16 +13,23 @@
 
     Controller.$inject = ['$route'];
 
-    function Controller($route) {
+    function Controller ($route) {
 
         var $ctrl = this;
 
         $ctrl.route = $route.current;
 
         $ctrl.getTitle = function () {
+            if (undefined == $ctrl.breadcrumbs || 0==$ctrl.breadcrumbs.length) {
+                return '';
+            }
+            console.warn($ctrl.breadcrumbs);
             return $ctrl.breadcrumbs[$ctrl.breadcrumbs.length - 1].title;
         };
         $ctrl.getSubTitle = function () {
+            if (undefined == $ctrl.breadcrumbs || 0==$ctrl.breadcrumbs.length) {
+                return '';
+            }
             return $ctrl.breadcrumbs[$ctrl.breadcrumbs.length - 1].subtitle;
         };
     }
