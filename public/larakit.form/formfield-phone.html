@@ -3,14 +3,14 @@
     <div class="input-group" ng-if="undefined!=$ctrl.append || undefined!=$ctrl.prepend">
         <div ng-if="$ctrl.prepend" class="input-group-addon" ng-bind-html="$ctrl.prepend"></div>
         <input type="text" class="form-control"
-               ui-mask="+7(999) 999-99-99"
+               ui-mask="+9(999) 999-99-99"
                ui-mask-placeholder
                ui-mask-placeholder-char="*"
                ng-model="$ctrl.model" ng-change="$ctrl.onChange()" ng-model-options="{debounce: 200}">
         <div ng-if="$ctrl.append" class="input-group-addon" ng-bind-html="$ctrl.append"></div>
     </div>
     <input ng-if="!$ctrl.append && !$ctrl.prepend"
-           ui-mask="+7(999) 999-99-99"
+           ui-mask="+9(999) 999-99-99"
            ui-mask-placeholder
            ui-mask-placeholder-char="*"
            type="text" class="form-control" ng-model="$ctrl.model" ng-change="$ctrl.onChange()"
