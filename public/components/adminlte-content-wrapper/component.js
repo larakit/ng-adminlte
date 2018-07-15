@@ -23,7 +23,6 @@
             if (undefined == $ctrl.breadcrumbs || 0==$ctrl.breadcrumbs.length) {
                 return '';
             }
-            console.warn($ctrl.breadcrumbs);
             return $ctrl.breadcrumbs[$ctrl.breadcrumbs.length - 1].title;
         };
         $ctrl.getSubTitle = function () {
