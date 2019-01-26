@@ -16,28 +16,6 @@ if(!env('ADMINLTE_NO_ROUTE')) {
         $page = \Larakit\Page\LkPage::instance()
             ->setBodyContent('<div class="wrapper" style="height: auto; min-height: 100%;">
     <ng-view></ng-view>
-    
-//    
-//    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-//    <script type="text/javascript">
-//        (function() {
-//            var socket = io(\'ws://localhost:6684\', {transports: [\'websocket\']});
-//
-//            socket.on(\'connect\', function() {
-//                
-//                socket.emit(\'subscribe\', \'test2\');
-//                socket.emit(\'subscribe\', \'admin\');
-//            
-//            //    console.log(socket.id); // \'G5p5...\'
-//            });
-//
-//            socket.on(\'notifier:message\', function(msg) {
-//                var result = JSON.parse(msg);
-//            larakit_toastr(result);
-//                console.log(result);
-//            });
-//        })();
-//    </script>
 </div>');
         $page->body()
             ->setAttribute('style', 'height: auto; min-height: 100%;')
